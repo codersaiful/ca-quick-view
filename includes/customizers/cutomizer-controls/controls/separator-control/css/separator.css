@@ -1,0 +1,12 @@
+h3.separator-info {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+    margin: 0;
+    font-size: 16px !important;
+    letter-spacing: 1.2px;
+    background: #fff;
+    color: #1e73be;
+    padding: 10px;
+    border-radius: 2px;
+    font-weight: 500;
+}

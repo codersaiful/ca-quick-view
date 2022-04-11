@@ -1,0 +1,76 @@
+#sub-accordion-panel-cawqv_customizer_panel .wp-picker-container, 
+#sub-accordion-panel-cawqv_customizer_panel ..wp-picker-input-wrap  {
+	display:block;
+	max-width:100% !important;
+	margin-bottom: 10px;
+}
+#sub-accordion-panel-cawqv_customizer_panel .wp-picker-container .wp-color-result.button {
+    min-height: 30px;
+    margin: 0;
+    padding:0;
+    width: 100%;
+    display: block;
+}
+
+li#accordion-panel-cawqv_customizer_panel .accordion-section-title{
+	background: #3582c4;
+	color: #fff;
+	}
+#sub-accordion-section-cawqv_customizer_section span.customize-control-title, 
+#sub-accordion-section-cawqv_icon_section span.customize-control-title,
+#sub-accordion-section-cawqv_general_section .customize-control-title, 
+#sub-accordion-section-cawqv_add_to_cart_section .customize-control-title{
+   border-bottom: 1px solid #ccc;
+   padding: 10px 0;
+   margin: 0px 0px 10px 0px;
+   font-size: 13px !important;
+   /*! letter-spacing: 1.2px; */
+   background: #fff;
+   color: #1e73be;
+   padding: 10px;
+   border-radius: 2px;
+   /*! font-weight: 500; */
+   /*! text-transform: uppercase; */
+}
+#sub-accordion-section-cawqv_icon_section span.customize-control-title, 
+#sub-accordion-section-cawqv_general_section span.customize-control-title,
+#sub-accordion-section-cawqv_general_section .customize-control-title {
+   /*! background: #2271b1; */
+   color:#185c98;
+   margin-top: 10px;
+}
+body.wp-customizer .wp-picker-container, 
+body.wp-customizer .wp-picker-input-wrap {
+    max-width:100% !important;
+    margin-bottom: 5px;
+    width: 100%;
+}
+body.wp-customizer .wp-color-result-text {
+    background-color: rgba(0,0,0,.2);
+    color: #fff;
+    height: 30px;
+    line-height: 30px;
+    border: none;
+    box-shadow: none;
+    font-size: 12px;
+    border-radius: 0 4px 4px 0;
+    padding: 0 15px;
+}
+.slider-custom-control{
+	margin-top:10px
+}
+.slider-custom-control .customize-control-title{
+	margin:0
+}
+#accordion-panel-cawqv_customizer_panel .accordion-section-title:after, 
+#accordion-panel-cawqv_customizer_panel .accordion-section-title:after{
+	color:#fff
+}
+.wp-picker-container .wp-color-result.button {
+    min-height: 30px;
+    margin: 0 6px 6px 0px;
+    padding: 0 0 0 30px;
+    font-size: 11px;
+    width: 100%;
+}
+
