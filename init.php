@@ -7,7 +7,7 @@
  * Author: CodeAstrology
  * Author URI: https://profiles.wordpress.org/codersaiful/
  * Requires at least: 5.2
- * Tested up to: 5.9
+ * Tested up to: 5.9.3
  * Requires PHP: 7.0
  * Text Domain: cawqv
  * Domain Path: /languages/
@@ -40,7 +40,7 @@ function lite_thankyou_notice()
 {
 	if (get_transient('lite-thankyou-notice'))
 	{
-		$msg_title 	= 'CA Woocommerce Quick View Lite';
+		$msg_title 	= 'CA Woocommerce Quick View';
 		$msg_text 	= 'Deactivated CA Woocommerce Quick View Pro while Lite is Activate.';
 		$settings 	= '<a class="button button-primary" href="'.wp_customize_url().'">Settings</a>';
 ?>
@@ -107,14 +107,14 @@ class CAWQV_PLUGIN_LITE
         wp_enqueue_style('modal_box', CAWQV_PATH . '/assets/css/modal-box.css', CAWQV_VERSION);
         wp_enqueue_style('slider', CAWQV_PATH . '/assets/css/swiper-bundle.min.css', CAWQV_VERSION);
         wp_enqueue_style('perfect-scroll', CAWQV_PATH . '/assets/css/perfect-scrollbar.css', CAWQV_VERSION);
-        wp_enqueue_style('cawqv-style', CAWQV_PATH . '/assets/css/cawqv-style.css', CAWQV_VERSION);
+        wp_enqueue_style('cawqv-style', CAWQV_PATH . '/assets/css/style.css', CAWQV_VERSION);
         wp_enqueue_style('cawqv_css');
 
         wp_enqueue_script('jquery');
         wp_enqueue_script('cawqv-modal-box', CAWQV_PATH . '/assets/js/modal-box.js', CAWQV_VERSION);
         wp_enqueue_script('cawqv-slider-js', CAWQV_PATH . '/assets/js/swiper-bundle.min.js', CAWQV_VERSION);
         wp_enqueue_script('cawqv-perfect-scrollbar-js', CAWQV_PATH . '/assets/js/perfect-scrollbar.min.js', CAWQV_VERSION);
-        wp_enqueue_script('custom-js', CAWQV_PATH . '/assets/js/cawqv-custom.js', CAWQV_VERSION);
+        wp_enqueue_script('custom-js', CAWQV_PATH . '/assets/js/custom.js', CAWQV_VERSION);
     }
 
 	/**
@@ -151,7 +151,7 @@ class CAWQV_PLUGIN_LITE
      * @since 1.0
      */
     static function cawqv_admin_style(){
-        wp_enqueue_style('admin-style', CAWQV_PATH . '/assets/css/cawqv-admin-style.css');
+        wp_enqueue_style('admin-style', CAWQV_PATH . '/assets/css/admin-style.css');
     }
     /**
      * Define Customizer control dir
