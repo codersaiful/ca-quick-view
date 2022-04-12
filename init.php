@@ -7,7 +7,7 @@
  * Author: CodeAstrology
  * Author URI: https://profiles.wordpress.org/codersaiful/
  * Requires at least: 5.2
- * Tested up to: 5.9
+ * Tested up to: 5.9.3
  * Requires PHP: 7.0
  * Text Domain: cawqv
  * Domain Path: /languages/
