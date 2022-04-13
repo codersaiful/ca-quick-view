@@ -33,15 +33,22 @@ if (!function_exists('activate_lite'))
 //Activation Hook
 register_activation_hook(__FILE__, 'activate_lite');
 
+//Define constants.
+
+define('CAWQV_PATH', untrailingslashit(plugins_url(basename(plugin_dir_path(__FILE__)) , basename(__FILE__))));
+define('CAWQV_BASE', plugin_basename(__FILE__));
+define('CAWQV_INC_DIR', untrailingslashit(plugin_dir_path(__FILE__) . 'includes'));
+define('CAWQV_DIR', untrailingslashit(plugin_dir_path(__FILE__)));
+define('CAWQV_CUSTOMIZER_PATH', untrailingslashit(plugins_url(basename(plugin_dir_path(__FILE__)) , basename(__FILE__)) . '/includes/cutomizer-controls/controls'));
+
 
 //Plugin Init Class
 class CAWQV_PLUGIN_LITE
 {
     const CAWQV_VERSION = '1.0';
+   
 
     function __construct(){
-        //Define constants.
-        $this->define_constants();
         //Script hook.
         add_action('wp_enqueue_scripts', array($this,'cawqv_load_scripts'));
         add_action('admin_enqueue_scripts', array($this,'cawqv_admin_style'));
@@ -50,34 +57,7 @@ class CAWQV_PLUGIN_LITE
 		// Initialize the filter hooks.
 		$this->action_link_filters();
     }
-	
-    /**
-     * Define constants
-     *
-     * @since 1.0
-     */
-    public function define_constants(){
-        $this->define('CAWQV_DIR', untrailingslashit(plugin_dir_path(__FILE__)));
-        $this->define('CAWQV_INC_DIR', untrailingslashit(plugin_dir_path(__FILE__) . 'includes'));
-        $this->define('CAWQV_PATH', untrailingslashit(plugins_url(basename(plugin_dir_path(__FILE__)) , basename(__FILE__))));
-        $this->define('CAWQV_CUSTOMIZER_PATH', untrailingslashit(plugins_url(basename(plugin_dir_path(__FILE__)) , basename(__FILE__)) . '/includes/cutomizer-controls/controls'));
-        $this->define('CAWQV_BASE', plugin_basename(__FILE__));
-    }
 
-    public function cawqv_path(){
-        
-    }
-    /**
-     * Define constant if not already set
-     *
-     * @param string      $name
-     * @param string|bool $value
-     */
-    public function define($name, $value){
-        if (!defined($name)){
-            define($name, $value);
-        }
-    }
     /**
      * Add Scripts
      *
