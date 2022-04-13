@@ -110,6 +110,7 @@ class CAWQV_FRONTEND
         $allowed_html = array(
                 'div' => array(
                 'id'    => array(),
+                'style'    => array(),
                 'class'    => array(),
              ),
              'i'    => array(

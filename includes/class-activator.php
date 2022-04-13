@@ -16,10 +16,6 @@ class Lite_Activator {
 	 * @since      1.0
 	 */
 	public static function activate() {
-		deactivate_plugins( 'ca-woocommerce-quick-view/init.php' );
-	}
-	public static function set_plugin_info(){
-		update_option( 'cawqv_activation_date', current_time( 'timestamp' ) );
-		update_option( 'cawqv_version', CAWQV_VERSION );
+		deactivate_plugins( 'ca-quick-view-premium/init.php' );
 	}
 }

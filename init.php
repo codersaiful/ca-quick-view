@@ -25,33 +25,13 @@ if (!function_exists('activate_lite'))
      * The code that runs during plugin activation.
      * This action is documented in includes/class-activator.php
      */
-    function activate_lite()
-    {
+    function activate_lite(){
         require_once plugin_dir_path(__FILE__) . 'includes/class-activator.php';
         Lite_Activator::activate();
-        Lite_Activator::set_plugin_info();
-        set_transient('lite-thankyou-notice', true, 5);
     }
 }
 //Activation Hook
 register_activation_hook(__FILE__, 'activate_lite');
-
-function lite_thankyou_notice()
-{
-	if (get_transient('lite-thankyou-notice'))
-	{
-		$msg_title 	= 'CA Woocommerce Quick View';
-		$msg_text 	= 'Deactivated CA Woocommerce Quick View Pro while Lite is Activate.';
-		$settings 	= '<a class="button button-primary" href="'.wp_customize_url().'">Settings</a>';
-?>
-		<div class="updated is-dismissible aep-notice">
-			<?php echo sprintf(__('<p>Thank you for using <strong>%s</strong>! 
-			<strong>%s</strong></p><p>%s</p>', 'awqv' ),$msg_title, $msg_text, $settings); ?>
-		</div>
-  <?php
-		delete_transient('lite_thankyou_notice-notice');
-	}
-}
 
 
 //Plugin Init Class
@@ -84,6 +64,9 @@ class CAWQV_PLUGIN_LITE
         $this->define('CAWQV_BASE', plugin_basename(__FILE__));
     }
 
+    public function cawqv_path(){
+        
+    }
     /**
      * Define constant if not already set
      *
