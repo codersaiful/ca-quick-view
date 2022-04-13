@@ -13,7 +13,7 @@
  * Domain Path: /languages/
  * License: GPL2+
  *
- * @package ca-woocommerce-quick-view
+ * @package ca-quick-view
  */
 
 if (!defined('ABSPATH')){

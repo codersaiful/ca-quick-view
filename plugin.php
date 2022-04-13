@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) exit;
      * View button for actions
      *
      * @since      1.0.0
-     * @package    ca-woocommerce-quick-view
+     * @package    ca-quick-view
      * @author     BM Rafiul Alam <bmrafiul.alam@gmail.com>
     */
 

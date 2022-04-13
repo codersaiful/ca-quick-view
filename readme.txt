@@ -1,4 +1,4 @@
-=== CA WooCommerce Quick View  ===
+=== Quick View by Code Astrology  ===
 Contributors: codersaiful, rafiul17
 Tags: WooCommerce, quick view,free quick view, Products Quick View, product view
 Requires at least: 5.0
@@ -11,7 +11,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 
 == Description ==
-CA WooCommerce Quick View for WooCommerce is a lightweight WooCommerce based plugin. A user can easily view a product without redirection. The advanced slider is used for navigating gallery products. Lots of options and live customizable.
+Quick View by Code Astrology is a lightweight WooCommerce based plugin. A user can easily view a product without redirection. The advanced slider is used for navigating gallery products. Lots of options and live customizable.
 
 == Settings==
 Go to Appearance > Customize > Quick View Settings
