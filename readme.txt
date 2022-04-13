@@ -1,8 +1,8 @@
 === Quick View by Code Astrology  ===
 Contributors: codersaiful, rafiul17
 Tags: WooCommerce, quick view,free quick view, Products Quick View, product view
-Requires at least: 5.0
-Requires PHP: 5.4
+Requires at least: 5.2
+Requires PHP: 7.0
 Tested up to: 5.9.3
 Stable tag: 1.0
 License: GPLv2 or later
