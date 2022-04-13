@@ -14,7 +14,7 @@
                         "/img/cawqv.jpg"; ?>" >
                 </div>
                 <?php 
-                $message = __( '<strong>CA WooCommerce Quick View</strong> (WooCommerce Quick View) allows users to get a quick look at products without opening the product page. Users can navigate the product gallery from one to another using the next and previous slider buttons.
+                $message = __( '<strong>Quick View by Code Astrology</strong> (WooCommerce Quick View) allows users to get a quick look at products without opening the product page. Users can navigate the product gallery from one to another using the next and previous slider buttons.
                  <p>Users can live style quick view. Please go to the settings button to live customize.</p> ', 'cawqv' );
  
                 printf( '<div class="%1$s"><p>%2$s</p></div>', '', wp_kses_post( $message ) );

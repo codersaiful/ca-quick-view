@@ -5,7 +5,7 @@ if (!defined('ABSPATH')) exit;
      *
      * @since      1.0.0
      * @package    ca-quick-view
-     * @author     BM Rafiul Alam <bmrafiul.alam@gmail.com>
+     * @author     Saiful <codersaiful@gmail.com>
     */
 
 class CAWQV_FRONTEND
