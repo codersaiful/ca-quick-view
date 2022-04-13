@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class cawqv_Admin_Notice
 {
 	const VERSION ='1.0';
-	const PLUGIN_NAME ='CA WOOCOMMERCE QUICK VIEW';
+	const PLUGIN_NAME ='Quick View by Code Astrology';
 	
 	/**
      * Construct
@@ -42,7 +42,7 @@ class cawqv_Admin_Notice
      * Notice Title
      */
 	public static function notice_title(){
-		echo self::PLUGIN_NAME;;
+		echo esc_html(self::PLUGIN_NAME,'cawqv');
 	}
 	/**
      * Notice Message

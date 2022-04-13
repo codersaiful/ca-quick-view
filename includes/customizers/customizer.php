@@ -2,7 +2,6 @@
 function cawqv_customize_register( $wp_customize ) {
 	require_once ( CAWQV_PLUGIN_LITE::cawqv_dir(). '/toggle-control/class-customizer-toggle-control.php' );
 	require_once ( CAWQV_PLUGIN_LITE::cawqv_dir(). '/separator-control/class-separator-control.php' );
-	require_once ( CAWQV_PLUGIN_LITE::cawqv_dir(). '/upsell-inner-section-control/class-upsell-inner-section-control.php' );
 	require_once ( CAWQV_PLUGIN_LITE::cawqv_dir(). '/slider-range-control/class-slider-range-control.php' );
 	require_once ( CAWQV_PLUGIN_LITE::cawqv_dir() . '/icon-picker/icon-picker-control.php');
 	

@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) exit;
      * View button for actions
      *
      * @since      1.0.0
-     * @package    ca-woocommerce-quick-view
+     * @package    ca-quick-view
      * @author     Saiful <codersaiful@gmail.com>
     */
 
@@ -98,13 +98,28 @@ class CAWQV_FRONTEND
      * @since      1.0.0
      */
     public function cawqv_modal(){
+
         $icon = get_option('cawqv_icon_picker', 'cawqv-icon-close');
         $close_container = ($icon == 'default') ? '<div class="wg-modal-close">&times;</div>' : '<div class="wg-modal-close"><i class="' . $icon . '"></i></div>';
 
-        echo '<div id="cawqv-modal" class="cawqv-modal" style="display:none">
-			' . $close_container . '
-			<div id="modal_container"></div>
-		</div>';
+        $output = '<div id="cawqv-modal" class="cawqv-modal" style="display:none">';
+        $output .= $close_container;
+        $output .= '<div id="modal_container"></div>';
+        $output .= '</div>';
+
+        $allowed_html = array(
+                'div' => array(
+                'id'    => array(),
+                'style'    => array(),
+                'class'    => array(),
+             ),
+             'i'    => array(
+                'class'    => array(),
+             ),
+        );
+
+        echo wp_kses( $output ,$allowed_html );
+
     }
 
     /**
@@ -150,8 +165,7 @@ class CAWQV_FRONTEND
 
             WC_AJAX::get_refreshed_fragments();
         }
-        else
-        {
+        else{
 
             $data = array(
                 'error' => true,

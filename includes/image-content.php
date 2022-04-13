@@ -2,7 +2,7 @@
 /**
  * Quick view image template.
  *
- * @package cawqv
+ * @package ca-quick-view
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

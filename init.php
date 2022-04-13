@@ -13,7 +13,7 @@
  * Domain Path: /languages/
  * License: GPL2+
  *
- * @package ca-woocommerce-quick-view
+ * @package ca-quick-view
  */
 
 if (!defined('ABSPATH')){
@@ -25,43 +25,30 @@ if (!function_exists('activate_lite'))
      * The code that runs during plugin activation.
      * This action is documented in includes/class-activator.php
      */
-    function activate_lite()
-    {
+    function activate_lite(){
         require_once plugin_dir_path(__FILE__) . 'includes/class-activator.php';
         Lite_Activator::activate();
-        Lite_Activator::set_plugin_info();
-        set_transient('lite-thankyou-notice', true, 5);
     }
 }
 //Activation Hook
 register_activation_hook(__FILE__, 'activate_lite');
 
-function lite_thankyou_notice()
-{
-	if (get_transient('lite-thankyou-notice'))
-	{
-		$msg_title 	= 'CA Woocommerce Quick View';
-		$msg_text 	= 'Deactivated CA Woocommerce Quick View Pro while Lite is Activate.';
-		$settings 	= '<a class="button button-primary" href="'.wp_customize_url().'">Settings</a>';
-?>
-		<div class="updated is-dismissible aep-notice">
-			<?php echo sprintf(__('<p>Thank you for using <strong>%s</strong>! 
-			<strong>%s</strong></p><p>%s</p>', 'awqv' ),$msg_title, $msg_text, $settings); ?>
-		</div>
-  <?php
-		delete_transient('awqv-lite-lite_thankyou_notice-notice');
-	}
-}
+//Define constants.
+
+define('CAWQV_PATH', untrailingslashit(plugins_url(basename(plugin_dir_path(__FILE__)) , basename(__FILE__))));
+define('CAWQV_BASE', plugin_basename(__FILE__));
+define('CAWQV_INC_DIR', untrailingslashit(plugin_dir_path(__FILE__) . 'includes'));
+define('CAWQV_DIR', untrailingslashit(plugin_dir_path(__FILE__)));
+define('CAWQV_CUSTOMIZER_PATH', untrailingslashit(plugins_url(basename(plugin_dir_path(__FILE__)) , basename(__FILE__)) . '/includes/cutomizer-controls/controls'));
 
 
 //Plugin Init Class
 class CAWQV_PLUGIN_LITE
 {
-    public $version = '1.0';
+    const CAWQV_VERSION = '1.0';
+   
 
     function __construct(){
-        //Define constants.
-        $this->define_constants();
         //Script hook.
         add_action('wp_enqueue_scripts', array($this,'cawqv_load_scripts'));
         add_action('admin_enqueue_scripts', array($this,'cawqv_admin_style'));
@@ -70,51 +57,26 @@ class CAWQV_PLUGIN_LITE
 		// Initialize the filter hooks.
 		$this->action_link_filters();
     }
-	
-    /**
-     * Define constants
-     *
-     * @since 1.0
-     */
-    public function define_constants(){
-        $this->define('CAWQV_VERSION', $this->version);
-        $this->define('CAWQV_DIR', untrailingslashit(plugin_dir_path(__FILE__)));
-        $this->define('CAWQV_INC_DIR', untrailingslashit(plugin_dir_path(__FILE__) . 'includes'));
-        $this->define('CAWQV_PATH', untrailingslashit(plugins_url(basename(plugin_dir_path(__FILE__)) , basename(__FILE__))));
-        $this->define('CAWQV_CUSTOMIZER_PATH', untrailingslashit(plugins_url(basename(plugin_dir_path(__FILE__)) , basename(__FILE__)) . '/includes/cutomizer-controls/controls'));
-        $this->define('CAWQV_BASE', plugin_basename(__FILE__));
-    }
 
-    /**
-     * Define constant if not already set
-     *
-     * @param string      $name
-     * @param string|bool $value
-     */
-    public function define($name, $value){
-        if (!defined($name)){
-            define($name, $value);
-        }
-    }
     /**
      * Add Scripts
      *
      * @since 1.0
      */
     public function cawqv_load_scripts(){
-        wp_enqueue_style('animate_css', CAWQV_PATH . '/assets/css/animate.min.css', CAWQV_VERSION);
-        wp_enqueue_style('font_icon_css', $this->cawqv_assets_path() . '/icon-picker/assets/css/fontello.css', CAWQV_VERSION);
-        wp_enqueue_style('modal_box', CAWQV_PATH . '/assets/css/modal-box.css', CAWQV_VERSION);
-        wp_enqueue_style('slider', CAWQV_PATH . '/assets/css/swiper-bundle.min.css', CAWQV_VERSION);
-        wp_enqueue_style('perfect-scroll', CAWQV_PATH . '/assets/css/perfect-scrollbar.css', CAWQV_VERSION);
-        wp_enqueue_style('cawqv-style', CAWQV_PATH . '/assets/css/style.css', CAWQV_VERSION);
+        wp_enqueue_style('animate_css', CAWQV_PATH . '/assets/css/animate.min.css', self::CAWQV_VERSION);
+        wp_enqueue_style('font_icon_css', $this->cawqv_assets_path() . '/icon-picker/assets/css/fontello.css', self::CAWQV_VERSION);
+        wp_enqueue_style('modal_box', CAWQV_PATH . '/assets/css/modal-box.css', self::CAWQV_VERSION);
+        wp_enqueue_style('slider', CAWQV_PATH . '/assets/css/swiper-bundle.min.css', self::CAWQV_VERSION);
+        wp_enqueue_style('perfect-scroll', CAWQV_PATH . '/assets/css/perfect-scrollbar.css', self::CAWQV_VERSION);
+        wp_enqueue_style('cawqv-style', CAWQV_PATH . '/assets/css/style.css', self::CAWQV_VERSION);
         wp_enqueue_style('cawqv_css');
 
         wp_enqueue_script('jquery');
-        wp_enqueue_script('cawqv-modal-box', CAWQV_PATH . '/assets/js/modal-box.js', CAWQV_VERSION);
-        wp_enqueue_script('cawqv-slider-js', CAWQV_PATH . '/assets/js/swiper-bundle.min.js', CAWQV_VERSION);
-        wp_enqueue_script('cawqv-perfect-scrollbar-js', CAWQV_PATH . '/assets/js/perfect-scrollbar.min.js', CAWQV_VERSION);
-        wp_enqueue_script('custom-js', CAWQV_PATH . '/assets/js/custom.js', CAWQV_VERSION);
+        wp_enqueue_script('cawqv-modal-box', CAWQV_PATH . '/assets/js/modal-box.js', self::CAWQV_VERSION);
+        wp_enqueue_script('cawqv-slider-js', CAWQV_PATH . '/assets/js/swiper-bundle.min.js', self::CAWQV_VERSION);
+        wp_enqueue_script('cawqv-perfect-scrollbar-js', CAWQV_PATH . '/assets/js/perfect-scrollbar.min.js', self::CAWQV_VERSION);
+        wp_enqueue_script('custom-js', CAWQV_PATH . '/assets/js/custom.js', self::CAWQV_VERSION);
     }
 
 	/**

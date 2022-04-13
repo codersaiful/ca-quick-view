@@ -48,6 +48,23 @@ class cawqv_Customizer_Toggle_Control extends \WP_Customize_Control {
 	 * @version 1.2.0
 	 */
 	public function render_content() {
+			//HTML escaping
+			$allowed_html = array(
+					'div' => array(
+					'id'    => array(),
+					'style'    => array(),
+					'class'    => array(),
+				),
+				'i'    => array(
+					'class'    => array(),
+				),
+				'span'    => array(
+					'class'    => array(),
+				),
+				'label'    => array(
+					'class'    => array(),
+				),
+			);
 		?>
 		<label class="customize-toogle-label">
 			<div style="display:flex;flex-direction: row;justify-content: flex-start;">
@@ -59,7 +76,7 @@ class cawqv_Customizer_Toggle_Control extends \WP_Customize_Control {
 				<label for="cb<?php echo $this->instance_number; ?>" class="tgl-btn"></label>
 			</div>
 			<?php if ( ! empty( $this->description ) ) : ?>
-			<span class="description customize-control-description"><?php echo wp_kses($this->description); ?></span>
+			<span class="description customize-control-description"><?php echo wp_kses($this->description, $allowed_html); ?></span>
 			<?php endif; ?>
 		</label>
 		<?php

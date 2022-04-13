@@ -2,7 +2,7 @@
 /**
  * Quick view Conetnt template.
  *
- * @package cawqv
+ * @package ca-woocommerce-quick-view
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
