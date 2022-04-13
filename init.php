@@ -49,7 +49,7 @@ function lite_thankyou_notice()
 			<strong>%s</strong></p><p>%s</p>', 'awqv' ),$msg_title, $msg_text, $settings); ?>
 		</div>
   <?php
-		delete_transient('awqv-lite-lite_thankyou_notice-notice');
+		delete_transient('lite_thankyou_notice-notice');
 	}
 }
 
@@ -57,7 +57,7 @@ function lite_thankyou_notice()
 //Plugin Init Class
 class CAWQV_PLUGIN_LITE
 {
-    public $version = '1.0';
+    const CAWQV_VERSION = '1.0';
 
     function __construct(){
         //Define constants.
@@ -77,7 +77,6 @@ class CAWQV_PLUGIN_LITE
      * @since 1.0
      */
     public function define_constants(){
-        $this->define('CAWQV_VERSION', $this->version);
         $this->define('CAWQV_DIR', untrailingslashit(plugin_dir_path(__FILE__)));
         $this->define('CAWQV_INC_DIR', untrailingslashit(plugin_dir_path(__FILE__) . 'includes'));
         $this->define('CAWQV_PATH', untrailingslashit(plugins_url(basename(plugin_dir_path(__FILE__)) , basename(__FILE__))));
@@ -102,19 +101,19 @@ class CAWQV_PLUGIN_LITE
      * @since 1.0
      */
     public function cawqv_load_scripts(){
-        wp_enqueue_style('animate_css', CAWQV_PATH . '/assets/css/animate.min.css', CAWQV_VERSION);
-        wp_enqueue_style('font_icon_css', $this->cawqv_assets_path() . '/icon-picker/assets/css/fontello.css', CAWQV_VERSION);
-        wp_enqueue_style('modal_box', CAWQV_PATH . '/assets/css/modal-box.css', CAWQV_VERSION);
-        wp_enqueue_style('slider', CAWQV_PATH . '/assets/css/swiper-bundle.min.css', CAWQV_VERSION);
-        wp_enqueue_style('perfect-scroll', CAWQV_PATH . '/assets/css/perfect-scrollbar.css', CAWQV_VERSION);
-        wp_enqueue_style('cawqv-style', CAWQV_PATH . '/assets/css/style.css', CAWQV_VERSION);
+        wp_enqueue_style('animate_css', CAWQV_PATH . '/assets/css/animate.min.css', self::CAWQV_VERSION);
+        wp_enqueue_style('font_icon_css', $this->cawqv_assets_path() . '/icon-picker/assets/css/fontello.css', self::CAWQV_VERSION);
+        wp_enqueue_style('modal_box', CAWQV_PATH . '/assets/css/modal-box.css', self::CAWQV_VERSION);
+        wp_enqueue_style('slider', CAWQV_PATH . '/assets/css/swiper-bundle.min.css', self::CAWQV_VERSION);
+        wp_enqueue_style('perfect-scroll', CAWQV_PATH . '/assets/css/perfect-scrollbar.css', self::CAWQV_VERSION);
+        wp_enqueue_style('cawqv-style', CAWQV_PATH . '/assets/css/style.css', self::CAWQV_VERSION);
         wp_enqueue_style('cawqv_css');
 
         wp_enqueue_script('jquery');
-        wp_enqueue_script('cawqv-modal-box', CAWQV_PATH . '/assets/js/modal-box.js', CAWQV_VERSION);
-        wp_enqueue_script('cawqv-slider-js', CAWQV_PATH . '/assets/js/swiper-bundle.min.js', CAWQV_VERSION);
-        wp_enqueue_script('cawqv-perfect-scrollbar-js', CAWQV_PATH . '/assets/js/perfect-scrollbar.min.js', CAWQV_VERSION);
-        wp_enqueue_script('custom-js', CAWQV_PATH . '/assets/js/custom.js', CAWQV_VERSION);
+        wp_enqueue_script('cawqv-modal-box', CAWQV_PATH . '/assets/js/modal-box.js', self::CAWQV_VERSION);
+        wp_enqueue_script('cawqv-slider-js', CAWQV_PATH . '/assets/js/swiper-bundle.min.js', self::CAWQV_VERSION);
+        wp_enqueue_script('cawqv-perfect-scrollbar-js', CAWQV_PATH . '/assets/js/perfect-scrollbar.min.js', self::CAWQV_VERSION);
+        wp_enqueue_script('custom-js', CAWQV_PATH . '/assets/js/custom.js', self::CAWQV_VERSION);
     }
 
 	/**
