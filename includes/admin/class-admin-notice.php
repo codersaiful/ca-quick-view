@@ -94,7 +94,7 @@ class cawqv_Admin_Notice
             <h3><?php self::notice_title(); ?></h3>
             <p><?php self::notice_message(); ?></p>
 			<p class="aep-links">
-				<a href="https://wordpress.org/plugins/ca-woocommerce-quick-view" class="review">
+				<a href="https://wordpress.org/support/plugin/ca-quick-view/reviews/#new-post" class="review">
 					<i class="icon-star-empty"></i> 
 					<?php echo __("Leave a Review", "cawqv"); ?>
 				</a>
