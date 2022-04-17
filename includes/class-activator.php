@@ -6,7 +6,7 @@
  *
  * @since      1.0.0
  * @package    ca-woocommerce-quick-view
- * @author     BM Rafiul Alam <bmrafiul.alam@gmail.com>
+ * @author     Saiful <codersaiful@gmail.com>
  */
 
 class Lite_Activator {
