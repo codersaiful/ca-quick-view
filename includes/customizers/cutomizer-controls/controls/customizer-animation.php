@@ -8,7 +8,7 @@
 	   'section' => 'cawqv_animation_section',
 	   'label'   => 'Premium Controls',
 	   'priority'   => 1,
-	   'url' 		=> 'https://codeastrology.com/checkout?edd_action=add_to_cart&download_id=6553&edd_options%5Bprice_id%5D=1',
+	   'url' 		=> 'https://codeastrology.com/wp/woocommerce-quick-view/#plugin_price',
 	   'background'	=> '#22b147',
 	)));
  ?>
