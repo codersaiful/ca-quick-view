@@ -229,11 +229,5 @@ $wp_customize->add_control( new cawqv_Slider_Custom_Control( $wp_customize, 'mod
 		)
 	)));
 	
-	/** 
-	************** Add to Cart Button ************** 
-  **/
-	
-	
-
 }
 add_action( 'customize_register', 'cawqv_customize_register' );
