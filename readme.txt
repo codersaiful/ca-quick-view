@@ -4,7 +4,7 @@ Tags: WooCommerce, quick view,free quick view, Products Quick View, product view
 Requires at least: 5.2
 Requires PHP: 7.0
 Tested up to: 5.9.3
-Stable tag: 1.0
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
  
@@ -36,6 +36,10 @@ Video tutorial link:
 == Screenshot ==
 
 == Changelog ==
+
+
+= 1.1 =
+*Release Date - 16 04, 2022*
 
 = 1.0 =
 

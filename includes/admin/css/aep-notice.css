@@ -66,6 +66,7 @@
   text-transform: uppercase;
   margin: 10px 0;
   font-size: 32px;
+  line-height: 1.2;
 }
 .aep-notice-logo {
   display: flex;
