@@ -39,6 +39,8 @@ $new_notice>show();
         public $notice_type = 'success';
         private $img;
 
+        public $start_date; //Example: 4/21/2022 17:1:24
+
         
         /**
          * Define a Unique notice ID,
@@ -66,6 +68,17 @@ $new_notice>show();
         }
         public function set_type( $notice_type ){
             $this->notice_type = $notice_type;
+            return $this;
+        }
+
+        /**
+         * Set a date to display Notice after specific date
+         *
+         * @param String $start_date
+         * @return object
+         */
+        public function set_start_date( $start_date ){
+            $this->start_date = $start_date;
             return $this;
         }
 
@@ -131,6 +144,8 @@ $new_notice>show();
          */
         public function show(){
             
+            if( ! empty( $this->start_date ) && strtotime($this->start_date) > current_time( 'timestamp' ) ) return;
+                        
             $close_date   = get_option( $this->notice_id . "_notice_close_date");
             if( ! empty($close_date) && is_numeric( $close_date )){
                 $close_date		        = date("Y-m-d", $close_date);
@@ -158,16 +173,21 @@ $new_notice>show();
         ?>
          <div data-notice_id="<?php echo $this->notice_id; ?>" class='notice ca-notice notice-<?php echo esc_attr( $this->notice_type ); ?>'>
             <div class="ca-notice-content">
+            <?php
+            // 
+            ?>
+
                     <?php if( ! empty( $this->img ) ): ?>
                     <div class="ca-logo">
                         <img src="<?php echo esc_attr( $this->img ); ?>" >
                         <button class="ca-notice-dismiss"></button>
                     </div>
                     <?php endif; ?>
+                    <?php if( ! empty( $this->message ) ): ?>
                     <div class="ca-msg-text">
                         <p><?php echo wp_kses_post( $this->message ); ?></p>
                     </div>
-
+                    <?php endif; ?>    
                     <button class="ca-notice-dismiss"></button>
             </div>
           </div>
