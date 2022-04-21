@@ -1,10 +1,11 @@
 <?php 
+namespace CA_Framework;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if( ! class_exists( 'CA_Admin_Notice' ) ){
+if( ! class_exists( 'CA_Framework\Notice' ) ){
 
     /**
      * Notice Handler Class
@@ -13,11 +14,11 @@ if( ! class_exists( 'CA_Admin_Notice' ) ){
      * here User able to handle his Notice, using this one Class
      * 
      * EXAMPLE:
-     * $my_notice = new CA_Admin_Notice('ddvpl-');
+     * $my_notice = new CA_Framework\Notice('ddvpl-');
 $my_notice->notice_type = 'error';
 $my_notice->set_message("Most Welcome. Thank you for using Quick View To get more amazing features and the outstanding pro ready-made layouts, please get the")
 ->show();
-$new_notice = new CA_Admin_Notice('dsfvfpld-');
+$new_notice = new CA_Framework\Notice('dsfvfpld-');
 $new_notice>set_message("Nothing to do for it.");
 $new_notice>show();
 
@@ -25,7 +26,7 @@ $new_notice>show();
      * @author Saiful Islam <codersaiful@gmail.com>
      * @since 1.0.0.5
      */
-    class CA_Admin_Notice
+    class Notice
     {
         
         const VERSION ='1.0';
@@ -44,7 +45,7 @@ $new_notice>show();
         
         /**
          * Define a Unique notice ID,
-         * Example: new CA_Admin_Notice('skdlq')
+         * Example: new CA_Framework\Notice('skdlq')
          *
          * @param String $notice_id Each Notice should have new unique number
          * 
@@ -150,8 +151,8 @@ $new_notice>show();
             if( ! empty($close_date) && is_numeric( $close_date )){
                 $close_date		        = date("Y-m-d", $close_date);
     
-                $date				    = new DateTime($close_date);
-                $now 				    = new DateTime();
+                $date				    = new \DateTime($close_date);
+                $now 				    = new \DateTime();
                 $date_diff = $date->diff($now)->format("%d");
             }else{
                 $date_diff = 99999;
@@ -198,5 +199,3 @@ $new_notice>show();
     }
 
 }
-
-
