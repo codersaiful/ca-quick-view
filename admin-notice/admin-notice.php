@@ -75,30 +75,28 @@ class CA_Admin_Notice
      * Notice show if condition meet
      */
 	public function show_notification_on_time(){
-        $get_option             = get_option("ca_admin_notice");
+        //$get_option             = get_option("ca_admin_notice");
         $ca_notice_close_date   = get_option("ca_notice_close_date");
         $close_date		        = date("Y-m-d", $ca_notice_close_date);
 
 		$date				    = new DateTime($close_date);
 		$now 				    = new DateTime();
-		//$date_diff 			= $date->diff($now)->format("%d");
+		$date_diff 			    = $date->diff($now)->format("%d");
         
         //Manual value for test
-		$date_diff 			    = 15;
+		//$date_diff 			    = 15;
 
-        if( $get_option!=self::PREFIX .'_dont_show' ){
+       /*  if( $get_option!=self::PREFIX .'_dont_show' ){
+			add_action("admin_notices", [$this, "notice_output4"]);
+		} */
+        if($date_diff>= 5 ){
 			add_action("admin_notices", [$this, "notice_output4"]);
 		}
-        if($date_diff== 10 && $get_option== self::PREFIX .'_dont_show' ){
-			add_action("admin_notices", [$this, "notice_output4"]);
-		}
-        if($date_diff== 15 && $get_option== self::PREFIX .'_dont_show' ){
-			add_action("admin_notices", [$this, "notice_output3"]);
-		}
-        add_action("admin_notices", [$this, "notice_output"]);
-		add_action("admin_notices", [$this, "notice_output2"]);
-		add_action("admin_notices", [$this, "notice_output3"]);
-		add_action("admin_notices", [$this, "notice_output4"]);
+       
+        //add_action("admin_notices", [$this, "notice_output"]);
+		//add_action("admin_notices", [$this, "notice_output2"]);
+		//add_action("admin_notices", [$this, "notice_output3"]);
+		//add_action("admin_notices", [$this, "notice_output4"]);
 		
 	}
 
