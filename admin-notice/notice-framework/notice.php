@@ -73,7 +73,7 @@ $new_notice>show();
          * Set full image url here to set display an image on Notice.
          *
          * @param String $img
-         * @return void
+         * @return object
          */
         public function set_img( $img ){
             $this->img = $img;
