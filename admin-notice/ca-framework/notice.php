@@ -1,10 +1,11 @@
 <?php 
+namespace CA_Framework;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if( ! class_exists( 'CA_Admin_Notice' ) ){
+if( ! class_exists( 'CA_Framework\Notice' ) ){
 
     /**
      * Notice Handler Class
@@ -13,11 +14,11 @@ if( ! class_exists( 'CA_Admin_Notice' ) ){
      * here User able to handle his Notice, using this one Class
      * 
      * EXAMPLE:
-     * $my_notice = new CA_Admin_Notice('ddvpl-');
+     * $my_notice = new CA_Framework\Notice('ddvpl-');
 $my_notice->notice_type = 'error';
 $my_notice->set_message("Most Welcome. Thank you for using Quick View To get more amazing features and the outstanding pro ready-made layouts, please get the")
 ->show();
-$new_notice = new CA_Admin_Notice('dsfvfpld-');
+$new_notice = new CA_Framework\Notice('dsfvfpld-');
 $new_notice>set_message("Nothing to do for it.");
 $new_notice>show();
 
@@ -25,7 +26,7 @@ $new_notice>show();
      * @author Saiful Islam <codersaiful@gmail.com>
      * @since 1.0.0.5
      */
-    class CA_Admin_Notice
+    class Notice
     {
         
         const VERSION ='1.0';
@@ -38,13 +39,17 @@ $new_notice>show();
 
         public $notice_type = 'success';
         private $img;
+        private $img_target = 'https://codeastrology.com';
+        private $title;
 
         public $start_date; //Example: 4/21/2022 17:1:24
+
+        private $buttons = array();
 
         
         /**
          * Define a Unique notice ID,
-         * Example: new CA_Admin_Notice('skdlq')
+         * Example: new CA_Framework\Notice('skdlq')
          *
          * @param String $notice_id Each Notice should have new unique number
          * 
@@ -61,11 +66,52 @@ $new_notice>show();
             return $this;
         }
 
+        public function add_button( $button_arr ){
+            $this->buttons[] = $button_arr;
+            return $this;
+        }
+
+        /**
+         * Get full buttons array with generate with default value
+         *
+         * @return null||Array
+         */
+        private function get_buttons(){
+            $defl = array(
+                'type'      =>  'primary',
+                'text'      =>  __( 'Click here', 'ca-framework' ),
+                'target'    =>  '_blank',
+                'link'      =>  '#'
+            );
+            if( ! is_array( $this->buttons ) ) return;
+            $gen_buttons = array();
+            foreach( $this->buttons as $key=>$button ){
+                if( ! is_array( $button ) ) continue;
+                $gen_buttons[$key] = array_merge( $defl, $button );
+
+            }
+
+            return $gen_buttons;
+        }
         
         public function set_message( $message ){
             $this->message = $message;
             return $this;
         }
+
+        /**
+         * It's Actually Notice type.
+         * we set some color for title based on Type
+         * Available Type:
+         * * warning
+         * * primary
+         * * success
+         * * error
+         *
+         * @author Saiful <codersaiful@gmail.com>
+         * @param String $notice_type
+         * @return object
+         */
         public function set_type( $notice_type ){
             $this->notice_type = $notice_type;
             return $this;
@@ -90,6 +136,14 @@ $new_notice>show();
          */
         public function set_img( $img ){
             $this->img = $img;
+            return $this;
+        }
+        public function set_img_target( $img_target ){
+            $this->img_target = $img_target;
+            return $this;
+        }
+        public function set_title( $title ){
+            $this->title = $title;
             return $this;
         }
 
@@ -150,8 +204,8 @@ $new_notice>show();
             if( ! empty($close_date) && is_numeric( $close_date )){
                 $close_date		        = date("Y-m-d", $close_date);
     
-                $date				    = new DateTime($close_date);
-                $now 				    = new DateTime();
+                $date				    = new \DateTime($close_date);
+                $now 				    = new \DateTime();
                 $date_diff = $date->diff($now)->format("%d");
             }else{
                 $date_diff = 99999;
@@ -174,20 +228,46 @@ $new_notice>show();
          <div data-notice_id="<?php echo $this->notice_id; ?>" class='notice ca-notice notice-<?php echo esc_attr( $this->notice_type ); ?>'>
             <div class="ca-notice-content">
             <?php
-            // 
+            // var_dump($this->get_buttons());
             ?>
 
                     <?php if( ! empty( $this->img ) ): ?>
                     <div class="ca-logo">
-                        <img src="<?php echo esc_attr( $this->img ); ?>" >
+                        <a class="ca-logo-link" href="<?php echo esc_url( $this->img_target ); ?>" target="_blank">
+                            <img src="<?php echo esc_attr( $this->img ); ?>" >
+                        </a>
                         <button class="ca-notice-dismiss"></button>
                     </div>
                     <?php endif; ?>
-                    <?php if( ! empty( $this->message ) ): ?>
+                    
                     <div class="ca-msg-text">
+                        
+                        <?php if( ! empty( $this->title ) ): ?>
+                            <h1><?php echo esc_html( $this->title ); ?></h1>
+                        <?php endif; ?> 
+
+                        <?php if( ! empty( $this->message ) ): ?>
                         <p><?php echo wp_kses_post( $this->message ); ?></p>
+                        <?php endif; ?> 
+                        
+                        <?php if( ! empty( $this->get_buttons() ) ): ?>
+                        <p class="ca-links-collection">
+                            <?php
+                            foreach( $this->get_buttons() as $button ){
+                               $type = is_string( $button['type'] ) ? $button['type'] : ''; 
+                               $text = is_string( $button['text'] ) ? $button['text'] : ''; 
+                               $target = is_string( $button['target'] ) ? $button['target'] : ''; 
+                               $link = is_string( $button['link'] ) ? $button['link'] : '#'; 
+                               ?>
+                               <a class="ca-button ca-button-type-<?php echo esc_attr( $type ); ?>" href="<?php echo esc_url( $link ); ?>" target="<?php echo esc_attr( $target ); ?>"><?php echo esc_html( $text ); ?></a>
+                               <?php 
+                            }
+                            ?>
+                        </p>
+                        <?php endif; ?> 
+
                     </div>
-                    <?php endif; ?>    
+                       
                     <button class="ca-notice-dismiss"></button>
             </div>
           </div>
@@ -198,5 +278,3 @@ $new_notice>show();
     }
 
 }
-
-
