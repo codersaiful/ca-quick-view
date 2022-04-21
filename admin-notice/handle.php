@@ -1,6 +1,4 @@
 <?php 
-
-include __DIR__ . '/ca-framework/notice.php';
 include __DIR__ . '/ca-framework/loader.php';
 
 $my_notice = new CA_Framework\Notice('aaa');
@@ -22,10 +20,10 @@ $my_notice->set_message("Most Welcome. Thank you for using Quick View To get mor
 
 ->set_img('http://wpp.cm/wp-content/plugins/ca-quick-view/includes/admin//img/notice-img.jpg')
 ->show();
-$my_notice = new CA_Framework\Notice('dsfvfpld-d');
-$my_notice->set_message("Nothing to do for it.");
-$my_notice->set_img('');
-// ->show();
+$another_notice = new CA_Framework\Notice('dssd');
+$another_notice->set_message("Nothing to do for it.<a href='#'>Go Premium</a>")
+// ->set_img('https://img.freepik.com/free-vector/black-banner-with-yellow-geometric-shapes_1017-32327.jpg')
+->show();
 
 
 //RequireControl Part Start Here
