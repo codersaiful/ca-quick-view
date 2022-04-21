@@ -39,6 +39,7 @@ $new_notice>show();
 
         public $notice_type = 'success';
         private $img;
+        private $img_target = 'https://codeastrology.com';
         private $title;
 
         public $start_date; //Example: 4/21/2022 17:1:24
@@ -137,6 +138,10 @@ $new_notice>show();
             $this->img = $img;
             return $this;
         }
+        public function set_img_target( $img_target ){
+            $this->img_target = $img_target;
+            return $this;
+        }
         public function set_title( $title ){
             $this->title = $title;
             return $this;
@@ -228,7 +233,9 @@ $new_notice>show();
 
                     <?php if( ! empty( $this->img ) ): ?>
                     <div class="ca-logo">
-                        <img src="<?php echo esc_attr( $this->img ); ?>" >
+                        <a class="ca-logo-link" href="<?php echo esc_url( $this->img_target ); ?>" target="_blank">
+                            <img src="<?php echo esc_attr( $this->img ); ?>" >
+                        </a>
                         <button class="ca-notice-dismiss"></button>
                     </div>
                     <?php endif; ?>

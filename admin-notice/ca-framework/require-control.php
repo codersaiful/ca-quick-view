@@ -10,7 +10,7 @@ if( ! class_exists( 'CA_Framework\Require_Control' ) ){
     {
         public function __construct()
         {
-            var_dump(444444444444);
+            // var_dump(444444444444);
         }
     }
 }

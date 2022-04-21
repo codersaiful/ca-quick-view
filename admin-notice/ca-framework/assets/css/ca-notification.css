@@ -2,14 +2,15 @@
     display: flex;
     align-content: center;
     align-items: center;
-  }
-  .ca-logo img{
-      margin: 5px 10px 2px 0 ;
-  }
-  .ca-error{
-      color: rgb(232, 22, 22);
-  }
-  .ca-success{
+}
+.ca-logo img{
+    margin: 5px 10px 2px 0 ;
+}
+.ca-logo-link{display: block;}
+.ca-error{
+    color: rgb(232, 22, 22);
+}
+.ca-success{
     color: rgb(6, 183, 62);
 }
 .ca-warning{
