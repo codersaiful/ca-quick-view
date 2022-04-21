@@ -1,0 +1,1 @@
+CA Framework is a primary version of Code Astrology Frameword
