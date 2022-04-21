@@ -1,6 +1,6 @@
 <?php 
 
-include __DIR__ . '/notice-framework/notice.php';
+include __DIR__ . '/ca-framework/notice.php';
 
 $my_notice = new CA_Admin_Notice('sddvpl-');
 // $my_notice->start_date = '4/21/2022 18:48:24';
