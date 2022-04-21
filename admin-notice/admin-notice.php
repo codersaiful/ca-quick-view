@@ -68,7 +68,7 @@ class CA_Admin_Notice
      * Update Option by Ajax
      */
     public function update_notice_status(){
-        update_option(self::PREFIX . "_admin_notice", self::PREFIX . "_dont_show");
+        // update_option(self::PREFIX . "_admin_notice", self::PREFIX . "_dont_show");
         update_option(self::PREFIX .'_notice_close_date', current_time( 'timestamp' ) );
     }
 	/**
