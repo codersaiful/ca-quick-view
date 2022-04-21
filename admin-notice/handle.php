@@ -27,4 +27,5 @@ $another_notice->set_message("Nothing to do for it.<a href='#'>Go Premium</a>")
 
 
 //RequireControl Part Start Here
-$req = new CA_Framework\Require_Control();
+// $req = new CA_Framework\Require_Control( 'woo-product-table/woo-product-table.php' );
+$req = new CA_Framework\Require_Control( 'AAAFloatTest/AAAFloatTest.php' );
