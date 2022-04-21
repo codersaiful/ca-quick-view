@@ -1,6 +1,7 @@
 <?php 
 
 include __DIR__ . '/ca-framework/notice.php';
+include __DIR__ . '/ca-framework/loader.php';
 
 $my_notice = new CA_Admin_Notice('sddvpl-');
 // $my_notice->start_date = '4/21/2022 18:48:24';
@@ -12,3 +13,7 @@ $my_notice = new CA_Admin_Notice('dsfvfpld-d');
 $my_notice->set_message("Nothing to do for it.");
 $my_notice->set_img('');
 // ->show();
+
+
+//RequireControl Part Start Here
+$req = new CA_Framework\Require_Control();
