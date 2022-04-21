@@ -13,10 +13,16 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 == Description ==
 Quick View by Code Astrology is a lightweight WooCommerce based plugin. A user can easily view a product without redirection. The advanced slider is used for navigating gallery products. Lots of options and live customizable.
 
+
+
 == Settings==
 Go to Appearance > Customize > Quick View Settings
 
+[Demo: https://codeastrology.com/wp/shop/](https://codeastrology.com/wp/shop/)
 
+Video tutorial link:
+
+[youtube https://youtu.be/WiITiEZWfWE]
 
 == Features ==
 

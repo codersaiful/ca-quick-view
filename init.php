@@ -149,5 +149,3 @@ class CAWQV_PLUGIN_LITE
 }
 
 new CAWQV_PLUGIN_LITE();
-
-
