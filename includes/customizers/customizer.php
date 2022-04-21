@@ -2,8 +2,14 @@
 function cawqv_customize_register( $wp_customize ) {
 	require_once ( CAWQV_PLUGIN_LITE::cawqv_dir(). '/toggle-control/class-customizer-toggle-control.php' );
 	require_once ( CAWQV_PLUGIN_LITE::cawqv_dir(). '/separator-control/class-separator-control.php' );
+	require_once ( CAWQV_PLUGIN_LITE::cawqv_dir(). '/upsell-inner-section-control/class-upsell-inner-section-control.php' );
 	require_once ( CAWQV_PLUGIN_LITE::cawqv_dir(). '/slider-range-control/class-slider-range-control.php' );
 	require_once ( CAWQV_PLUGIN_LITE::cawqv_dir() . '/icon-picker/icon-picker-control.php');
+
+	require_once ( CAWQV_PLUGIN_LITE::cawqv_dir(). '/customizer-animation.php' );
+	require_once ( CAWQV_PLUGIN_LITE::cawqv_dir(). '/customizer-slider.php' );
+	require_once ( CAWQV_PLUGIN_LITE::cawqv_dir(). '/customizer-add-to-cart.php' );
+	require_once ( CAWQV_PLUGIN_LITE::cawqv_dir(). '/customizer-color.php' );
 	
 	/**
 	 * ************** Add panel **************
@@ -12,12 +18,19 @@ function cawqv_customize_register( $wp_customize ) {
 		$wp_customize->add_panel(  $panel, 
 			array(
 				'priority'       => 22,
-				'title'            => __( 'Quick View by Code Astrology Settings', 'cawqv' ),
+				'title'            => __( 'CA WooCommerce Quick View Settings', 'cawqv' ),
 				'description'      => __( 'You can best appearence if you open the Quick view before customize.', 'cawqv' ),
 			) 
 		);
 	
-
+	/**
+	 * ************** Add Color sections **************
+	 */
+     $wp_customize->add_section( 'cawqv_customizer_section', array(
+ 		'title'       => __( 'Color Settings', 'cawqv' ),
+ 		'priority'    => 11,
+ 		'panel'       =>  $panel,
+ 	) );
 	/**
 	 * ************** Add General sections **************
 	 */ 
@@ -52,195 +65,14 @@ function cawqv_customize_register( $wp_customize ) {
  		'panel'       => $panel,
  	) );
 	/**
+		*************** Add to cart button sections **************
+	 */
+     $wp_customize->add_section( 'cawqv_add_to_cart_section', array(
+ 		'title'       => __( 'Add to Cart Settings', 'cawqv' ),
+ 		'priority'    => 10,
+ 		'panel'       => $panel,
+ 	) );
 	
-		************** window Bg **************
-	**/
-	$wp_customize->add_setting(
-      'cawqv_window_bg', //give it an ID
-      array(
-		'transport' => 'postMessage',
-        'default' => '#fff', // Give it a default
-		'sanitize_callback' => 'sanitize_hex_color',
-		'type' => 'option'
-      )
-	);
-	$wp_customize->add_control(
-     new WP_Customize_Color_Control(
-         $wp_customize,
-         'cawqv_window_bg', //give it an ID
-         array(
-             'label'      => __( 'Popup Background', 'cawqv' ), 
-             'section'    => 'cawqv_customizer_section',  
-             'settings'   => 'cawqv_window_bg'
-         )
-    )
-  );
-	
-   /** 
-   ************** Sale Flash **************
-  **/
-	$wp_customize->add_setting(
-      'cawqv_sale_flash_bg', //give it an ID
-      array(
-		'transport' => 'postMessage',
-        'default' => '#111111', // Give it a default
-		'sanitize_callback' => 'sanitize_hex_color',
-		'type' => 'option'
-
-      )
-	);
-	$wp_customize->add_control(
-     new WP_Customize_Color_Control(
-         $wp_customize,
-         'cawqv_sale_flash_bg', //give it an ID
-         array(
-             'label'      => __( 'Sale flash Background', 'cawqv' ), 
-             'section'    => 'cawqv_customizer_section',  
-             'settings'   => 'cawqv_sale_flash_bg'
-         )
-    )
-  );
-  
-/** 
-   ************** Title Color **************
-  **/
-	$wp_customize->add_setting(
-      'cawqv_title_color', //give it an ID
-      array(
-		'transport' => 'postMessage',
-        'default' => '#111111', // Give it a default
-		'sanitize_callback' => 'sanitize_hex_color',
-		'type' => 'option'
-
-      )
-	);
-	$wp_customize->add_control(
-     new WP_Customize_Color_Control(
-         $wp_customize,
-         'cawqv_title_color', //give it an ID
-         array(
-             'label'      => __( 'Title Color', 'cawqv' ), 
-             'section'    => 'cawqv_customizer_section',  
-             'settings'   => 'cawqv_title_color'
-         )
-    )
-  );
-  
-  /** 
-   ************** Description Color **************
-  **/
-	$wp_customize->add_setting(
-      'cawqv_desc_color', //give it an ID
-      array(
-		'transport' => 'postMessage',
-        'default' => '#111111', // Give it a default
-		'sanitize_callback' => 'sanitize_hex_color',
-		'type' => 'option'
-      )
-	);
-	$wp_customize->add_control(
-     new WP_Customize_Color_Control(
-         $wp_customize,
-         'cawqv_desc_color', //give it an ID
-         array(
-             'label'      => __( 'Description Color', 'cawqv' ), 
-             'section'    => 'cawqv_customizer_section',  
-             'settings'   => 'cawqv_desc_color'
-         )
-    )
-  ); 
-  /** 
-   ************** Meta Pruduct Color **************
-  **/
-	$wp_customize->add_setting(
-      'cawqv_product_meta_color', //give it an ID
-      array(
-		'transport' => 'postMessage',
-        'default' => '#111111', // Give it a default
-		'sanitize_callback' => 'sanitize_hex_color',
-		'type' => 'option'
-      )
-	);
-	$wp_customize->add_control(
-     new WP_Customize_Color_Control(
-         $wp_customize,
-         'cawqv_product_meta_color', //give it an ID
-         array(
-             'label'      => __( 'Pruduct Meta Color', 'cawqv' ), 
-             'section'    => 'cawqv_customizer_section',  
-             'settings'   => 'cawqv_product_meta_color'
-         )
-    )
-  );
-  /** 
-   ************** Meta Pruduct Link Color **************
-  **/
-	$wp_customize->add_setting(
-      'cawqv_product_meta_link_color', //give it an ID
-      array(
-		'transport' => 'postMessage',
-        'default' => '#111111', // Give it a default
-		'sanitize_callback' => 'sanitize_hex_color',
-		'type' => 'option'
-      )
-	);
-	$wp_customize->add_control(
-     new WP_Customize_Color_Control(
-         $wp_customize,
-         'cawqv_product_meta_link_color', //give it an ID
-         array(
-             'label'      => __( 'Pruduct Meta Link Color', 'cawqv' ), 
-             'section'    => 'cawqv_customizer_section',  
-             'settings'   => 'cawqv_product_meta_link_color'
-         )
-    )
-  );
-   /** 
-   ************** Price Color **************
-  **/
-	$wp_customize->add_setting(
-      'cawqv_product_price_color', //give it an ID
-      array(
-		'transport' => 'postMessage',
-        'default' => '#111111', // Give it a default
-		'sanitize_callback' => 'sanitize_hex_color',
-		'type' => 'option'
-      )
-	);
-	$wp_customize->add_control(
-     new WP_Customize_Color_Control(
-         $wp_customize,
-         'cawqv_product_price_color', //give it an ID
-         array(
-             'label'      => __( 'Pruduct Price Color', 'cawqv' ), 
-             'section'    => 'cawqv_customizer_section',  
-             'settings'   => 'cawqv_product_price_color'
-         )
-    )
-  );
-  /** 
-   ************** Review Color **************
-  **/
-	$wp_customize->add_setting(
-      'cawqv_product_review_color', //give it an ID
-      array(
-		'transport' => 'postMessage',
-        'default' => '#111111', // Give it a default
-		'sanitize_callback' => 'sanitize_hex_color',
-		'type' => 'option'
-      )
-	);
-	$wp_customize->add_control(
-     new WP_Customize_Color_Control(
-         $wp_customize,
-         'cawqv_product_review_color', //give it an ID
-         array(
-             'label'      => __( 'Pruduct Review Color', 'cawqv' ), 
-             'section'    => 'cawqv_customizer_section',  
-             'settings'   => 'cawqv_product_review_color'
-         )
-    )
-  );
 	  /** 
 	   ************** Quick View Button Label  **************
 	  **/
@@ -285,7 +117,7 @@ function cawqv_customize_register( $wp_customize ) {
       'cawqv_action_button_bg', //give it an ID
       array(
 		'transport' => 'postMessage',
-        'default' => '#111111', // Give it a default
+        'default' => '', // Give it a default
 		'sanitize_callback' => 'sanitize_hex_color',
 		'type' => 'option'
       )
@@ -397,99 +229,5 @@ $wp_customize->add_control( new cawqv_Slider_Custom_Control( $wp_customize, 'mod
 		)
 	)));
 	
-	/** 
-	************** Add to Cart Button ************** 
-  **/
-	$wp_customize->add_setting( 'btn_padding_top_bottom',
-		array(
-			'default' => '',
-			'transport' => 'postMessage',
-			'sanitize_callback' => '',
-			'type' => 'option'
-		)
-	);
-	$wp_customize->add_control( new cawqv_Slider_Custom_Control( $wp_customize, 'btn_padding_top_bottom',
-		array(
-			'label' => esc_html__( 'Padding Top/Bottom (px)' ),
-			'type' => 'slider_control',
-			'section' => 'cawqv_add_to_cart_section',
-			'settings' => 'btn_padding_top_bottom',
-			'input_attrs' => array(
-				'min'    => 5,
-				'max'    => 100,
-				'step'   => 1,
-				'suffix' => 'px', //optional suffix
-			),
-		)
-	) );
-	$wp_customize->add_setting( 'btn_padding_left_right',
-		array(
-			'default' => '',
-			'transport' => 'postMessage',
-			'sanitize_callback' => '',
-			'type' => 'option'
-		)
-	);
-	$wp_customize->add_control( new cawqv_Slider_Custom_Control( $wp_customize, 'btn_padding_left_right',
-		array(
-			'label' => esc_html__( 'PADDING LEFT/RIGHT (px)' ),
-			'type' => 'slider_control',
-			'section' => 'cawqv_add_to_cart_section',
-			'settings' => 'btn_padding_left_right',
-			'input_attrs' => array(
-				'min'    => 10,
-				'max'    => 100,
-				'step'   => 1,
-				'suffix' => 'px', //optional suffix
-			),
-		)
-	) );
-	$wp_customize->add_setting(
-      'cawqv_cart_button_bg', //give it an ID
-      array(
-		'transport' => 'postMessage',
-        'default' => '#111111', // Give it a default
-		'sanitize_callback' => 'sanitize_hex_color',
-		'type' => 'option'
-
-      )
-	);
-	$wp_customize->add_control(
-     new WP_Customize_Color_Control(
-         $wp_customize,
-         'cawqv_cart_button_bg', //give it an ID
-         array(
-             'label'      => __( 'Cart Button Background', 'cawqv' ), 
-             'section'    => 'cawqv_add_to_cart_section',  
-             'settings'   => 'cawqv_cart_button_bg'
-         )
-    )
-  );
-   /** 
-  **************  View Button **************
-  **/
-	$wp_customize->add_setting(
-      'cawqv_view_cart_button_bg', //give it an ID
-      array(
-		'transport' => 'postMessage',
-        'default' => '#111111', // Give it a default
-		'sanitize_callback' => 'sanitize_hex_color',
-		'type' => 'option'
-
-      )
-	);
-	$wp_customize->add_control(
-     new WP_Customize_Color_Control(
-         $wp_customize,
-         'cawqv_view_cart_button_bg', //give it an ID
-         array(
-             'label'      => __( 'View Cart Button', 'cawqv' ), 
-			 'description'=> __('View Cart Background', 'cawqv'),
-             'section'    => 'cawqv_add_to_cart_section',
-             'settings'   => 'cawqv_view_cart_button_bg'
-         )
-    )
-  );
-
 }
 add_action( 'customize_register', 'cawqv_customize_register' );

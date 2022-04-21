@@ -18,7 +18,8 @@ class cawqv_Customizer_Range_Value_Control extends \WP_Customize_Control {
 	 * @author soderlind
 	 * @version 1.2.0
 	 */
-	public function render_content() {?>
+	public function render_content() {
+		?>
 		<label>
 			<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
 			<div class="range-slider"  style="width:100%; display:flex;flex-direction: row;justify-content: flex-start;">
@@ -38,7 +39,7 @@ class cawqv_Customizer_Range_Value_Control extends \WP_Customize_Control {
 		<?php
 	}
 	public function cawqv_controller_path(){
-		$controller_path = CAWQV_PATH . '/includes/customizers/cutomizer-controls/controls';
+		$controller_path = cawqv_PATH . '/includes/customizers/cutomizer-controls/controls';
 		return $controller_path;
 	}
 

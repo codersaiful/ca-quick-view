@@ -3,7 +3,7 @@
  * Plugin Name: Quick View by Code Astrology
  * Plugin URI: https://codeastrology.com/
  * Description: Quick view for WooCommerce product.
- * Version: 1.0
+ * Version: 1.1
  * Author: CodeAstrology
  * Author URI: https://profiles.wordpress.org/codersaiful/
  * Requires at least: 5.2
@@ -142,6 +142,7 @@ class CAWQV_PLUGIN_LITE
         if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))){
             require_once CAWQV_DIR . '/plugin.php';
             require_once CAWQV_DIR . '/includes/admin/class-admin-notice.php';
+            require_once CAWQV_DIR . '/admin-notice/handle.php';
             require_once CAWQV_INC_DIR . '/customizers/customizer.php';
             require_once CAWQV_INC_DIR . '/style.php';
         }
@@ -149,5 +150,3 @@ class CAWQV_PLUGIN_LITE
 }
 
 new CAWQV_PLUGIN_LITE();
-
-
