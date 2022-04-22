@@ -20,6 +20,9 @@ if( ! class_exists( 'CA_Framework\Require_Control' ) ){
         private $status;
 
         public $download_link;
+        public $this_download_link;
+
+        public $required = false;
 
 
         private $sample_plugin = array(
@@ -72,6 +75,11 @@ if( ! class_exists( 'CA_Framework\Require_Control' ) ){
         public function set_download_link( $download_link )
         {
             $this->download_link = $download_link;
+            return $this;
+        }
+        public function set_this_download_link( $this_download_link )
+        {
+            $this->this_download_link = $this_download_link;
             return $this;
         }
 
@@ -140,27 +148,56 @@ if( ! class_exists( 'CA_Framework\Require_Control' ) ){
             return $this->plugin_name ? $this->plugin_name : $this->args['Name'];
         }
 
-        public function get_plugin_link()
+        /**
+         * Get required plugin name with link or strong, if not found download link
+         *
+         * @return String
+         */
+        public function get_full_plugin_name()
         {
-            
-        }
-
-
-
-
-        public function display_test_notice(){
-            $recommend = esc_html__( 'Recommend' );
-            $order_message = esc_html__( 'to be install and Activated.' );
-        
             $p_name = $this->get_final_plugin_name();
             if( $this->download_link ){
                 $plugin_link = "<a href='{$this->download_link}' target='_blank'>{$p_name}</a>";
             }else{
                 $plugin_link = "<strong>{$p_name}</strong>";
             }
+            return $plugin_link;
+        }
+
+        /**
+         * Get This plugin name with link or strong, if not found download link
+         *
+         * @return String
+         */
+        public function get_full_this_plugin_name()
+        {
+            $p_name = $this->this_plugin_name;
+            if( $this->this_download_link ){
+                $plugin_link = "<a href='{$this->this_download_link}' target='_blank'>{$p_name}</a>";
+            }else{
+                $plugin_link = "<strong>{$p_name}</strong>";
+            }
+            return $plugin_link;
+        }
+
+        public function get_order_message()
+        {
+            if( $this->status == 'install' ) return __( 'to be Install and Activated.', 'ca-framework' );
+            if( $this->status == 'activate' ) return __( 'to be Activated.', 'ca-framework' );
+            if( $this->status == 'upgrade' ) return __( 'to be Upgrade Version.', 'ca-framework' );
+        }
+
+
+
+
+        public function display_test_notice(){
+            $recommend = ! $this->required ? __( 'Required', 'ca-framework' ) : __( 'Recommend', 'ca-framework' );
+            $order_message = $this->get_order_message();
+        
+            $p_name = $this->get_full_plugin_name(); //Requried plugin full name, with strong or download link
+            $this_p_name = $this->get_full_this_plugin_name(); //This onw plugin full name, with strong or download link
             
-            
-            $message = '<strong>' . $this->this_plugin_name . '</strong> ' . $recommend . ' ' . $plugin_link . ' ' . $order_message;
+            $message = "$this_p_name $recommend $p_name $order_message";
             ?>
             <div class="<?php echo esc_attr( $this->status ); ?> ca-reuire-plugin-notice notice notice-error">
                 <p class="ca-require-plugin-msg" ><?php echo wp_kses_post( $message ); ?></p>

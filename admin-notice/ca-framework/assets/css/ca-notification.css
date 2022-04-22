@@ -121,7 +121,8 @@ p.ca-require-plugin-msg strong, p.ca-require-plugin-msg b{
     color: #0073aa;
 }
 p.ca-require-plugin-msg strong, p.ca-require-plugin-msg b, p.ca-require-plugin-msg a {
-    
+    font-weight: 500;
+    text-decoration: none;
 }
 .ca-reuire-plugin-notice.install a.ca-button{
     background: #ff584c;
