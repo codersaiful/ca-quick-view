@@ -1,7 +1,8 @@
 # CA_Framework is a Code Astrology framework to handle basic control of WordPress
+CA Framework is a primary version of Code Astrology Frameword
 
-## Code Example:
-````
+## Code Example for Required Plugin Handle:
+````php
 <?php 
 include __DIR__ . '/ca-framework/loader.php';
 
@@ -15,13 +16,18 @@ $args = array(
 $req->set_args($args)
 
 ->run();
+````
 
+## Code Example for Notice Control
+````php
+<?php
+include __DIR__ . '/ca-framework/loader.php';
 
 //Notice Control
 $my_notice = new CA_Framework\Notice('aSsa');
 // $my_notice->start_date = '4/21/2022 18:48:24';
 $my_notice->notice_type = 'warning';
-$my_notice->set_message("Most Welcome. Thank you for using Quick View To get more amazing features and the outstanding pro ready-made layouts, please get the")
+$my_notice->set_message("Notice Message description text here.")
 ->set_start_date('4/21/2022 11:05:00')
 // ->set_end_date('10/21/2022 11:05:00')
 ->set_title( 'Product Table for WooCommerce(Plus):<br> UPTO 70% discount!' )
