@@ -109,3 +109,21 @@ p.ca-links-collection a.ca-button-type-success{background-color: #00cc44;}
 p.ca-links-collection a:hover, a.ca-button:hover {
     background: #f24c00;
 }
+
+/******REQUIRED PLUGIN CONTROL PART*******/
+.ca-reuire-plugin-notice.notice {padding-top: 5px;padding-bottom: 5px;}
+.ca-reuire-plugin-notice.notice p.ca-require-plugin-msg {padding-bottom: 5px;font-size: medium;color: black;}
+.ca-reuire-plugin-notice.notice a.ca-button {
+    padding: 5px 10px;
+    text-transform: capitalize;
+}
+p.ca-require-plugin-msg strong, p.ca-require-plugin-msg b{
+    color: #0073aa;
+}
+p.ca-require-plugin-msg strong, p.ca-require-plugin-msg b, p.ca-require-plugin-msg a {
+    
+}
+.ca-reuire-plugin-notice.install a.ca-button{
+    background: #ff584c;
+    border-color: #E91E63;
+}

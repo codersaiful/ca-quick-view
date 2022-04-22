@@ -19,6 +19,8 @@ if( ! class_exists( 'CA_Framework\Require_Control' ) ){
 
         private $status;
 
+        public $download_link;
+
 
         private $sample_plugin = array(
             'Name' =>   'Requrie Plugin',
@@ -66,6 +68,14 @@ if( ! class_exists( 'CA_Framework\Require_Control' ) ){
             $this->args = is_array( $args ) ? array_merge( $this->sample_plugin, $args ) : $this->sample_plugin;
             return $this;
         }
+
+        public function set_download_link( $download_link )
+        {
+            $this->download_link = $download_link;
+            return $this;
+        }
+
+        
 
         public function get_plugins()
         {
@@ -127,27 +137,38 @@ if( ! class_exists( 'CA_Framework\Require_Control' ) ){
 
         public function get_final_plugin_name()
         {
-            return ! $this->plugin_name ? $this->plugin_name : $this->args['Name'];
+            return $this->plugin_name ? $this->plugin_name : $this->args['Name'];
         }
 
+        public function get_plugin_link()
+        {
+            
+        }
 
 
 
 
         public function display_test_notice(){
             $recommend = esc_html__( 'Recommend' );
-            $order_message = esc_html__( 'to be install and Activated' );
-            $plugin_name = $this->get_final_plugin_name();
-            var_dump($plugin_name);
-            $message = $this->this_plugin_name . ' ' . $recommend . ' <strong>' . $plugin_name . '</strong> ' . $order_message;
+            $order_message = esc_html__( 'to be install and Activated.' );
+        
+            $p_name = $this->get_final_plugin_name();
+            if( $this->download_link ){
+                $plugin_link = "<a href='{$this->download_link}' target='_blank'>{$p_name}</a>";
+            }else{
+                $plugin_link = "<strong>{$p_name}</strong>";
+            }
+            
+            
+            $message = '<strong>' . $this->this_plugin_name . '</strong> ' . $recommend . ' ' . $plugin_link . ' ' . $order_message;
             ?>
-            <div class="ca-reuire-plugin-notice notice notice-error is-dismissible">
+            <div class="<?php echo esc_attr( $this->status ); ?> ca-reuire-plugin-notice notice notice-error">
                 <p class="ca-require-plugin-msg" ><?php echo wp_kses_post( $message ); ?></p>
                 <p class="ca-button-collection">
                     <a href="<?php echo esc_url( $this->gen_link() ); ?>" class="ca-button"><?php echo esc_attr( $this->status ); ?></a>
                 </p>
             <?php
-            var_dump($this->args);
+            // var_dump($this->args);
             // echo sprintf();
             // var_dump($this->this_plugin);
             // var_dump($this->get_plugin(),$this->plugin);

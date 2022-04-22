@@ -9,7 +9,7 @@ $args = array(
     'PluginURI' => 'https://profiles.wordpress.org/codersaiful/#content-plugins',
 );
 $req->set_args($args)
-
+// ->set_download_link('https://wordpress.org/plugins/woo-product-table/')
 ->run();
 
 
