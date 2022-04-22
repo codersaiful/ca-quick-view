@@ -1,7 +1,20 @@
 <?php 
 include __DIR__ . '/ca-framework/loader.php';
 
-$my_notice = new CA_Framework\Notice('aaa');
+//RequireControl Part Start Here
+// $req = new CA_Framework\Require_Control( 'woo-product-table/woo-product-table.php' );
+$req = new CA_Framework\Require_Control( 'woo-product-table/woo-product-table.php', 'ca-quick-view/init.php' );
+$args = array(
+    'Name' => 'Product Table Plugin for WooCommerce',
+    'PluginURI' => 'https://profiles.wordpress.org/codersaiful/#content-plugins',
+);
+$req->set_args($args)
+
+->run();
+
+
+//Notice Control
+$my_notice = new CA_Framework\Notice('aassa');
 // $my_notice->start_date = '4/21/2022 18:48:24';
 $my_notice->notice_type = 'warning';
 $my_notice->set_message("Most Welcome. Thank you for using Quick View To get more amazing features and the outstanding pro ready-made layouts, please get the")
@@ -26,6 +39,3 @@ $another_notice->set_message("Nothing to do for it.<a href='#'>Go Premium</a>")
 ->show();
 
 
-//RequireControl Part Start Here
-// $req = new CA_Framework\Require_Control( 'woo-product-table/woo-product-table.php' );
-$req = new CA_Framework\Require_Control( 'AAAFloatTest/AAAFloatTest.php' );
