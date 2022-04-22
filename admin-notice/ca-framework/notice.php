@@ -14,13 +14,14 @@ if( ! class_exists( 'CA_Framework\Notice' ) ){
      * here User able to handle his Notice, using this one Class
      * 
      * EXAMPLE:
-     * $my_notice = new CA_Framework\Notice('ddvpl-');
-$my_notice->notice_type = 'error';
-$my_notice->set_message("Most Welcome. Thank you for using Quick View To get more amazing features and the outstanding pro ready-made layouts, please get the")
-->show();
-$new_notice = new CA_Framework\Notice('dsfvfpld-');
-$new_notice>set_message("Nothing to do for it.");
-$new_notice>show();
+     * 
+     *  $my_notice = new CA_Framework\Notice('ddvpl-');
+     *  $my_notice->notice_type = 'error';
+     *  $my_notice->set_message("Most Welcome. Thank you for using Quick View To get more amazing features and the outstanding pro ready-made layouts, please get the")
+     ->show();
+     *  $new_notice = new CA_Framework\Notice('dsfvfpld-');
+     *  $new_notice>set_message("Nothing to do for it.");
+     *  $new_notice>show();
 
      * 
      * @author Saiful Islam <codersaiful@gmail.com>
@@ -43,10 +44,10 @@ $new_notice>show();
         private $title;
 
         public $start_date; //Example: 4/21/2022 17:1:24
+        public $end_date; //Example: 4/21/2022 17:1:24
 
         private $buttons = array();
 
-        
         /**
          * Define a Unique notice ID,
          * Example: new CA_Framework\Notice('skdlq')
@@ -55,18 +56,21 @@ $new_notice>show();
          * 
          * @author Saiful Islam <codersaiful@gmail.com>
          */
-        public function __construct( $notice_id ){
+        public function __construct( $notice_id )
+        {
             $this->notice_id = $notice_id;
             add_action("admin_enqueue_scripts", [$this, "enqueue"]);
             add_action("wp_ajax_update_notice_status", [$this, "update_notice_status"]);
         }
       
-        public function set_diff_limit( $day ){
+        public function set_diff_limit( $day )
+        {
             $this->diff_limit = $day;
             return $this;
         }
 
-        public function add_button( $button_arr ){
+        public function add_button( $button_arr )
+        {
             $this->buttons[] = $button_arr;
             return $this;
         }
@@ -76,7 +80,8 @@ $new_notice>show();
          *
          * @return null||Array
          */
-        private function get_buttons(){
+        private function get_buttons()
+        {
             $defl = array(
                 'type'      =>  'primary',
                 'text'      =>  __( 'Click here', 'ca-framework' ),
@@ -94,7 +99,8 @@ $new_notice>show();
             return $gen_buttons;
         }
         
-        public function set_message( $message ){
+        public function set_message( $message )
+        {
             $this->message = $message;
             return $this;
         }
@@ -112,7 +118,8 @@ $new_notice>show();
          * @param String $notice_type
          * @return object
          */
-        public function set_type( $notice_type ){
+        public function set_type( $notice_type )
+        {
             $this->notice_type = $notice_type;
             return $this;
         }
@@ -123,8 +130,21 @@ $new_notice>show();
          * @param String $start_date
          * @return object
          */
-        public function set_start_date( $start_date ){
+        public function set_start_date( $start_date )
+        {
             $this->start_date = $start_date;
+            return $this;
+        }
+
+        /**
+         * Set a date to hide Notice after specific date
+         *
+         * @param String $end_date
+         * @return object
+         */
+        public function set_end_date( $end_date )
+        {
+            $this->end_date = $end_date;
             return $this;
         }
 
@@ -197,9 +217,13 @@ $new_notice>show();
          * Notice show if condition meet
          */
         public function show(){
-            
+
+            //Control End Date
+            if( ! empty( $this->end_date ) && strtotime($this->end_date) < current_time( 'timestamp' ) ) return;
+
+            //Control Start Date
             if( ! empty( $this->start_date ) && strtotime($this->start_date) > current_time( 'timestamp' ) ) return;
-                        
+                                 
             $close_date   = get_option( $this->notice_id . "_notice_close_date");
             if( ! empty($close_date) && is_numeric( $close_date )){
                 $close_date		        = date("Y-m-d", $close_date);
@@ -243,7 +267,7 @@ $new_notice>show();
                     <div class="ca-msg-text">
                         
                         <?php if( ! empty( $this->title ) ): ?>
-                            <h1><?php echo esc_html( $this->title ); ?></h1>
+                            <h1><?php echo wp_kses_post( $this->title ); ?></h1>
                         <?php endif; ?> 
 
                         <?php if( ! empty( $this->message ) ): ?>
