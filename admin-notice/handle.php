@@ -11,7 +11,9 @@ $args = array(
 $req->set_args($args)
 ->set_download_link('https://wordpress.org/plugins/woo-product-table/')
 ->set_this_download_link('https://wordpress.org/plugins/ca-quick-view/')
+->set_required()
 ->run();
+// var_dump($req);
 
 
 //Notice Control

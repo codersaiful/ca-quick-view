@@ -1,5 +1,6 @@
 <?php 
 namespace CA_Framework;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -9,6 +10,7 @@ if( ! class_exists( 'CA_Framework\Require_Control' ) ){
     class Require_Control
     {
         private $plugin_slug;
+        private $plugin_slug_pure;
         private $this_slug;
         private $plugins = array();
         private $plugin = array();
@@ -40,8 +42,13 @@ if( ! class_exists( 'CA_Framework\Require_Control' ) ){
          */
         public function __construct( $req_plugin_slug,$this_slug, $args = array() )
         {
-            
+
             $this->plugin_slug = $req_plugin_slug;
+
+            //Pase Perperty generating, If already our required plugin is installed.
+            if( is_plugin_active( $this->plugin_slug ) ) return;
+
+            $this->plugin_slug_pure = strtok( $this->plugin_slug, '/' );
             $this->this_slug = $this_slug;
             $this->args = is_array( $args ) ? array_merge( $this->sample_plugin, $args ) : $this->sample_plugin;
 
@@ -55,17 +62,36 @@ if( ! class_exists( 'CA_Framework\Require_Control' ) ){
             $this->this_plugin_name = $this->get_this_plugin_name();
             
             $this->status = $this->check_status();
-            
-            
+
         }
+        
 
         public function run()
         {
+            //Check Admin User
+            if( ! is_admin() ) return;
+
+            // Return null, If already our required plugin is installed.
+            if( is_plugin_active( $this->plugin_slug ) ) return;
+
+            //Return Null Controll;
+            if( isset( $_GET['action'] ) && ( $_GET['action'] == 'install-plugin' || $_GET['action'] == 'activate' ) ) return;
+            
             //Test Perpose
             add_action( 'admin_notices', [ $this, 'display_test_notice' ] );
         }
 
+        public function return_null()
+        {
+            if( isset( $_GET['action'] ) && ( $_GET['action'] == 'install-plugin' || $_GET['action'] == 'activate' ) ) return;
+        }
 
+        /**
+         * It's Very important, If already not set over third argument of this class constructor
+         *
+         * @param array $args
+         * @return object
+         */
         public function set_args( $args )
         {
             $this->args = is_array( $args ) ? array_merge( $this->sample_plugin, $args ) : $this->sample_plugin;
@@ -75,6 +101,11 @@ if( ! class_exists( 'CA_Framework\Require_Control' ) ){
         public function set_download_link( $download_link )
         {
             $this->download_link = $download_link;
+            return $this;
+        }
+        public function set_required()
+        {
+            $this->required = true;
             return $this;
         }
         public function set_this_download_link( $this_download_link )
@@ -131,13 +162,17 @@ if( ! class_exists( 'CA_Framework\Require_Control' ) ){
 
         private function check_status(){
             if( ! $this->plugin_name ) return 'install';
+            if( ! is_plugin_active( $this->plugin_slug ) ) return 'activate';
         }
 
         public function gen_link()
         {
             $url = '';
             if($this->status == 'install'){
-                $url = wp_nonce_url( self_admin_url( 'update.php?action=' . $this->status . '-plugin&plugin=' . $this->plugin_slug ), $this->status . '-plugin_' . $this->plugin_slug );
+                $url = wp_nonce_url( self_admin_url( 'update.php?action=' . $this->status . '-plugin&plugin=' . $this->plugin_slug_pure ), $this->status . '-plugin_' . $this->plugin_slug_pure );
+            }
+            if($this->status == 'activate'){
+                $url = wp_nonce_url( 'plugins.php?action=activate&amp;plugin=' . $this->plugin_slug . '&amp;plugin_status=all&amp;paged=1&amp;s', 'activate-plugin_' . $this->plugin_slug );
             }
 
             return $url;
@@ -191,7 +226,11 @@ if( ! class_exists( 'CA_Framework\Require_Control' ) ){
 
 
         public function display_test_notice(){
-            $recommend = ! $this->required ? __( 'Required', 'ca-framework' ) : __( 'Recommend', 'ca-framework' );
+
+            //Check User Permission 
+            if ( ! current_user_can( 'activate_plugins' ) ) return;
+
+            $recommend = $this->required ? __( 'Requires', 'ca-framework' ) : __( 'Recommends', 'ca-framework' );
             $order_message = $this->get_order_message();
         
             $p_name = $this->get_full_plugin_name(); //Requried plugin full name, with strong or download link
