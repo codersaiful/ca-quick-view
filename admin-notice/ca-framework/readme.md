@@ -1,6 +1,7 @@
 # CA_Framework is a Code Astrology framework to handle basic control of WordPress
+CA Framework is a primary version of Code Astrology Frameword
 
-## Code Example:
+## Code Example for Required Plugin Handle:
 ````php
 <?php 
 include __DIR__ . '/ca-framework/loader.php';
@@ -15,7 +16,12 @@ $args = array(
 $req->set_args($args)
 
 ->run();
+````
 
+## Code Example for Notice Control
+````php
+<?php
+include __DIR__ . '/ca-framework/loader.php';
 
 //Notice Control
 $my_notice = new CA_Framework\Notice('aSsa');
