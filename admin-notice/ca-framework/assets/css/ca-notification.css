@@ -128,3 +128,7 @@ p.ca-require-plugin-msg strong, p.ca-require-plugin-msg b, p.ca-require-plugin-m
     background: #ff584c;
     border-color: #E91E63;
 }
+.ca-reuire-plugin-notice.activate a.ca-button{
+    background: #4caf50;
+    border-color: #359339;
+}
