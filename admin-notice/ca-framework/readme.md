@@ -1,7 +1,7 @@
 # CA_Framework is a Code Astrology framework to handle basic control of WordPress
 
 ## Code Example:
-````
+````php
 <?php 
 include __DIR__ . '/ca-framework/loader.php';
 
