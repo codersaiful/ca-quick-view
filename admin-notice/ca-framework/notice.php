@@ -58,6 +58,9 @@ if( ! class_exists( 'CA_Framework\Notice' ) ){
          */
         public function __construct( $notice_id )
         {
+            //Check, If only Admin User
+            if( ! is_admin() ) return;
+
             $this->notice_id = $notice_id;
             add_action("admin_enqueue_scripts", [$this, "enqueue"]);
             add_action("wp_ajax_update_notice_status", [$this, "update_notice_status"]);
@@ -229,6 +232,8 @@ if( ! class_exists( 'CA_Framework\Notice' ) ){
          * Notice show if condition meet
          */
         public function show(){
+
+            if( ! is_admin() ) return;
 
             //Control End Date
             if( ! empty( $this->end_date ) && strtotime($this->end_date) < current_time( 'timestamp' ) ) return;
