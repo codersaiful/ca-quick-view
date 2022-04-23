@@ -1,4 +1,13 @@
 <?php 
+/**
+ * It's a example file, 
+ * don't notice dir location.
+ * 
+ * you have to set it based on your plugin's directory.
+ * 
+ * @since 1.0.0.12
+ * @package CA_Framework
+ */
 include __DIR__ . '/ca-framework/loader.php';
 
 //RequireControl Part Start Here

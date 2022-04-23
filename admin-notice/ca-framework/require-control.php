@@ -26,6 +26,9 @@ if( ! class_exists( 'CA_Framework\Require_Control' ) ){
 
         public $required = false;
 
+        public $notice_id;
+        public $diff_limit = 5;
+
 
         private $sample_plugin = array(
             'Name' =>   'Requrie Plugin',
@@ -63,6 +66,8 @@ if( ! class_exists( 'CA_Framework\Require_Control' ) ){
             
             $this->status = $this->check_status();
 
+            $this->notice_id = $this->plugin_slug_pure;
+
         }
         
 
@@ -76,11 +81,48 @@ if( ! class_exists( 'CA_Framework\Require_Control' ) ){
 
             //Return Null Controll;
             if( isset( $_GET['action'] ) && ( $_GET['action'] == 'install-plugin' || $_GET['action'] == 'activate' ) ) return;
-            
-            //Test Perpose
-            add_action( 'admin_notices', [ $this, 'display_test_notice' ] );
+
+            //Check Aganin installation prosibility when reconneded and Date over. by default we set diff_limit = 5 days.
+            if( ! $this->required && $this->repeat_display() ) return;
+
+            //Final Display Notice 
+            add_action( 'admin_notices', [ $this, 'display_notice' ] );
         }
 
+        /**
+         * Display Notice Again after close using close button
+         * I have taken help for this part of Notice's Object js part
+         * 
+         * as ID, I have use target plugin's pure slug
+         * 
+         * *****************
+         * IMPORTANT
+         * *****************
+         * When Notice is not required, then this repeat_display() method will impact
+         *
+         * @return boolean
+         */
+        public function repeat_display()
+        {
+            $close_date   = get_option( $this->notice_id . "_notice_close_date");
+            
+            if( ! empty($close_date) && is_numeric( $close_date )){
+                $close_date		        = date("Y-m-d", $close_date);
+    
+                $date				    = new \DateTime($close_date);
+                $now 				    = new \DateTime();
+                $date_diff = $date->diff($now)->format("%d");
+            }else{
+                $date_diff = 99999;
+            }
+                            
+            
+            
+            if( $date_diff >= $this->diff_limit ){
+                return false;
+            }
+            return true;
+        }
         public function return_null()
         {
             if( isset( $_GET['action'] ) && ( $_GET['action'] == 'install-plugin' || $_GET['action'] == 'activate' ) ) return;
@@ -225,7 +267,17 @@ if( ! class_exists( 'CA_Framework\Require_Control' ) ){
 
 
 
-        public function display_test_notice(){
+        /**
+         * Display notice method
+         * If found everything ok, then this method will execute under admin_notice hook
+         * this method was call on run() method.
+         * 
+         * @since 1.0.0.12
+         * @author Saiful Islam <codersaiful@gmail.com>
+         *
+         * @return void
+         */
+        public function display_notice(){
 
             //Check User Permission 
             if ( ! current_user_can( 'activate_plugins' ) ) return;
@@ -237,21 +289,22 @@ if( ! class_exists( 'CA_Framework\Require_Control' ) ){
             $this_p_name = $this->get_full_this_plugin_name(); //This onw plugin full name, with strong or download link
             
             $message = "$this_p_name $recommend $p_name $order_message";
+
+            $required = $this->required;
             ?>
-            <div class="<?php echo esc_attr( $this->status ); ?> ca-reuire-plugin-notice notice notice-error">
+            <div data-notice_id="<?php echo esc_attr( $this->notice_id ); ?>" class="<?php echo esc_attr( $this->status ); ?> ca-notice ca-reuire-plugin-notice notice notice-error">
                 <p class="ca-require-plugin-msg" ><?php echo wp_kses_post( $message ); ?></p>
                 <p class="ca-button-collection">
                     <a href="<?php echo esc_url( $this->gen_link() ); ?>" class="ca-button"><?php echo esc_attr( $this->status ); ?></a>
                 </p>
-            <?php
-            // var_dump($this->args);
-            // echo sprintf();
-            // var_dump($this->this_plugin);
-            // var_dump($this->get_plugin(),$this->plugin);
-            // var_dump($this->get_plugins());
-            
-            ?>
-
+                
+                <?php
+                if( ! $required ){
+                ?>
+                <button class="ca-notice-dismiss"></button>
+                <?php
+                }
+                ?>
             </div>
             <?php 
         }

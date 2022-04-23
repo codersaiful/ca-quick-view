@@ -1,4 +1,7 @@
 # CA_Framework is a Code Astrology framework to handle basic control of WordPress
+CA_Framework
+Version: 1.0.0
+
 CA Framework is a primary version of Code Astrology Frameword
 
 ## Code Example for Required Plugin Handle:
