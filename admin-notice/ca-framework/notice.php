@@ -125,6 +125,18 @@ if( ! class_exists( 'CA_Framework\Notice' ) ){
         }
 
         /**
+         * Set unlimited day limit. It will set 9999 day as diff limit
+         * which is almost no-repeat
+         *
+         * @return object
+         */
+        public function set_no_repeat()
+        {
+            $this->diff_limit = 9999;
+            return $this;
+        }
+
+        /**
          * Set a date to display Notice after specific date
          *
          * @param String $start_date
