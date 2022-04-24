@@ -1,7 +1,7 @@
 <?php 
-namespace CA_Framework\App;
+namespace CA_Framework\App\Base;
 
-if( ! class_exists( 'CA_Framework\App\Notice_Base' ) ){
+if( ! class_exists( 'CA_Framework\App\Base\Notice_Base' ) ){
 
     class Notice_Base
     {

@@ -1,10 +1,13 @@
 <?php 
 namespace CA_Framework;
 
+use CA_Framework\App\Notice;
+use CA_Framework\App\Require_Control;
+
 include __DIR__ . '/ca-framework/framework.php';
 
 
-$another_notice = new Notice('yysdsdfsd');
+$another_notice = new Notice('s7dfsd');
 $another_notice->set_message("Nothing to do for it.<a href='#'>Go Premium</a>")
 ->set_img('https://img.freepik.com/free-vector/black-banner-with-yellow-geometric-shapes_1017-32327.jpg')
 ->show();

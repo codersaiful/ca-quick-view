@@ -1,7 +1,7 @@
 <?php 
-namespace CA_Framework;
+namespace CA_Framework\App;
 
-use CA_Framework\App\Notice_Base as Notice_Base;
+use CA_Framework\App\Base\Notice_Base as Notice_Base;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
