@@ -1,13 +1,15 @@
 <?php 
 namespace CA_Framework;
 
+use CA_Framework\App\Notice_Base as Notice_Base;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 if( ! class_exists( 'CA_Framework\Require_Control' ) ){
 
 
-    class Require_Control
+    class Require_Control extends Notice_Base
     {
         private $plugin_slug;
         private $plugin_slug_pure;
@@ -29,6 +31,7 @@ if( ! class_exists( 'CA_Framework\Require_Control' ) ){
         public $notice_id;
         public $diff_limit = 5;
 
+        private $message;
 
         private $sample_plugin = array(
             'Name' =>   'Requrie Plugin',
@@ -45,6 +48,7 @@ if( ! class_exists( 'CA_Framework\Require_Control' ) ){
          */
         public function __construct( $req_plugin_slug,$this_slug, $args = array() )
         {
+            parent::__construct();
 
             $this->plugin_slug = $req_plugin_slug;
 
@@ -138,6 +142,18 @@ if( ! class_exists( 'CA_Framework\Require_Control' ) ){
         {
             $this->args = is_array( $args ) ? array_merge( $this->sample_plugin, $args ) : $this->sample_plugin;
             return $this;
+        }
+
+        /**
+         * Its an additional message.
+         *
+         * @param String $message
+         * @return object
+         */
+        public function set_message($message)
+        {
+           $this->message = $message;
+           return $this;
         }
 
         public function set_download_link( $download_link )
@@ -289,6 +305,9 @@ if( ! class_exists( 'CA_Framework\Require_Control' ) ){
             $this_p_name = $this->get_full_this_plugin_name(); //This onw plugin full name, with strong or download link
             
             $message = "$this_p_name $recommend $p_name $order_message";
+            if($this->message){
+                $message .= "<br>" . $this->message;
+            }
 
             $required = $this->required;
             ?>

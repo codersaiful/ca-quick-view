@@ -1,6 +1,8 @@
 <?php 
 namespace CA_Framework;
 
+use CA_Framework\App\Notice_Base as Notice_Base;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -27,11 +29,8 @@ if( ! class_exists( 'CA_Framework\Notice' ) ){
      * @author Saiful Islam <codersaiful@gmail.com>
      * @since 1.0.0.5
      */
-    class Notice
+    class Notice extends Notice_Base
     {
-        
-        const VERSION ='1.0';
-
         private $temp = 1;
 
         private $diff_limit = 10; //for date
@@ -58,12 +57,8 @@ if( ! class_exists( 'CA_Framework\Notice' ) ){
          */
         public function __construct( $notice_id )
         {
-            //Check, If only Admin User
-            if( ! is_admin() ) return;
-
+            parent::__construct();
             $this->notice_id = $notice_id;
-            add_action("admin_enqueue_scripts", [$this, "enqueue"]);
-            add_action("wp_ajax_update_notice_status", [$this, "update_notice_status"]);
         }
       
         public function set_diff_limit( $day )
@@ -182,51 +177,6 @@ if( ! class_exists( 'CA_Framework\Notice' ) ){
             return $this;
         }
 
-
-        
-        /**
-         * Enqueue Scripts
-         */
-        public function enqueue(){
-            wp_enqueue_style(
-                "ca-notice-css",
-                $this->plugin_path() . "assets/css/ca-notification.css",
-                []
-            );
-            wp_enqueue_script(
-                "ca-notice-update-js",
-                $this->plugin_path() . "assets/js/ajax-update.js",
-                "",
-                self::VERSION,
-                false
-            );
-    
-            wp_localize_script("ca-notice-update-js", "ajaxobj", [
-                "ajaxurl" => admin_url("admin-ajax.php"),
-            ]);
-        }
-        
-
-        /**
-         * plugin path
-         */
-         public function plugin_path(){
-            $assets_path = plugins_url("/", __FILE__);
-            return $assets_path;
-          }
-         
-        /**
-         * Update Option by Ajax
-         */
-        public function update_notice_status(){
-            
-            $fonded_notc_id = isset( $_POST['notice_id'] ) && ! empty( $_POST['notice_id'] ) ? $_POST['notice_id'] : false;
-            if( $fonded_notc_id ){
-                update_option( sanitize_key( $fonded_notc_id ) .'_notice_close_date', current_time( 'timestamp' ) );
-                wp_die();
-            }
-            wp_die();
-        }
     
         /**
          * Notice show if condition meet

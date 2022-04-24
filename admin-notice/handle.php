@@ -1,11 +1,31 @@
 <?php 
-include __DIR__ . '/ca-framework/loader.php';
+namespace CA_Framework;
 
-$myReq = new CA_Framework\Require_Control('woo-product-table/woo-product-table.php','ca-quick-view/init.php');
+include __DIR__ . '/ca-framework/framework.php';
+
+
+$another_notice = new Notice('yysdsdfsd');
+$another_notice->set_message("Nothing to do for it.<a href='#'>Go Premium</a>")
+->set_img('https://img.freepik.com/free-vector/black-banner-with-yellow-geometric-shapes_1017-32327.jpg')
+->show();
+
+$myReq = new Require_Control('woo-product-table/woo-product-table.php','ca-quick-view/init.php');
 $args = array(
     'Name' => 'Product Table Plugin for Woocccc'
 );
-$myReq->notice_id = '3343s4';
+$myReq->notice_id = '3343ds4';
+$myReq->set_args($args)
+->set_download_link('https://glglelel.com')
+->set_required()
+->run();
+
+/**
+
+$myReq = new Require_Control('woo-product-table/woo-product-table.php','ca-quick-view/init.php');
+$args = array(
+    'Name' => 'Product Table Plugin for Woocccc'
+);
+$myReq->notice_id = '3343ds4';
 $myReq->set_args($args)
 ->set_download_link('https://glglelel.com')
 ->set_required()
@@ -14,9 +34,9 @@ $myReq->set_args($args)
 
 
 //RequireControl Part Start Here
-// $req = new CA_Framework\Require_Control( 'woo-product-table/woo-product-table.php' );
-$req = new CA_Framework\Require_Control( 'woo-product-table/woo-product-table.php', 'ca-quick-view/init.php' );
-$req->notice_id = '34343';
+// $req = new Require_Control( 'woo-product-table/woo-product-table.php' );
+$req = new Require_Control( 'woo-product-table/woo-product-table.php', 'ca-quick-view/init.php' );
+$req->notice_id = '3s4343';
 $args = array(
     'Name' => 'Product Table Plugin for WooCommerce',
     'PluginURI' => 'https://profiles.wordpress.org/codersaiful/#content-plugins',
@@ -30,7 +50,7 @@ $req->set_args($args)
 
 
 //Notice Control
-$my_notice = new CA_Framework\Notice('yyyyyysa');
+$my_notice = new Notice('yyysyysa');
 // $my_notice->start_date = '4/21/2022 18:48:24';
 $my_notice->notice_type = 'warning';
 $my_notice->set_message("Most Welcome. Thank you for using Quick View To get more amazing features and the outstanding pro ready-made layouts, please get the")
@@ -50,7 +70,8 @@ $my_notice->set_message("Most Welcome. Thank you for using Quick View To get mor
 
 ->set_img('http://wpp.cm/wp-content/plugins/ca-quick-view/includes/admin//img/notice-img.jpg');
 // ->show();
-$another_notice = new CA_Framework\Notice('yyyydsdfsd');
-$another_notice->set_message("Nothing to do for it.<a href='#'>Go Premium</a>");
-// ->set_img('https://img.freepik.com/free-vector/black-banner-with-yellow-geometric-shapes_1017-32327.jpg')
-// ->show();
+$another_notice = new Notice('yyysydsdfsd');
+$another_notice->set_message("Nothing to do for it.<a href='#'>Go Premium</a>")
+->set_img('https://img.freepik.com/free-vector/black-banner-with-yellow-geometric-shapes_1017-32327.jpg')
+->show();
+ */

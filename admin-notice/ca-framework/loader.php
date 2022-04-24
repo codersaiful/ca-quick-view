@@ -2,10 +2,6 @@
 
 namespace CA_Framework;
 
-defined('ABSPATH') || exit;
-
-include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-
 if( ! class_exists( 'CA_Framework\Loader' ) ){
 
     /**
