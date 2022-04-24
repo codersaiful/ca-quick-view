@@ -1,8 +1,8 @@
 <?php 
 namespace CA_Framework;
 
-use CA_Framework\App\Notice;
-use CA_Framework\App\Require_Control;
+use CA_Framework\App\Notice as Notice;
+use CA_Framework\App\Require_Control as Require_Control;
 
 include __DIR__ . '/ca-framework/framework.php';
 
