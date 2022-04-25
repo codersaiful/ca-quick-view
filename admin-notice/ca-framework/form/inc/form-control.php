@@ -13,9 +13,9 @@ class From_Control
         return $input_name;
     }
     
-    public static function text()
+    public static function input()
     {
-        return self::add_types_return('text');
+        return self::add_types_return('input');
     }
     
     public static function number()

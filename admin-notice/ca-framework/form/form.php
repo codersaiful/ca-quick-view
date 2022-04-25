@@ -17,10 +17,9 @@ class Form extends Form_Base
         $this->$args = $args;
     }
 
-    public static function createField($kewword = 'ca_framework', $args = array())
+    public static function createField($args = array() )
     {   
-        if(empty($kewword)) return;
-        self::$kewwords[$kewword]=[$kewword];
+
         $filed_id = $args['id'] ?? 'field_id';
         self::$fields[$filed_id]=$args;
         $field = new Field( $args );

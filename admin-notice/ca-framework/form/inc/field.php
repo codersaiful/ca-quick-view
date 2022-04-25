@@ -2,7 +2,6 @@
 namespace CA_Framework\Form\Inc;
 
 use CA_Framework\Form\Fields as Fields;
-use CA_Framework\Form\Fields\Text;
 
 
 class Field extends Field_Base
@@ -30,9 +29,12 @@ class Field extends Field_Base
         <?php
         
         switch( $this->type ){
-            case 'text':
+            case 'input':
             $this->renderTextField();    
             break;
+            case 'select':
+                $this->renderSelectField();    
+                break;    
 
         }
         ?>
@@ -48,7 +50,13 @@ class Field extends Field_Base
     public function renderTextField()
     {
 
-        $fff = new Text($this->args);
+        $fff = new Fields\Input($this->args);
+        $fff->render();
+    }
+    public function renderSelectField()
+    {
+
+        $fff = new Fields\Select($this->args);
         $fff->render();
     }
 

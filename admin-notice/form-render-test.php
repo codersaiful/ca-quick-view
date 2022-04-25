@@ -19,35 +19,57 @@ class CA_Test_From
         ?>
         <h1>Form Testing</h1>
         <form>
-            <input type="text" placeholder="Form Field" name="input-test" value="hello bangladesh">
+            <?php
+            
+            Form::createField([
+                'id' => 'test-forms',
+                'type'  => 'select',
+                'label' => 'Test Form',
+                'desc'  => 'This is a test description',
+                'value' => '222',
+                'options' => [
+                    '111' => 'Number One',
+                    '222' => 'Number Two',
+                    '333' => 'Number Onssse',
+                    '444' => 'Number Four',
+                ],
+                // 'multiple' => true,
+            ]);
+            Form::createField([
+                'id' => 'test-form',
+                'label' => 'Test Form',
+                'desc'  => 'This is a test description',
+                'value' => '22222',
+                'data_type' => 'number',
+                'range' => [
+                    'min'=>'50',
+                    'step'=> '100',
+                    'max'=> '600'
+                ]
+                
+            ]);
+            Form::createField([
+                'id' => 'test-formsd',
+                'type'=> 'select',
+                'label' => 'Test Form',
+                'desc'  => 'This is a test description',
+                'value' => 2,
+                'options' => ['ddd','ffkfl','dddd']
+            ]);
+            Form::createField([
+                'id' => 'test-form',
+                'label' => 'Test Form',
+                'desc'  => 'This is a test description',
+                'value' => 'Hello World Test Value'
+            ]);
+            ?>
+
+
         </form>
         
         <?php 
 
-        Form::createField('my_option', [
-            'id' => 'test-forms',
-            'label' => 'Test Form',
-            'desc'  => 'This is a test description',
-            'value' => 'Hello World Test Value'
-        ]);
-        Form::createField('my_option', [
-            'id' => 'test-form',
-            'label' => 'Test Form',
-            'desc'  => 'This is a test description',
-            'value' => 'Hello World Test Value'
-        ]);
-        Form::createField('my_option', [
-            'id' => 'test-formsd',
-            'label' => 'Test Form',
-            'desc'  => 'This is a test description',
-            'value' => 'Hello World Test Value'
-        ]);
-        Form::createField('my_option', [
-            'id' => 'test-form',
-            'label' => 'Test Form',
-            'desc'  => 'This is a test description',
-            'value' => 'Hello World Test Value'
-        ]);
+        
 
         
     }
