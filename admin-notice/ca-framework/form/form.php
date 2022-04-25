@@ -1,7 +1,10 @@
 <?php 
 namespace CA_Framework\Form;
 
-class Form
+use CA_Framework\Form\Inc;
+use CA_Framework\Form\Inc\Form_Base;
+
+class Form extends Form_Base
 {
     public $fields;
 
