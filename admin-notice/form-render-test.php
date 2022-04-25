@@ -1,6 +1,8 @@
 <?php 
 include_once __DIR__ . '/ca-framework/framework.php';
 
+use CA_Framework\Form\Form;
+
 class CA_Test_From
 {
     public function __construct()
@@ -21,6 +23,33 @@ class CA_Test_From
         </form>
         
         <?php 
+
+        Form::createField('my_option', [
+            'id' => 'test-forms',
+            'label' => 'Test Form',
+            'desc'  => 'This is a test description',
+            'value' => 'Hello World Test Value'
+        ]);
+        Form::createField('my_option', [
+            'id' => 'test-form',
+            'label' => 'Test Form',
+            'desc'  => 'This is a test description',
+            'value' => 'Hello World Test Value'
+        ]);
+        Form::createField('my_option', [
+            'id' => 'test-formsd',
+            'label' => 'Test Form',
+            'desc'  => 'This is a test description',
+            'value' => 'Hello World Test Value'
+        ]);
+        Form::createField('my_option', [
+            'id' => 'test-form',
+            'label' => 'Test Form',
+            'desc'  => 'This is a test description',
+            'value' => 'Hello World Test Value'
+        ]);
+
+        
     }
 }
 
