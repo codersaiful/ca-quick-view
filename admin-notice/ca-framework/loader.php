@@ -2,8 +2,6 @@
 
 namespace CA_Framework;
 
-defined('ABSPATH') || exit;
-
 if( ! class_exists( 'CA_Framework\Loader' ) ){
 
     /**
