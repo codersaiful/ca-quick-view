@@ -4,6 +4,7 @@ namespace CA_Framework\Form;
 use CA_Framework\Form\Inc;
 use CA_Framework\Form\Inc\Field;
 use CA_Framework\Form\Inc\Form_Base;
+use CA_Framework\Form\Inc\Form_Settings;
 
 class Form extends Form_Base
 {
@@ -13,7 +14,7 @@ class Form extends Form_Base
 
     public $keyword;
 
-    public $settings;
+    public $settings = [];
 
 
     public function __construct( $keyword, $args = array() )
@@ -75,5 +76,19 @@ class Form extends Form_Base
             $field = new Field( $input_field );
             $field->render();
         }
+    }
+
+    public function render()
+    {
+        
+        if( empty( $this->settings ) ){
+            $this->fieldRender();
+        }
+        //$this->controlSetting();
+    }
+
+    private function controlSetting()
+    {
+        new Form_Settings();
     }
 }

@@ -61,7 +61,7 @@ class CA_Test_From
                 'desc'=> 'Insert your full Age.'
             ]);
             $forrm->addFields( $fields_args );
-            $forrm->fieldRender();
+            $forrm->render();
 
             var_dump($forrm);
             
