@@ -69,7 +69,7 @@ function cawqv_custom_css_output() {
 		.qv-description p.price {
 			color: <?php echo esc_attr(get_option( 'cawqv_product_price_color', '' ));?>;
 		}
-		button.open-modal {
+		button.caqv-open-modal {
 			background-color: <?php echo esc_attr(get_option( 'cawqv_action_button_bg', '' ));?>;
 		}
 		.cawqv-open .bg-wg-modal .wg-modal{border-radius: <?php echo esc_attr(get_option('modal_radius','')) . 'px';?>; overflow:hidden}

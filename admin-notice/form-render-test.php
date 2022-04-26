@@ -21,6 +21,7 @@ class CA_Test_From
         <form>
             <?php
             
+            
             Form::createField([
                 'id' => 'test-forms',
                 'type'  => 'select',
@@ -62,6 +63,8 @@ class CA_Test_From
                 'desc'  => 'This is a test description',
                 'value' => 'Hello World Test Value'
             ]);
+
+            var_dump(Form::$fields);
             ?>
 
 

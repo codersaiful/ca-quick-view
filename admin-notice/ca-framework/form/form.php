@@ -9,7 +9,6 @@ class Form extends Form_Base
 {
     public static $fields;
     public static $menus;
-    public static $kewwords;
 
 
     public function __construct( $args = array() )
@@ -21,8 +20,10 @@ class Form extends Form_Base
     {   
 
         $filed_id = $args['id'] ?? 'field_id';
-        self::$fields[$filed_id]=$args;
+        
         $field = new Field( $args );
+
+        self::$fields[$filed_id]=$field->args;
         $field->render();
     }
 }
