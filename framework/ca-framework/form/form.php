@@ -33,6 +33,14 @@ class Form extends Form_Base
         
     }
 
+    public function addFields( $fields_args = array() )
+    {   
+        if( ! is_array( $fields_args ) ) return $this;;
+        foreach( $fields_args as $args ){
+            $this->setFieldsSingle( $args );
+        }
+    }
+
     private function setFieldsSingle( $args = array() )
     {
         if( ! isset( $args['id'] ) ) return new Field( [] );

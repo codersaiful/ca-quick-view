@@ -21,16 +21,46 @@ class CA_Test_From
         <form>
             <?php
             
-            
+            $fields_args = [
+                [
+                    'id'    => 'my-age1',
+                    'type'=>'input',
+                    'data_type'=>'range',
+                    'label'=> 'Your Age',
+                    'desc'=> 'Insert your full Age.'
+                ],
+                [
+                    'id'    => 'my-age2',
+                    'type'=>'input',
+                    'data_type'=>'range',
+                    'label'=> 'Your Age',
+                    'desc'=> 'Insert your full Age.'
+                ],
+                [
+                    'id'    => 'my-age3',
+                    'type'=>'input',
+                    'data_type'=>'range',
+                    'label'=> 'Your Age',
+                    'desc'=> 'Insert your full Age.'
+                ],
+                [
+                    'id'    => 'my-age4',
+                    'type'=>'input',
+                    'data_type'=>'range',
+                    'label'=> 'Your Age',
+                    'desc'=> 'Insert your full Age.'
+                ]
+            ];
             
             $forrm = new Form('saiful');
             $forrm->addField([
-                'id'    => 'my-age',
+                'id'    => 'my-age44',
                 'type'=>'input',
                 'data_type'=>'range',
                 'label'=> 'Your Age',
                 'desc'=> 'Insert your full Age.'
             ]);
+            $forrm->addFields( $fields_args );
             var_dump($forrm);
             
             /**
