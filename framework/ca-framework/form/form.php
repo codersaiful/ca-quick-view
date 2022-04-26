@@ -7,18 +7,27 @@ use CA_Framework\Form\Inc\Form_Base;
 
 class Form extends Form_Base
 {
-    public $fields;
+    public $input_fields;
     public $options;
     public $menus;
 
     public $keyword;
+
+    public $settings;
 
 
     public function __construct( $keyword, $args = array() )
     {
         if( ! is_string( $keyword ) ) return;
         $this->keyword = ! empty( $keyword ) ? $keyword : 'caf';
-        // $this->$args = $args;
+    }
+
+    public function setSettings( $settings = array() )
+    {
+        if( ! is_array( $settings ) ) return $this;
+        if( empty( $settings ) ) return $this;
+
+        $this->settings = $settings;
     }
 
     public function createField( $args = array() )
@@ -49,13 +58,22 @@ class Form extends Form_Base
         
         $field = new Field( $args );
 
-        $this->fields[$filed_id]=$field->args;
+        $this->input_fields[$filed_id]=$field->args;
         $this->options[$filed_id]=$field->args['value'] ?? '';
         return $field;
 
     }
-    public function render()
-    {
 
+    /**
+     * Only Field render
+     *
+     * @return void
+     */
+    public function fieldRender()
+    {
+        foreach( $this->input_fields as $input_field ){
+            $field = new Field( $input_field );
+            $field->render();
+        }
     }
 }
