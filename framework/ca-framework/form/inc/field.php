@@ -35,6 +35,9 @@ class Field extends Field_Base
             case 'select':
                 $this->renderSelectField();    
                 break;    
+            case 'switch':
+                $this->renderSwitchField();    
+                break;    
 
         }
         ?>
@@ -59,6 +62,14 @@ class Field extends Field_Base
         $fff = new Fields\Select($this->args);
         $fff->render();
     }
+    
+    public function renderSwitchField()
+    {
+
+        $fff = new Fields\Switch_Control($this->args);
+        $fff->render();
+    }
+
 
     public function check_error( $bool )
     {
