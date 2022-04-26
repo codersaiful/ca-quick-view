@@ -60,12 +60,12 @@
   
   wp.customize("qv_button_label", function (value) {
     value.bind(function (to) {
-      $(".open-modal span").text(to);
+      $(".caqv-open-modal span").text(to);
     });
   });
   wp.customize("cawqv_action_button_bg", function (value) {
     value.bind(function (to) {
-      $(".open-modal").css("background", to);
+      $(".caqv-open-modal").css("background", to);
     });
   });
   

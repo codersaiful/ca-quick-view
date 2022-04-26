@@ -49,7 +49,7 @@ class CAWQV_FRONTEND
         $product_id      = $product->get_id();
         $qv_button_label = get_option('qv_button_label', 'Qiuck View') ;
         ?>
-		<button type="button" class="open-modal" 
+		<button type="button" class="caqv-open-modal" 
 		data-id="<?php echo esc_attr($product_id); ?>" >
 			<i class="btn-icon <?php echo esc_attr(get_option('cawqv_general_section', 'cawqv-icon-search')); ?>"></i>
 			<span><?php echo esc_html($qv_button_label, 'cawqv') ?> </span>
@@ -268,98 +268,103 @@ class CAWQV_FRONTEND
         global $woocommerce;
         ?>
 		<script>
-			jQuery(".open-modal").click(function (){
-			var $id =  jQuery(this).data('id');
-			jQuery("#cawqv-modal").show();
-			jQuery("body").addClass('cawqv-open');
+            jQuery(document.body).on('click','.caqv-open-modal',function(){
 
-			jQuery(this).append('<div class="loader-wrap"><div id="loader"></div></div>');
-			
-			jQuery.ajax({
-				type: 'POST',
-				url: '<?php echo admin_url('admin-ajax.php'); ?>',
-				data: {
-					'id': $id,
-					'action': 'get_product' //this is the name of the AJAX method called in WordPress
-				},
-				success: function (result) {
-				   jQuery('#modal_container').html(result); 
-					var modal = jQuery(".cawqv-modal").wgModal({
-                        responsive:{
-                            0: {
-                                innerScroll: true,
-                                onBeforeOpen    : function(e) {
-                                    jQuery('.qv-inner').removeClass('ps--active-y');
+                var $id =  jQuery(this).data('id');
+                jQuery("#cawqv-modal").show();
+                jQuery("body").addClass('cawqv-open');
+
+                jQuery(this).append('<div class="loader-wrap"><div id="loader"></div></div>');
+                
+                jQuery.ajax({
+                    type: 'POST',
+                    url: '<?php echo admin_url('admin-ajax.php'); ?>',
+                    data: {
+                        'id': $id,
+                        'action': 'get_product' //this is the name of the AJAX method called in WordPress
+                    },
+                    success: function (result) {
+                    jQuery('#modal_container').html(result); 
+                        var modal = jQuery(".cawqv-modal").wgModal({
+                            responsive:{
+                                0: {
+                                    innerScroll: true,
+                                    onBeforeOpen    : function(e) {
+                                        jQuery('.qv-inner').removeClass('ps--active-y');
+                                    },
                                 },
                             },
-                        },
-						onBeforeOpen    : function(e) {
-							jQuery('body').css('overflow','hidden');
-						},
-						onAfterClose: function (e) {
-							jQuery('body').css('overflow','auto');
-							jQuery("#cawqv-modal").hide();
-                            jQuery("body").removeClass('cawqv-open');
-						},
-					});
-					modal.openModal();
-
-					jQuery('.loader-wrap').remove();
-
-                    //Slider Init
-                    var galleryTop = new Swiper(".galleryTop", {
-                        grabCursor: true,
-                        navigation: {
-                            nextEl: ".swiper-button-next",
-                            prevEl: ".swiper-button-prev"
-                        },
-                        loop: true,
-                        loopedSlides: 4,
-                        keyboard: {
-                            enabled: true,
-                            onlyInViewport: false
-                        }
+                            onBeforeOpen    : function(e) {
+                                jQuery('body').css('overflow','hidden');
+                            },
+                            onAfterClose: function (e) {
+                                jQuery('body').css('overflow','auto');
+                                jQuery("#cawqv-modal").hide();
+                                jQuery("body").removeClass('cawqv-open');
+                            },
                         });
-                        /* thumbs */
-                        var galleryThumbs = new Swiper(".gallery-thumbs", {
-                        spaceBetween: 5,
-                        centeredSlides: true,
-                        slidesPerView: "auto",
-                        touchRatio: 0.4,
-                        slideToClickedSlide: true,
-                        loop: false,
-                        loopedSlides: 4,
-                        keyboard: {
-                            enabled: true,
-                            onlyInViewport: false
-                        }
-                        });
+                        modal.openModal();
 
-                        /* set conteoller  */
-                        galleryTop.controller.control = galleryThumbs;
-                        galleryThumbs.controller.control = galleryTop;
-                   
-					 //const ps = new PerfectScrollbar('.qv-inner', {});
-				},
-				complete: function(){
-					cawqvLoadVariationScript();
-				},
-				error: function() {
-					console.log("error");
-				}
-				
-			});
+                        jQuery('.loader-wrap').remove();
 
-             /**
-             * Load variation Scripts
-             *
-             * @since      1.0.0
-             */
-			function cawqvLoadVariationScript() {
-				jQuery.getScript('<?php echo $woocommerce->plugin_url(); ?>/assets/js/frontend/add-to-cart-variation.min.js');
-				jQuery.getScript('<?php echo plugin_dir_url(__FILE__); ?>/assets/js/woo-ajax-add-to-cart.js');
-			}
-		});
+                        //Slider Init
+                        var galleryTop = new Swiper(".galleryTop", {
+                            grabCursor: true,
+                            navigation: {
+                                nextEl: ".swiper-button-next",
+                                prevEl: ".swiper-button-prev"
+                            },
+                            loop: true,
+                            loopedSlides: 4,
+                            keyboard: {
+                                enabled: true,
+                                onlyInViewport: false
+                            }
+                            });
+                            /* thumbs */
+                            var galleryThumbs = new Swiper(".gallery-thumbs", {
+                            spaceBetween: 5,
+                            centeredSlides: true,
+                            slidesPerView: "auto",
+                            touchRatio: 0.4,
+                            slideToClickedSlide: true,
+                            loop: false,
+                            loopedSlides: 4,
+                            keyboard: {
+                                enabled: true,
+                                onlyInViewport: false
+                            }
+                            });
+
+                            /* set conteoller  */
+                            galleryTop.controller.control = galleryThumbs;
+                            galleryThumbs.controller.control = galleryTop;
+                    
+                        //const ps = new PerfectScrollbar('.qv-inner', {});
+                    },
+                    complete: function(){
+                        cawqvLoadVariationScript();
+                    },
+                    error: function() {
+                        console.log("error");
+                    }
+                    
+                });
+
+                /**
+                 * Load variation Scripts
+                 *
+                 * @since      1.0.0
+                 */
+                function cawqvLoadVariationScript() {
+                    jQuery.getScript('<?php echo $woocommerce->plugin_url(); ?>/assets/js/frontend/add-to-cart-variation.min.js');
+                    jQuery.getScript('<?php echo plugin_dir_url(__FILE__); ?>/assets/js/woo-ajax-add-to-cart.js');
+                }
+
+
+
+            });
+
 		</script>
 		<?php
     }
