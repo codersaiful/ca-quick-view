@@ -21,6 +21,19 @@ class CA_Test_From
         <form>
             <?php
             
+            
+            
+            $forrm = new Form('saiful');
+            $forrm->addField([
+                'id'    => 'my-age',
+                'type'=>'input',
+                'data_type'=>'range',
+                'label'=> 'Your Age',
+                'desc'=> 'Insert your full Age.'
+            ]);
+            var_dump($forrm);
+            
+            /**
             Form::createField([
                 'id'    => 'my-age',
                 'type'=>'input',
@@ -53,7 +66,8 @@ class CA_Test_From
                     'hello'=>'Hellow World'
                 ]
             ]);
-            
+
+
             Form::createField([
                 'id'    => 'mys-age',
                 'type'=>'input',
@@ -76,8 +90,7 @@ class CA_Test_From
                 'desc'=> 'Insert your full Age.'
             ]);
 
-
-
+             */
             
             // Form::createField([
             //     'id' => 'test-forms',
