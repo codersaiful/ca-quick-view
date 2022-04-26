@@ -142,8 +142,8 @@ class CAWQV_PLUGIN_LITE
      * @since 1.0
      */
     public function cawqv_load(){
-        require_once CAWQV_DIR . '/framework/handle.php';
-        require_once CAWQV_DIR . '/framework/form-render-test.php';
+        //require_once CAWQV_DIR . '/framework/handle.php';
+        //require_once CAWQV_DIR . '/framework/form-render-test.php';
         if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))){
             require_once CAWQV_DIR . '/plugin.php';
             require_once CAWQV_DIR . '/includes/admin/class-admin-notice.php';
