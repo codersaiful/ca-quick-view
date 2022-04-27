@@ -14,7 +14,7 @@ $req->set_args(['Name'=>'Product Table Plugin for WooCommerce'])
 ->set_required()
 ->run();
 
-$not = new Notice('skdlld');
+$not = new Notice('s3333ld');
 $not->date_diff = 2;
 $not->set_message("skjdfklsjklf ")
 ->set_title("Hello World")
