@@ -18,7 +18,7 @@ class CA_Test_From
     {
         ?>
         <h1>Form Testing</h1>
-        <form>
+        <form action="" method="POST">
             <?php
             
             Form::createField([
@@ -124,7 +124,7 @@ class CA_Test_From
             // var_dump(Form::$fields);
             ?>
 
-
+            <button type="submit">Submit</button>
         </form>
         
         <?php 
