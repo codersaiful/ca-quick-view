@@ -3,6 +3,10 @@ namespace CA_Framework\Form\Fields;
 
 use CA_Framework\Form\Inc\Field_Base;
 
+/**
+ * Switch or One Off 
+ * Button
+ */
 class Switch_Control extends Field_Base
 {
 

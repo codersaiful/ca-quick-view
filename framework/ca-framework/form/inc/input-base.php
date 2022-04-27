@@ -1,7 +1,5 @@
 <?php 
-namespace CA_Framework\Form\Fields;
-
-use CA_Framework\Form\Inc\Field_Base;
+namespace CA_Framework\Form\Inc;
 
 /**
  * For Range, I will make a new Type
@@ -14,7 +12,7 @@ use CA_Framework\Form\Inc\Field_Base;
  * 
  * @package CA_Framework
  */
-class Input extends Field_Base
+class Input_Base extends Field_Base
 {
     private $data_type;
     private $range;
