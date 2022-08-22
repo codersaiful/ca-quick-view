@@ -15,7 +15,7 @@ $req->set_args(['Name'=>'Product Table Plugin for WooCommerce'])
 ->run();
 
 $not = new Notice('s3333ld');
-$not->date_diff = 2;
+$not->date_diff = 15;
 $not->set_message("skjdfklsjklf ")
 ->set_title("Hello World")
 ->add_button([
@@ -27,6 +27,6 @@ $not->set_message("skjdfklsjklf ")
     'type' => 'error',
     'text' => 'Doc',
     'link' => '#'
-])
+]);
 // ->set_start_date('4/27/2022 17:1:24')
-->show();
+// $not->show();
