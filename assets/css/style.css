@@ -116,7 +116,7 @@
     margin-left: 10px;
 }
 .woocommerce .qv-description .quantity input, .qv-description .quantity .qty {
-  width: 70px;
+  /* width: 70px; */
   height: 42px;
   max-height: 45px;
   line-height: 1.65;
@@ -241,7 +241,7 @@ display:none
 	height: 100%;
 }
 .qv-description .quantity .qty {
-    max-width: 60px;
+    /* max-width: 60px; */
     -webkit-border-radius: 1px;
     -moz-border-radius: 1px;
     border-radius: 1px;
@@ -253,10 +253,13 @@ display:none
     border: 0;
     -webkit-appearance: none;
     box-sizing: border-box;
-    font-weight: 400;
+    /* font-weight: 400;
     box-shadow: 0 0 0;
-    line-height: 40px;
+    line-height: 40px; */
     text-align: center;
+}
+.qv-row .qib-button-wrapper .quantity input.input-text.qty.text {
+  padding: 0;
 }
 .qv-description input[type=number] {
     height: 30px;
