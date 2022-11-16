@@ -73,14 +73,23 @@ class CAWQV_FRONTEND
         wp('p=' . $product_id . '&post_type=product');
         ?>
 		<?php
+        $template = CAWQV_DIR . '/templates/';
+
         ob_start();
-
-       include_once ('includes/content.php');
-
-        echo ob_get_clean();
-
-        // Must die() the function
+        wc_get_template( 'view-ontent.php', array(), '', $template );
+        $html = ob_get_contents();  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        ob_end_clean();
+        echo $html;
         die();
+        
+    //     ob_start();
+    //     // var_dump($template);
+    //    include_once ('includes/content.php');
+
+    //     echo ob_get_clean();
+
+    //     // Must die() the function
+    //     die();
     }
 
     /**
