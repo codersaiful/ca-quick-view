@@ -221,11 +221,7 @@
 	background:transparent
 }
 
-.qv-description .minus, 
-.qv-description .plus,
-.qv-description .quantity button{
-display:none
-}
+
 .qv-description .woocommerce div.product form.cart .variations select {
     border: 1px solid #ddd;
     padding: 5px;
@@ -275,15 +271,6 @@ display:none
     padding: 0 0 8px 0;
     vertical-align: middle;
 }
-.qv-description input[type=number]::-webkit-inner-spin-button { 
-    background: #eee url('../img/arrow.png') no-repeat 50% 50%;  
-    width: 14px;
-    height: 14px;
-    padding: 4px;
-    position: relative;
-    right: 0px;
-    border-radius: 28px;
-} 
 
 
 .cawqv-open .swiper-slide {
