@@ -149,7 +149,7 @@ function cawqv_customize_register( $wp_customize ) {
 	  'section' => 'cawqv_general_section',
 	  'settings' => 'modal_radius',
 	  'input_attrs' => array(
-		  'min'    => 5,
+		  'min'    => 0,
 		  'max'    => 100,
 		  'step'   => 1,
 		  'suffix' => 'px', //optional suffix
@@ -172,7 +172,7 @@ $wp_customize->add_control( new cawqv_Slider_Custom_Control( $wp_customize, 'mod
 		'section' => 'cawqv_general_section',
 		'settings' => 'modal_width',
 		'input_attrs' => array(
-		'min'    => 5,
+		'min'    => 50,
 		'max'    => 100,
 		'step'   => 1,
 		'suffix' => '%', //optional suffix

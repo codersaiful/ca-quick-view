@@ -118,7 +118,8 @@ class CAWQV_FRONTEND
              ),
         );
 
-        echo wp_kses( $output ,$allowed_html );
+        echo wp_kses_post( $output ,$allowed_html );
+        // echo wp_kses( $output ,$allowed_html );
 
     }
 
