@@ -182,7 +182,7 @@
 .cawqv-open .qv-description a.added_to_cart.wc-forward, 
 .woocommerce .qv-description button.button.alt, 
 .woocommerce-cart .qv-description button.button.alt {
-    position: static;
+    position: relative;
     padding: 7px 20px;
     background: #000000;
     color: #fff;
@@ -192,6 +192,22 @@
     margin-left: 5px;
     text-transform: uppercase;
     border: none;
+}
+div#cawqv-modal form.cart {}
+
+div#cawqv-modal .qv-description form.cart {
+    display: flex;
+    flex: 1 100%;
+    align-items: center;
+    justify-content: start;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+div#cawqv-modal .qv-description form.cart a {}
+
+div#cawqv-modal .qv-description form.cart>* {
+    margin: 0;
 }
 .cawqv-open .qv-description .quantity {
     min-width: 20px;

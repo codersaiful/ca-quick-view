@@ -12,10 +12,13 @@
     display: block;
 }
 
-li#accordion-panel-cawqv_customizer_panel .accordion-section-title{
-	background: #3582c4;
-	color: #fff;
-	}
+li#accordion-panel-cawqv_customizer_panel .accordion-section-title {
+    /* background: #39c2cb; */
+    /* color: white; */
+    border-right: 4px solid #39c2cb;
+    /* border-top: 1px solid #39c2cb;
+    border-bottom: 1px solid #39c2cb; */
+}
 #sub-accordion-section-cawqv_customizer_section span.customize-control-title, 
 #sub-accordion-section-cawqv_icon_section span.customize-control-title,
 #sub-accordion-section-cawqv_general_section .customize-control-title, 
@@ -62,10 +65,10 @@ body.wp-customizer .wp-color-result-text {
 .slider-custom-control .customize-control-title{
 	margin:0
 }
-#accordion-panel-cawqv_customizer_panel .accordion-section-title:after, 
+/* #accordion-panel-cawqv_customizer_panel .accordion-section-title:after, 
 #accordion-panel-cawqv_customizer_panel .accordion-section-title:after{
 	color:#fff
-}
+} */
 .wp-picker-container .wp-color-result.button {
     min-height: 30px;
     margin: 0 6px 6px 0px;

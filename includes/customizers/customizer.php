@@ -18,7 +18,7 @@ function cawqv_customize_register( $wp_customize ) {
 		$wp_customize->add_panel(  $panel, 
 			array(
 				'priority'       => 22,
-				'title'            => __( 'CA WooCommerce Quick View Settings', 'cawqv' ),
+				'title'            => __( 'CA Quick View Settings', 'cawqv' ),
 				'description'      => __( 'You can best appearence if you open the Quick view before customize.', 'cawqv' ),
 			) 
 		);

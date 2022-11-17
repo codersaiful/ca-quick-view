@@ -73,23 +73,23 @@ class CAWQV_FRONTEND
         wp('p=' . $product_id . '&post_type=product');
         ?>
 		<?php
-        $template = CAWQV_DIR . '/templates/';
+        // $template = CAWQV_DIR . '/templates/';
 
-        ob_start();
-        wc_get_template( 'view-ontent.php', array(), '', $template );
-        $html = ob_get_contents();  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-        ob_end_clean();
-        echo $html;
-        die();
+        // ob_start();
+        // wc_get_template( 'view-ontent.php', array(), '', $template );
+        // $html = ob_get_contents();  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        // ob_end_clean();
+        // echo $html;
+        // die();
         
-    //     ob_start();
-    //     // var_dump($template);
-    //    include_once ('includes/content.php');
+        ob_start();
 
-    //     echo ob_get_clean();
+       include_once ('includes/content.php');
 
-    //     // Must die() the function
-    //     die();
+        echo ob_get_clean();
+
+        // Must die() the function
+        die();
     }
 
     /**
@@ -127,8 +127,8 @@ class CAWQV_FRONTEND
              ),
         );
 
-        echo wp_kses_post( $output ,$allowed_html );
-        // echo wp_kses( $output ,$allowed_html );
+        // echo wp_kses_post( $output ,$allowed_html );
+        echo wp_kses( $output ,$allowed_html );
 
     }
 
