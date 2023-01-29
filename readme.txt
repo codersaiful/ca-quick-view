@@ -37,6 +37,13 @@ Video tutorial link:
 
 == Changelog ==
 
+= 1.3 =
+* Spelling Fix 
+* Bug fix 
+* Quantity Box issue fixed
+* Code Optimized 
+* Optimized with [Woo Product Table](https://wooproducttable.com/) in WordPress: [Product Table for WooCommerce](https://wordpress.org/plugins/woo-product-table/) 
+* Optimized with [Min Max Quantity & Step Control](https://wordpress.org/plugins/woo-min-max-quantity-step-control-single/)
 
 = 1.1 =
 *Release Date - 16 04, 2022*

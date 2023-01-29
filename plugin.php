@@ -47,7 +47,9 @@ class CAWQV_FRONTEND
     public function cawqv_modal_button(){
         global $product;
         $product_id      = $product->get_id();
-        $qv_button_label = get_option('qv_button_label', 'Qiuck View') ;
+        $qv_label = __( 'Quick View', 'cawqv' );
+        $qv_button_label = get_option('qv_button_label', $qv_label ) ;
+        $qv_button_label = __( $qv_button_label, 'cawqv' );
         ?>
 		<button type="button" class="caqv-open-modal" 
 		data-id="<?php echo esc_attr($product_id); ?>" >
