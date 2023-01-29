@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: Quick View by Code Astrology
- * Plugin URI: https://codeastrology.com/
+ * Plugin URI: https://codeastrology.com/wp/shop/
  * Description: Quick view for WooCommerce product.
- * Version: 1.2
- * Author: CodeAstrology
- * Author URI: https://profiles.wordpress.org/codersaiful/
+ * Version: 1.3
+ * Author: CodeAstrology Team
+ * Author URI: https://codeastrology.com/
  * Requires at least: 5.2
  * Tested up to: 6.1.0
  * Requires PHP: 7.0
