@@ -154,4 +154,29 @@ class CAWQV_PLUGIN_LITE
     }
 }
 
-new CAWQV_PLUGIN_LITE();
+// new CAWQV_PLUGIN_LITE();
+function sssyith_wcqv_install() {
+    // new CAWQV_PLUGIN_LITE();
+    do_action( 'sssyith_wcqv_init' );
+	// if ( ! function_exists( 'WC' ) ) {
+	// 	add_action( 'admin_notices', 'yith_wcqv_install_woocommerce_admin_notice' );
+	// } elseif ( defined( 'YITH_WCQV_PREMIUM' ) ) {
+	// 	add_action( 'admin_notices', 'yith_wcqv_install_free_admin_notice' );
+	// 	deactivate_plugins( plugin_basename( __FILE__ ) );
+	// } else {
+	// 	do_action( 'yith_wcqv_init' );
+	// }
+}
+
+add_action( 'plugins_loaded', 'sssyith_wcqv_install', 11 );
+
+function uuuyith_wcqv_init() {
+
+	// load_plugin_textdomain( 'yith-woocommerce-quick-view', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+	// // Load required classes and functions.
+	// require_once 'includes/class.yith-wcqv.php';
+	// Let's start the game!
+	new CAWQV_PLUGIN_LITE();
+}
+
+add_action( 'sssyith_wcqv_init', 'uuuyith_wcqv_init' );
