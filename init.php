@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Quick View by Code Astrology
+ * Plugin Name: Quick View by CodeAstrology
  * Plugin URI: https://codeastrology.com/wp/shop/
  * Description: Quick view for WooCommerce product.
  * Version: 1.4
