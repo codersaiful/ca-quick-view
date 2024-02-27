@@ -81,6 +81,8 @@ class CAWQV_PLUGIN_LITE
         wp_enqueue_style('cawqv_css');
 
         wp_enqueue_script('jquery');
+        
+        wp_enqueue_script('wc-add-to-cart-variation');
 
         //Remodal JS Library @link https://github.com/vodkabears/Remodal
         wp_enqueue_script('cawqv-remodal', CAWQV_PATH . '/assets/Remodal/src/remodal.js', self::CAWQV_VERSION);
