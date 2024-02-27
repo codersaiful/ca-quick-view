@@ -13,9 +13,9 @@ class CAWQV_FRONTEND
 
     function __construct(){
 
-        add_action('wp_ajax_get_product', array($this,'cawqv_get_product_callback'));
+        add_action('wp_ajax_get_product', array($this,'get_product_callback'));
         // If you want not logged in users to be allowed to use this function as well, register it again with this function:
-        add_action('wp_ajax_nopriv_get_product', array($this,'cawqv_get_product_callback'));
+        add_action('wp_ajax_nopriv_get_product', array($this,'get_product_callback'));
         add_action('wp_footer', array($this,'cawqv_add_ajax_script'));
         add_action('wp_footer', array($this,'cawqv_modal'));
         add_action('woocommerce_after_shop_loop_item', array($this,'cawqv_modal_button'));
@@ -65,7 +65,7 @@ class CAWQV_FRONTEND
      * @since      1.0.0
      */
 
-    public function cawqv_get_product_callback(){
+    public function get_product_callback(){
         // retrieve post_id, and sanitize it to enhance security
         if (!isset($_POST['id'])){
             die();
