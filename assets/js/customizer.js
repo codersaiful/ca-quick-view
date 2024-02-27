@@ -79,11 +79,11 @@
   //===Close Icon Section ====
   wp.customize("cawqv_icon_picker", function (value) {
     value.bind(function (to) {
-		var $target =  $(".wg-modal-close");
+		var $target =  $(".remodal-modal-close");
 		var $icon = to;
 		var $close_container =  ($icon=='default') 
-		? $('<div class="wg-modal-close">&times;</div>')
-		: $('<div class="wg-modal-close"><i class="'+$icon+'"></i></div>');
+		? $('<div class="remodal-modal-close">&times;</div>')
+		: $('<div class="remodal-modal-close"><i class="'+$icon+'"></i></div>');
 		
 		$target.remove();
 		$('.wg-content').append($close_container);
@@ -102,7 +102,7 @@
   }); 
   wp.customize("cawqv_icon_color", function (value) {
     value.bind(function (to) {
-      $(".wg-modal-close i").css("color", to);
+      $(".remodal-modal-close i").css("color", to);
     });
   });
   //===Slider Nav Section ====

@@ -9,7 +9,10 @@
         //     alert(2323232323);
         // });
 
-        
+        var inst = $('#cawqv-modal').remodal();
+        $(document.body).on('click','.remodal-modal-close',function(){
+            inst.close();
+        });
         $(document.body).on('click','.caqv-open-modal',function(){
 
             var $id =  $(this).data('id');
@@ -27,10 +30,10 @@
                 },
                 success: function (result) {
                 $('#modal_container').html(result); 
-                $('div#cawqv-modal').show();
+                // $('div#cawqv-modal').show();
 
 
-
+                
                 // var modal = $(".cawqv-modal").wgModal({
                 //     responsive:{
                 //         0: {
@@ -90,6 +93,10 @@
                 // //const ps = new PerfectScrollbar('.qv-inner', {});
                 },
                 complete: function(){
+
+                    
+                    inst.open();
+
                     cawqvLoadVariationScript();
                 },
                 error: function() {

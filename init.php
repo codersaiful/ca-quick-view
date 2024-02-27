@@ -67,16 +67,24 @@ class CAWQV_PLUGIN_LITE
      * @since 1.0
      */
     public function cawqv_load_scripts(){
+
+        //Remodal CSS @link https://github.com/vodkabears/Remodal
+        wp_enqueue_style('cawqv-remodal-default-theme', CAWQV_PATH . '/assets/Remodal/src/remodal-default-theme.css', self::CAWQV_VERSION);
+        wp_enqueue_style('cawqv-remodal', CAWQV_PATH . '/assets/Remodal/src/remodal.css', self::CAWQV_VERSION);
+
+
         wp_enqueue_style('animate_css', CAWQV_PATH . '/assets/css/animate.min.css', self::CAWQV_VERSION);
         wp_enqueue_style('font_icon_css', $this->cawqv_assets_path() . '/icon-picker/assets/css/fontello.css', self::CAWQV_VERSION);
-        wp_enqueue_style('modal_box', CAWQV_PATH . '/assets/css/modal-box.css', self::CAWQV_VERSION);
         wp_enqueue_style('slider', CAWQV_PATH . '/assets/css/swiper-bundle.min.css', self::CAWQV_VERSION);
         wp_enqueue_style('perfect-scroll', CAWQV_PATH . '/assets/css/perfect-scrollbar.css', self::CAWQV_VERSION);
         wp_enqueue_style('cawqv-style', CAWQV_PATH . '/assets/css/style.css', self::CAWQV_VERSION);
         wp_enqueue_style('cawqv_css');
 
         wp_enqueue_script('jquery');
-        wp_enqueue_script('cawqv-modal-box', CAWQV_PATH . '/assets/js/modal-box.js', self::CAWQV_VERSION);
+
+        //Remodal JS Library @link https://github.com/vodkabears/Remodal
+        wp_enqueue_script('cawqv-remodal', CAWQV_PATH . '/assets/Remodal/src/remodal.js', self::CAWQV_VERSION);
+
         wp_enqueue_script('cawqv-slider-js', CAWQV_PATH . '/assets/js/swiper-bundle.min.js', self::CAWQV_VERSION);
         wp_enqueue_script('cawqv-perfect-scrollbar-js', CAWQV_PATH . '/assets/js/perfect-scrollbar.min.js', self::CAWQV_VERSION);
         wp_enqueue_script('custom-js', CAWQV_PATH . '/assets/js/custom.js', self::CAWQV_VERSION);

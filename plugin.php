@@ -111,7 +111,7 @@ class CAWQV_FRONTEND
     public function modal(){
 
         $icon = get_option('cawqv_icon_picker', 'cawqv-icon-close');
-        $close_container = ($icon == 'default') ? '<div class="wg-modal-close">&times;</div>' : '<div class="wg-modal-close"><i class="' . $icon . '"></i></div>';
+        $close_container = ($icon == 'default') ? '<div class="remodal-modal-close">&times;</div>' : '<div class="remodal-modal-close"><i class="' . $icon . '"></i></div>';
 
         $output = '<div id="cawqv-modal" class="cawqv-modal" style="display:none">';
         $output .= $close_container;
