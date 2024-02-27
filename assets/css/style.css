@@ -378,3 +378,19 @@ div#cawqv-modal .qv-description form.cart>* {
     height: auto;
   }
 }
+
+
+/* Extra CSS Code :: Test Actually  */
+div#cawqv-modal {
+  position: fixed;
+  z-index: 999;
+  width: 58%;
+  height: 450px;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  overflow: hidden;
+  display: none;
+  background-color: white;
+  box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.171);
+}

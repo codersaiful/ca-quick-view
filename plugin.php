@@ -16,7 +16,7 @@ class CAWQV_FRONTEND
         add_action('wp_ajax_get_product', array($this,'get_product_callback'));
         // If you want not logged in users to be allowed to use this function as well, register it again with this function:
         add_action('wp_ajax_nopriv_get_product', array($this,'get_product_callback'));
-        add_action('wp_footer', array($this,'add_ajax_script'));
+        // add_action('wp_footer', array($this,'add_ajax_script'));
         add_action('wp_footer', array($this,'modal'));
         add_action('woocommerce_after_shop_loop_item', array($this,'modal_button'));
 
@@ -277,108 +277,7 @@ class CAWQV_FRONTEND
      * @since      1.0.0
      */
     public function add_ajax_script(){
-        global $woocommerce;
-        ?>
-		<script>
-            jQuery(document.body).on('click','.caqv-open-modal',function(){
 
-                var $id =  jQuery(this).data('id');
-                jQuery("#cawqv-modal").show();
-                jQuery("body").addClass('cawqv-open');
-
-                jQuery(this).append('<div class="loader-wrap"><div id="loader"></div></div>');
-                
-                jQuery.ajax({
-                    type: 'POST',
-                    url: '<?php echo admin_url('admin-ajax.php'); ?>',
-                    data: {
-                        'id': $id,
-                        'action': 'get_product' //this is the name of the AJAX method called in WordPress
-                    },
-                    success: function (result) {
-                    jQuery('#modal_container').html(result); 
-                        var modal = jQuery(".cawqv-modal").wgModal({
-                            responsive:{
-                                0: {
-                                    innerScroll: true,
-                                    onBeforeOpen    : function(e) {
-                                        jQuery('.qv-inner').removeClass('ps--active-y');
-                                    },
-                                },
-                            },
-                            onBeforeOpen    : function(e) {
-                                jQuery('body').css('overflow','hidden');
-                            },
-                            onAfterClose: function (e) {
-                                jQuery('body').css('overflow','auto');
-                                jQuery("#cawqv-modal").hide();
-                                jQuery("body").removeClass('cawqv-open');
-                            },
-                        });
-                        modal.openModal();
-
-                        jQuery('.loader-wrap').remove();
-
-                        //Slider Init
-                        var galleryTop = new Swiper(".galleryTop", {
-                            grabCursor: true,
-                            navigation: {
-                                nextEl: ".swiper-button-next",
-                                prevEl: ".swiper-button-prev"
-                            },
-                            loop: true,
-                            loopedSlides: 4,
-                            keyboard: {
-                                enabled: true,
-                                onlyInViewport: false
-                            }
-                            });
-                            /* thumbs */
-                            var galleryThumbs = new Swiper(".gallery-thumbs", {
-                            spaceBetween: 5,
-                            centeredSlides: true,
-                            slidesPerView: "auto",
-                            touchRatio: 0.4,
-                            slideToClickedSlide: true,
-                            loop: false,
-                            loopedSlides: 4,
-                            keyboard: {
-                                enabled: true,
-                                onlyInViewport: false
-                            }
-                            });
-
-                            /* set conteoller  */
-                            galleryTop.controller.control = galleryThumbs;
-                            galleryThumbs.controller.control = galleryTop;
-                    
-                        //const ps = new PerfectScrollbar('.qv-inner', {});
-                    },
-                    complete: function(){
-                        cawqvLoadVariationScript();
-                    },
-                    error: function() {
-                        console.log("error");
-                    }
-                    
-                });
-
-                /**
-                 * Load variation Scripts
-                 *
-                 * @since      1.0.0
-                 */
-                function cawqvLoadVariationScript() {
-                    jQuery.getScript('<?php echo $woocommerce->plugin_url(); ?>/assets/js/frontend/add-to-cart-variation.min.js');
-                    jQuery.getScript('<?php echo plugin_dir_url(__FILE__); ?>/assets/js/woo-ajax-add-to-cart.js');
-                }
-
-
-
-            });
-
-		</script>
-		<?php
     }
 
 } //End Class
