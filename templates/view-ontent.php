@@ -7,6 +7,10 @@
  *
  * @package ca-woocommerce-quick-view
  */
+$product_id = intval($_GET['product_id']);
+
+wp('p=' . $product_id . '&post_type=product');
+wp_head();
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -33,3 +37,4 @@ while ( have_posts() ) :
 
 <?php
 endwhile;
+wp_footer();

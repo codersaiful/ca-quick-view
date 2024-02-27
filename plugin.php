@@ -37,7 +37,47 @@ class CAWQV_FRONTEND
 
         //add_action( $hook, $function_to_add, $priority, $accepted_args );
         add_action('cawqv_product_gallery', array($this,'product_gallery') , 'class', 2);
+
+
+        // Hook into the template_include filter
+        add_filter('template_include', [$this,'custom_product_template']);
     }
+
+
+    // Add the following code to your plugin file or theme's functions.php file
+
+public function custom_product_template($template) {
+    global $wp_query;
+    // dd($wp_query->is_singular);
+    // dd($wp_query->get_queried_object());
+    // Check if the query parameters are present
+    if (isset($_GET['product_id']) && isset($_GET['template'])) {
+
+        
+
+        
+        // Get the product ID and template from the URL
+        $product_id = intval($_GET['product_id']);
+        $template_name = sanitize_text_field($_GET['template']);
+
+        // Check if the product exists and the template is valid
+        if ($product_id && wc_get_product($product_id) ) { //&& is_valid_template($template_name)
+        
+            // Define the path to your custom template file
+            $custom_template_path = plugin_dir_path(__FILE__) . 'templates/' . $template_name . '.php';
+            // dd($custom_template_path);
+            // // Check if the custom template file exists
+            if (file_exists($custom_template_path)) {
+                return $custom_template_path;
+            }
+        }
+    }
+
+    // Return the default template if no custom template is found
+    return $template;
+}
+
+
 
     /**
      * View button for actions
