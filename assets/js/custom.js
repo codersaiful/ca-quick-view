@@ -5,9 +5,9 @@
     $(document).ready(function () {
         // alert(878787);
         // QuantityChange();
-        $(document.body).on('click','input.wqpmb_input_text.input-text.qty.text',function(){
-            alert(2323232323);
-        });
+        // $(document.body).on('click','input.wqpmb_input_text.input-text.qty.text',function(){
+        //     alert(2323232323);
+        // });
 
         
         $(document.body).on('click','.caqv-open-modal',function(){
@@ -31,25 +31,25 @@
 
 
 
-                var modal = $(".cawqv-modal").wgModal({
-                    responsive:{
-                        0: {
-                            innerScroll: true,
-                            onBeforeOpen    : function(e) {
-                                $('.qv-inner').removeClass('ps--active-y');
-                            },
-                        },
-                    },
-                    onBeforeOpen    : function(e) {
-                        $('body').css('overflow','hidden');
-                    },
-                    onAfterClose: function (e) {
-                        $('body').css('overflow','auto');
-                        $("#cawqv-modal").hide();
-                        $("body").removeClass('cawqv-open');
-                    },
-                });
-                modal.openModal();
+                // var modal = $(".cawqv-modal").wgModal({
+                //     responsive:{
+                //         0: {
+                //             innerScroll: true,
+                //             onBeforeOpen    : function(e) {
+                //                 $('.qv-inner').removeClass('ps--active-y');
+                //             },
+                //         },
+                //     },
+                //     onBeforeOpen    : function(e) {
+                //         $('body').css('overflow','hidden');
+                //     },
+                //     onAfterClose: function (e) {
+                //         $('body').css('overflow','auto');
+                //         $("#cawqv-modal").hide();
+                //         $("body").removeClass('cawqv-open');
+                //     },
+                // });
+                // modal.openModal();
 
 
                 $('.loader-wrap').remove();
