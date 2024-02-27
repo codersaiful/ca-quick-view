@@ -3,11 +3,11 @@
 
     // Make the code work after page load.
     $(document).ready(function () {
-        // alert(878787);
-        // QuantityChange();
-        // $(document.body).on('click','input.wqpmb_input_text.input-text.qty.text',function(){
-        //     alert(2323232323);
-        // });
+
+        var ajax_url = CAWQV_DATA.ajax_url;
+        var ajaxurl = CAWQV_DATA.ajax_url;
+        var plugin_url = CAWQV_DATA.plugin_url;
+        console.log(plugin_url);
 
         var inst = $('#cawqv-modal').remodal();
         $(document.body).on('click','.remodal-modal-close',function(){
@@ -23,7 +23,7 @@
             
             $.ajax({
                 type: 'POST',
-                url: 'https://wpp.local/wp-admin/admin-ajax.php',
+                url: ajax_url,
                 data: {
                     'id': $id,
                     'action': 'get_product' //this is the name of the AJAX method called in WordPress
@@ -111,8 +111,8 @@
              * @since      1.0.0
              */
             function cawqvLoadVariationScript() {
-                $.getScript('https://wpp.local/wp-content/plugins/woocommerce/assets/js/frontend/add-to-cart-variation.min.js');
-                $.getScript('https://wpp.local/wp-content/plugins/ca-quick-view//assets/js/woo-ajax-add-to-cart.js');
+                $.getScript( plugin_url + 'woocommerce/assets/js/frontend/add-to-cart-variation.min.js');
+                $.getScript(plugin_url + 'ca-quick-view//assets/js/woo-ajax-add-to-cart.js');
             }
 
 

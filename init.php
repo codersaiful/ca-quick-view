@@ -89,7 +89,23 @@ class CAWQV_PLUGIN_LITE
 
         wp_enqueue_script('cawqv-slider-js', CAWQV_PATH . '/assets/js/swiper-bundle.min.js', self::CAWQV_VERSION);
         wp_enqueue_script('cawqv-perfect-scrollbar-js', CAWQV_PATH . '/assets/js/perfect-scrollbar.min.js', self::CAWQV_VERSION);
-        wp_enqueue_script('custom-js', CAWQV_PATH . '/assets/js/custom.js', self::CAWQV_VERSION);
+        
+        $backend_js_name = 'cawqv-custom-js';
+        wp_enqueue_script($backend_js_name, CAWQV_PATH . '/assets/js/custom.js', self::CAWQV_VERSION);
+
+        $ajax_url = admin_url( 'admin-ajax.php' );
+       $CAWQV_DATA = array( 
+           'ajaxurl'        => $ajax_url,
+           'ajax_url'       => $ajax_url,
+           'site_url'       => trailingslashit( site_url() ),
+           'plugin_url'     => trailingslashit( plugins_url() ),
+           'content_url'    => trailingslashit( content_url() ),
+           'include_url'    => trailingslashit( includes_url() ),
+           
+           );
+       $CAWQV_DATA = apply_filters( 'cawqv_localize_data_admin', $CAWQV_DATA );
+       wp_localize_script( $backend_js_name, 'CAWQV_DATA', $CAWQV_DATA );
+
     }
 
 	/**
