@@ -113,6 +113,29 @@ function cawqv_customize_register( $wp_customize ) {
 		)
 	)));
 	
+
+	$wp_customize->add_setting(
+		'cawqv_action_button_text', //give it an ID
+		array(
+		  'transport' => 'postMessage',
+		  'default' => '', // Give it a default
+		  'sanitize_callback' => 'sanitize_hex_color',
+		  'type' => 'option'
+		)
+	  );
+	  $wp_customize->add_control(
+	   new WP_Customize_Color_Control(
+		   $wp_customize,
+		   'cawqv_action_button_text', //give it an ID
+		   array(
+			   'label'      => __( 'Text Color', 'cawqv' ), 
+			   'section'    => 'cawqv_general_section',  
+			   'settings'   => 'cawqv_action_button_text'
+		   )
+	  )
+	);
+
+
 	$wp_customize->add_setting(
       'cawqv_action_button_bg', //give it an ID
       array(
@@ -130,6 +153,27 @@ function cawqv_customize_register( $wp_customize ) {
              'label'      => __( 'Button Background', 'cawqv' ), 
              'section'    => 'cawqv_general_section',  
              'settings'   => 'cawqv_action_button_bg'
+         )
+    )
+  );
+
+	$wp_customize->add_setting(
+      'cawqv_action_button_bg_hover', //give it an ID
+      array(
+		'transport' => 'postMessage',
+        'default' => '', // Give it a default
+		'sanitize_callback' => 'sanitize_hex_color',
+		'type' => 'option'
+      )
+	);
+	$wp_customize->add_control(
+     new WP_Customize_Color_Control(
+         $wp_customize,
+         'cawqv_action_button_bg_hover', //give it an ID
+         array(
+             'label'      => __( 'Button Hover Background', 'cawqv' ), 
+             'section'    => 'cawqv_general_section',  
+             'settings'   => 'cawqv_action_button_bg_hover'
          )
     )
   );

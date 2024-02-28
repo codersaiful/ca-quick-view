@@ -49,13 +49,20 @@
 	margin-top:5px;
 	font-size:27px
 }
- button.caqv-open-modal {
-    position: relative;
-    border: 1px solid #ddd;
-    padding: 8px 17px;
-     color: #fff; 
-     font-size: 14px; 
-    line-height: 18px;
+button.caqv-open-modal {
+  position: relative;
+  border: 1px solid #009688;
+  padding: 8px 17px;
+  color: #fff;
+  font-size: 14px;
+  line-height: 18px;
+  background: #009688;
+  display: inline-block;
+}
+button.caqv-open-modal {
+  color: #fff;
+  border: 1px solid #009688;
+  background: #05b2a2;
 }
 .cawqv-open .loader-wrap {
     width: 100%;

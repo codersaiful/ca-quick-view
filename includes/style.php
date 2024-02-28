@@ -7,6 +7,8 @@ function cawqv_customize_preview_js() {
 }
 add_action( 'customize_preview_init', 'cawqv_customize_preview_js' );
 
+
+
 function cawqv_custom_css_output() {
 	$padding_top 	=  get_option( 'btn_padding_top_bottom', '' );
 	$padding_left   = get_option( 'btn_padding_left_right', '' );
@@ -70,7 +72,13 @@ function cawqv_custom_css_output() {
 			color: <?php echo esc_attr(get_option( 'cawqv_product_price_color', '' ));?>;
 		}
 		button.caqv-open-modal {
-			background-color: <?php echo esc_attr(get_option( 'cawqv_action_button_bg', '' ));?>;
+			<?php echo cawqv_set_css_by_option( 'background-color', 'cawqv_action_button_bg' ); ?>
+			<?php echo cawqv_set_css_by_option( 'border-color', 'cawqv_action_button_bg' ); ?>
+			<?php echo cawqv_set_css_by_option( 'color', 'cawqv_action_button_text' ); ?>
+		}
+		button.caqv-open-modal:hover {
+			<?php echo cawqv_set_css_by_option( 'background-color', 'cawqv_action_button_bg_hover' ); ?>
+			<?php echo cawqv_set_css_by_option( 'border-color', 'cawqv_action_button_bg_hover' ); ?>
 		}
 		.cawqv-open .bg-wg-modal .wg-modal{border-radius: <?php echo esc_attr(get_option('modal_radius','')) . 'px';?>; overflow:hidden}
 		.cawqv-open .bg-wg-modal .wg-modal{width: <?php echo esc_attr(get_option('modal_width','')) . '%';?>;}

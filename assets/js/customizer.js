@@ -63,9 +63,21 @@
       $(".caqv-open-modal span").text(to);
     });
   });
+  wp.customize("cawqv_action_button_text", function (value) {
+    value.bind(function (to) {
+      $(".caqv-open-modal").css("color", to);
+    });
+  });
   wp.customize("cawqv_action_button_bg", function (value) {
     value.bind(function (to) {
       $(".caqv-open-modal").css("background", to);
+      $(".caqv-open-modal").css("border", to);
+    });
+  });
+  wp.customize("cawqv_action_button_bg_hover", function (value) {
+    value.bind(function (to) {
+      $(".caqv-open-modal").css("background", to);
+      $(".caqv-open-modal").css("border", to);
     });
   });
   
