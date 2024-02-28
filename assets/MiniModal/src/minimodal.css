@@ -1,0 +1,29 @@
+.minimodal-overlay {
+    position: fixed;
+    background: #00000099;
+    top: -500px;
+    left: -500px;
+    width: 5000px;
+    height: 5000px;
+    z-index: 4000;
+    display: none;
+}
+
+.minimodal-wrapper {
+    /* background: white; */
+    position: fixed;
+    z-index: 4005;
+    width: 800px;
+    height: 500px;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    max-width: 95%;
+    max-height: fit-content;
+    display: none;
+    border: 8px solid #ffffff52;
+    overflow: hidden;
+    box-shadow: 1px 3px 9px 0 #1919195c;
+}
+
+.minimodal-container{}

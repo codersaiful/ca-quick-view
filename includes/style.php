@@ -33,7 +33,7 @@ function cawqv_custom_css_output() {
 		.woocommerce .qv-description .added_to_cart.wc-forward{
 			padding: <?php echo esc_attr($padding_top .'px');?>
 		}
-	  .remodal-modal-close i{
+	  .minimodal-modal-close i{
 		  color: <?php echo esc_attr(get_option( 'cawqv_icon_color', '' ));?>
 	  }
 	  .woocommerce .qv-col span.onsale{

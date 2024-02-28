@@ -9,8 +9,10 @@
         var plugin_url = CAWQV_DATA.plugin_url;
         console.log(plugin_url);
 
-        var inst = $('#cawqv-modal').remodal();
-        $(document.body).on('click','.remodal-modal-close',function(){
+        var inst = $('#cawqv-modal').MiniModal({
+            backgroundColor:'transparent'
+        });
+        $(document.body).on('click','.minimodal-modal-close',function(){
             inst.close();
         });
         $(document.body).on('click','.caqv-open-modal',function(){

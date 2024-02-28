@@ -71,6 +71,9 @@ class CAWQV_PLUGIN_LITE
         //Remodal CSS @link https://github.com/vodkabears/Remodal
         wp_enqueue_style('cawqv-remodal-default-theme', CAWQV_PATH . '/assets/Remodal/src/remodal-default-theme.css', self::CAWQV_VERSION);
         wp_enqueue_style('cawqv-remodal', CAWQV_PATH . '/assets/Remodal/src/remodal.css', self::CAWQV_VERSION);
+        
+        //MiniModal Custom
+        wp_enqueue_style('cawqv-minimodal', CAWQV_PATH . '/assets/MiniModal/src/minimodal.css', self::CAWQV_VERSION);
 
 
         wp_enqueue_style('animate_css', CAWQV_PATH . '/assets/css/animate.min.css', self::CAWQV_VERSION);
@@ -86,6 +89,9 @@ class CAWQV_PLUGIN_LITE
 
         //Remodal JS Library @link https://github.com/vodkabears/Remodal
         wp_enqueue_script('cawqv-remodal', CAWQV_PATH . '/assets/Remodal/src/remodal.js', self::CAWQV_VERSION);
+
+        //MiniModal Custom
+        wp_enqueue_script('cawqv-minimodal', CAWQV_PATH . '/assets/MiniModal/src/minimodal.js', self::CAWQV_VERSION);
 
         wp_enqueue_script('cawqv-slider-js', CAWQV_PATH . '/assets/js/swiper-bundle.min.js', self::CAWQV_VERSION);
         wp_enqueue_script('cawqv-perfect-scrollbar-js', CAWQV_PATH . '/assets/js/perfect-scrollbar.min.js', self::CAWQV_VERSION);

@@ -233,7 +233,7 @@ div#cawqv-modal .qv-description form.cart>* {
     animation-duration: 0.4s;
 }
 
-.remodal-modal-close {
+.minimodal-modal-close {
   position: absolute;
   top: 6px;
   right: 11px;
