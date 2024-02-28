@@ -3,8 +3,8 @@ Contributors: codersaiful, rafiul17
 Tags: WooCommerce, quick view,free quick view, Products Quick View, product view
 Requires at least: 5.2
 Requires PHP: 7.0
-Tested up to: 5.9.3
-Stable tag: 1.1
+Tested up to: 6.1.1
+Stable tag: 1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
  
@@ -37,6 +37,13 @@ Video tutorial link:
 
 == Changelog ==
 
+= 1.3 =
+* Spelling Fix 
+* Bug fix 
+* Quantity Box issue fixed
+* Code Optimized 
+* Optimized with [Woo Product Table](https://wooproducttable.com/) in WordPress: [Product Table for WooCommerce](https://wordpress.org/plugins/woo-product-table/) 
+* Optimized with [Min Max Quantity & Step Control](https://wordpress.org/plugins/woo-min-max-quantity-step-control-single/)
 
 = 1.1 =
 *Release Date - 16 04, 2022*

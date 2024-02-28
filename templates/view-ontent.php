@@ -1,6 +1,7 @@
 <?php
 /**
- * IT'S NOT USING, GO TO templates folder. plz
+ * Now Using it. Previous is unused.
+ * 
  * 
  * Quick view Conetnt template.
  *

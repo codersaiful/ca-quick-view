@@ -13,10 +13,10 @@ class Form extends Form_Base
 
     public function __construct( $args = array() )
     {
-        $this->$args = $args;
+        // $this->$args = $args;
     }
 
-    public static function createField($args = array() )
+    public static function createField( $args = array() )
     {   
 
         $filed_id = $args['id'] ?? 'field_id';
@@ -25,5 +25,20 @@ class Form extends Form_Base
 
         self::$fields[$filed_id]=$field->args;
         $field->render();
+    }
+
+    public static function addField( $args = array() )
+    {   
+
+        $filed_id = $args['id'] ?? 'field_id';
+        
+        $field = new Field( $args );
+
+        self::$fields[$filed_id]=$field->args;
+    }
+
+    public static function render()
+    {
+        
     }
 }

@@ -34,10 +34,10 @@ jQuery(document).ready(function() {
 				jQuery( document.body ).trigger( 'added_to_cart', [ response.fragments, response.cart_hash, $thisbutton ] );
 
 				// Redirect to cart option
-				/* if ( wc_add_to_cart_params.cart_redirect_after_add === 'yes' ) {
+				if ( wc_add_to_cart_params.cart_redirect_after_add === 'yes' ) {
 					window.location = wc_add_to_cart_params.cart_url;
 					return;
-				} */
+				}
             },
         });
 		

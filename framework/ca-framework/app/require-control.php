@@ -33,10 +33,23 @@ if( ! class_exists( 'CA_Framework\Require_Control' ) ){
 
         private $message;
 
+        /**
+         * Declear your Action Hook, where you want to show
+         * your Notice/Message/Offer
+         *
+         * @var String|Null 
+         */
+        private $location;
+
+
         private $sample_plugin = array(
             'Name' =>   'Requrie Plugin',
             'PluginURI' => 'https://profiles.wordpress.org/codersaiful/#content-plugins',
         );
+
+        private $stop_next = 0;
+        private $file = __FILE__;
+
         /**
          * Controller of Manage required/recommended plugin.
          * This controller will work only for wp repo. it will not work for github repo.
@@ -52,7 +65,7 @@ if( ! class_exists( 'CA_Framework\Require_Control' ) ){
 
             $this->plugin_slug = $req_plugin_slug;
 
-            //Pase Perperty generating, If already our required plugin is installed.
+            // Check required plugin active or not at the beginign Pase Perperty generating, If already our required plugin is installed.
             if( is_plugin_active( $this->plugin_slug ) ) return;
 
             $this->plugin_slug_pure = strtok( $this->plugin_slug, '/' );
@@ -74,25 +87,60 @@ if( ! class_exists( 'CA_Framework\Require_Control' ) ){
 
         }
         
+        public function stop_next()
+        {
+            return $this->stop_next;
+        }
 
         public function run()
         {
-            //Check Admin User
-            if( ! is_admin() ) return;
-
             // Return null, If already our required plugin is installed.
-            if( is_plugin_active( $this->plugin_slug ) ) return;
+            if( is_plugin_active( $this->plugin_slug ) ){ 
+                return;
+            }
 
+            if( $this->required && ! is_plugin_active( $this->plugin_slug ) ){
+                $this->stop_next = 1;
+            };
+
+            //Check Admin User
+            if( ! is_admin() ){ 
+                return;
+            }
+            
             //Return Null Controll;
-            if( isset( $_GET['action'] ) && ( $_GET['action'] == 'install-plugin' || $_GET['action'] == 'activate' ) ) return;
+            if( isset( $_GET['action'] ) && ( $_GET['action'] == 'install-plugin' || $_GET['action'] == 'activate' ) ){
+                $this->stop_next = 1;
+                return;
+            }
 
             //Check Aganin installation prosibility when reconneded and Date over. by default we set diff_limit = 5 days.
             if( ! $this->required && $this->repeat_display() ) return;
 
-            //Final Display Notice 
-            add_action( 'admin_notices', [ $this, 'display_notice' ] );
+            if( $this->location ){
+                add_action( $this->location , [$this, "display_notice"]);
+            }else{
+                add_action( 'admin_notices', [ $this, 'display_notice' ] );
+            }
+            
+            return;
         }
 
+        public function set_location( $location )
+        {
+            $this->location = $location;
+            return $this;
+        }
+        /**
+         * Get File information, from where class is calling.
+         * It's required for debugging.
+         *
+         * @return String Get File information, from where class is calling.
+         */
+        public function get_file(){
+            return $this->file;
+        }
+        
         /**
          * Display Notice Again after close using close button
          * I have taken help for this part of Notice's Object js part
@@ -262,8 +310,11 @@ if( ! class_exists( 'CA_Framework\Require_Control' ) ){
          *
          * @return String
          */
-        public function get_full_this_plugin_name()
+        public function get_full_this_plugin_name( $custom_name = false )
         {
+            if(!empty( $custom_name )){
+                $this->this_plugin_name = $custom_name;
+            }
             $p_name = $this->this_plugin_name;
             if( $this->this_download_link ){
                 $plugin_link = "<a href='{$this->this_download_link}' target='_blank'>{$p_name}</a>";
@@ -295,6 +346,9 @@ if( ! class_exists( 'CA_Framework\Require_Control' ) ){
          */
         public function display_notice(){
 
+            //Check required plugin active or not at the beginign
+            if( is_plugin_active( $this->plugin_slug ) ) return;
+
             //Check User Permission 
             if ( ! current_user_can( 'activate_plugins' ) ) return;
 
@@ -306,12 +360,16 @@ if( ! class_exists( 'CA_Framework\Require_Control' ) ){
             
             $message = "$this_p_name $recommend $p_name $order_message";
             if($this->message){
-                $message .= "<br>" . $this->message;
+                $message .= "<span class='ca-notice-custom-msg'>" . $this->message . "</span>";
+            }
+            $notice_class = 'notice notice-error';
+            if($this->location){
+                $notice_class = 'anwwhere-notice anywhere-required-plugin';
             }
 
             $required = $this->required;
             ?>
-            <div data-notice_id="<?php echo esc_attr( $this->notice_id ); ?>" class="<?php echo esc_attr( $this->status ); ?> ca-notice ca-reuire-plugin-notice notice notice-error">
+            <div data-notice_id="<?php echo esc_attr( $this->notice_id ); ?>" class="<?php echo esc_attr( $this->status ); ?> ca-notice ca-reuire-plugin-notice <?php echo esc_attr( $notice_class ); ?>">
                 <p class="ca-require-plugin-msg" ><?php echo wp_kses_post( $message ); ?></p>
                 <p class="ca-button-collection">
                     <a href="<?php echo esc_url( $this->gen_link() ); ?>" class="ca-button"><?php echo esc_attr( $this->status ); ?></a>

@@ -13,12 +13,12 @@ class CAWQV_FRONTEND
 
     function __construct(){
 
-        add_action('wp_ajax_get_product', array($this,'cawqv_get_product_callback'));
+        add_action('wp_ajax_get_product', array($this,'get_product_callback'));
         // If you want not logged in users to be allowed to use this function as well, register it again with this function:
-        add_action('wp_ajax_nopriv_get_product', array($this,'cawqv_get_product_callback'));
-        add_action('wp_footer', array($this,'cawqv_add_ajax_script'));
-        add_action('wp_footer', array($this,'cawqv_modal'));
-        add_action('woocommerce_after_shop_loop_item', array($this,'cawqv_modal_button'));
+        add_action('wp_ajax_nopriv_get_product', array($this,'get_product_callback'));
+        // add_action('wp_footer', array($this,'add_ajax_script'));
+        add_action('wp_footer', array($this,'modal'));
+        add_action('woocommerce_after_shop_loop_item', array($this,'modal_button'));
 
         //WooCommerce Hook
         add_action('cawqv_show_product_sale_flash', 'woocommerce_show_product_sale_flash');
@@ -30,24 +30,29 @@ class CAWQV_FRONTEND
         add_action('cawqv_product_content', 'woocommerce_template_single_meta', 30);
 
         //Action for Add to cart
-        add_action('wp_enqueue_scripts', array( $this,'cawqv_woocommerce_ajax_add_to_cart_js'));
-        add_action('wp_ajax_woocommerce_ajax_add_to_cart', array($this,'cawqv_woocommerce_ajax_add_to_cart'));
-        add_action('wp_ajax_nopriv_woocommerce_ajax_add_to_cart', array($this,'cawqv_woocommerce_ajax_add_to_cart'));
+        add_action('wp_enqueue_scripts', array( $this,'woocommerce_ajax_add_to_cart_js'));
+        add_action('wp_ajax_woocommerce_ajax_add_to_cart', array($this,'woocommerce_ajax_add_to_cart'));
+        add_action('wp_ajax_nopriv_woocommerce_ajax_add_to_cart', array($this,'woocommerce_ajax_add_to_cart'));
         add_action('cawqv_view_product_image', array($this,'cawqv_image') , 20);
 
         //add_action( $hook, $function_to_add, $priority, $accepted_args );
-        add_action('cawqv_product_gallery', array($this,'cawqv_product_gallery') , 'class', 2);
+        add_action('cawqv_product_gallery', array($this,'product_gallery') , 'class', 2);
     }
+
+
+
 
     /**
      * View button for actions
      *
      * @since      1.0.0
     */
-    public function cawqv_modal_button(){
+    public function modal_button(){
         global $product;
         $product_id      = $product->get_id();
-        $qv_button_label = get_option('qv_button_label', 'Qiuck View') ;
+        $qv_label = __( 'Quick View', 'cawqv' );
+        $qv_button_label = get_option('qv_button_label', $qv_label ) ;
+        $qv_button_label = __( $qv_button_label, 'cawqv' );
         ?>
 		<button type="button" class="caqv-open-modal" 
 		data-id="<?php echo esc_attr($product_id); ?>" >
@@ -63,7 +68,7 @@ class CAWQV_FRONTEND
      * @since      1.0.0
      */
 
-    public function cawqv_get_product_callback(){
+    public function get_product_callback(){
         // retrieve post_id, and sanitize it to enhance security
         if (!isset($_POST['id'])){
             die();
@@ -73,6 +78,15 @@ class CAWQV_FRONTEND
         wp('p=' . $product_id . '&post_type=product');
         ?>
 		<?php
+        // $template = CAWQV_DIR . '/templates/';
+
+        // ob_start();
+        // wc_get_template( 'view-ontent.php', array(), '', $template );
+        // $html = ob_get_contents();  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        // ob_end_clean();
+        // echo $html;
+        // die();
+        
         ob_start();
 
        include_once ('includes/content.php');
@@ -97,10 +111,10 @@ class CAWQV_FRONTEND
      *
      * @since      1.0.0
      */
-    public function cawqv_modal(){
+    public function modal(){
 
         $icon = get_option('cawqv_icon_picker', 'cawqv-icon-close');
-        $close_container = ($icon == 'default') ? '<div class="wg-modal-close">&times;</div>' : '<div class="wg-modal-close"><i class="' . $icon . '"></i></div>';
+        $close_container = ($icon == 'default') ? '<div class="remodal-modal-close">&times;</div>' : '<div class="remodal-modal-close"><i class="' . $icon . '"></i></div>';
 
         $output = '<div id="cawqv-modal" class="cawqv-modal" style="display:none">';
         $output .= $close_container;
@@ -118,6 +132,7 @@ class CAWQV_FRONTEND
              ),
         );
 
+        // echo wp_kses_post( $output ,$allowed_html );
         echo wp_kses( $output ,$allowed_html );
 
     }
@@ -128,7 +143,7 @@ class CAWQV_FRONTEND
      * @since      1.0.0
      */
 
-    public function cawqv_woocommerce_ajax_add_to_cart_js(){
+    public function woocommerce_ajax_add_to_cart_js(){
 
         if (function_exists('is_product') && is_product()){
             wp_enqueue_script('woocommerce-ajax-add-to-cart', plugin_dir_url(__FILE__) . 'assets/js/woo-ajax-add-to-cart.js', array(
@@ -141,7 +156,7 @@ class CAWQV_FRONTEND
      *
      * @since      1.0.0
      */
-    public function cawqv_woocommerce_ajax_add_to_cart(){
+    public function woocommerce_ajax_add_to_cart(){
 
         $product_id 		= apply_filters('woocommerce_add_to_cart_product_id', absint($_POST['product_id']));
         $quantity 			= empty($_POST['quantity']) ? 1 : wc_stock_amount($_POST['quantity']);
@@ -183,7 +198,7 @@ class CAWQV_FRONTEND
      *
      * @since      1.0.0
      */
-    public function cawqv_product_gallery($class){
+    public function product_gallery($class){
 
         global $post, $product, $woocommerce;
         if ( has_post_thumbnail() ) {
@@ -264,109 +279,8 @@ class CAWQV_FRONTEND
      *
      * @since      1.0.0
      */
-    public function cawqv_add_ajax_script(){
-        global $woocommerce;
-        ?>
-		<script>
-            jQuery(document.body).on('click','.caqv-open-modal',function(){
+    public function add_ajax_script(){
 
-                var $id =  jQuery(this).data('id');
-                jQuery("#cawqv-modal").show();
-                jQuery("body").addClass('cawqv-open');
-
-                jQuery(this).append('<div class="loader-wrap"><div id="loader"></div></div>');
-                
-                jQuery.ajax({
-                    type: 'POST',
-                    url: '<?php echo admin_url('admin-ajax.php'); ?>',
-                    data: {
-                        'id': $id,
-                        'action': 'get_product' //this is the name of the AJAX method called in WordPress
-                    },
-                    success: function (result) {
-                    jQuery('#modal_container').html(result); 
-                        var modal = jQuery(".cawqv-modal").wgModal({
-                            responsive:{
-                                0: {
-                                    innerScroll: true,
-                                    onBeforeOpen    : function(e) {
-                                        jQuery('.qv-inner').removeClass('ps--active-y');
-                                    },
-                                },
-                            },
-                            onBeforeOpen    : function(e) {
-                                jQuery('body').css('overflow','hidden');
-                            },
-                            onAfterClose: function (e) {
-                                jQuery('body').css('overflow','auto');
-                                jQuery("#cawqv-modal").hide();
-                                jQuery("body").removeClass('cawqv-open');
-                            },
-                        });
-                        modal.openModal();
-
-                        jQuery('.loader-wrap').remove();
-
-                        //Slider Init
-                        var galleryTop = new Swiper(".galleryTop", {
-                            grabCursor: true,
-                            navigation: {
-                                nextEl: ".swiper-button-next",
-                                prevEl: ".swiper-button-prev"
-                            },
-                            loop: true,
-                            loopedSlides: 4,
-                            keyboard: {
-                                enabled: true,
-                                onlyInViewport: false
-                            }
-                            });
-                            /* thumbs */
-                            var galleryThumbs = new Swiper(".gallery-thumbs", {
-                            spaceBetween: 5,
-                            centeredSlides: true,
-                            slidesPerView: "auto",
-                            touchRatio: 0.4,
-                            slideToClickedSlide: true,
-                            loop: false,
-                            loopedSlides: 4,
-                            keyboard: {
-                                enabled: true,
-                                onlyInViewport: false
-                            }
-                            });
-
-                            /* set conteoller  */
-                            galleryTop.controller.control = galleryThumbs;
-                            galleryThumbs.controller.control = galleryTop;
-                    
-                        //const ps = new PerfectScrollbar('.qv-inner', {});
-                    },
-                    complete: function(){
-                        cawqvLoadVariationScript();
-                    },
-                    error: function() {
-                        console.log("error");
-                    }
-                    
-                });
-
-                /**
-                 * Load variation Scripts
-                 *
-                 * @since      1.0.0
-                 */
-                function cawqvLoadVariationScript() {
-                    jQuery.getScript('<?php echo $woocommerce->plugin_url(); ?>/assets/js/frontend/add-to-cart-variation.min.js');
-                    jQuery.getScript('<?php echo plugin_dir_url(__FILE__); ?>/assets/js/woo-ajax-add-to-cart.js');
-                }
-
-
-
-            });
-
-		</script>
-		<?php
     }
 
 } //End Class

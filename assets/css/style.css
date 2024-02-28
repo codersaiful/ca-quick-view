@@ -95,6 +95,7 @@
     text-align: center;
     position: absolute;
     color: #fff;
+    z-index: 999;
 }
 .cawqv-open .qv-description .quantity {
   position: relative;
@@ -116,7 +117,7 @@
     margin-left: 10px;
 }
 .woocommerce .qv-description .quantity input, .qv-description .quantity .qty {
-  width: 70px;
+  /* width: 70px; */
   height: 42px;
   max-height: 45px;
   line-height: 1.65;
@@ -182,7 +183,7 @@
 .cawqv-open .qv-description a.added_to_cart.wc-forward, 
 .woocommerce .qv-description button.button.alt, 
 .woocommerce-cart .qv-description button.button.alt {
-    position: static;
+    position: relative;
     padding: 7px 20px;
     background: #000000;
     color: #fff;
@@ -192,6 +193,22 @@
     margin-left: 5px;
     text-transform: uppercase;
     border: none;
+}
+div#cawqv-modal form.cart {}
+
+div#cawqv-modal .qv-description form.cart {
+    display: flex;
+    flex: 1 100%;
+    align-items: center;
+    justify-content: start;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+div#cawqv-modal .qv-description form.cart a {}
+
+div#cawqv-modal .qv-description form.cart>* {
+    margin: 0;
 }
 .cawqv-open .qv-description .quantity {
     min-width: 20px;
@@ -208,10 +225,13 @@
     /*! animation-name: zoomInUp; */
     animation-duration: 0.4s;
 }
-.cawqv-open .wg-modal .wg-modal-close {
-    right: 15px;
-    top: 10px;
-    z-index: 999;
+
+.remodal-modal-close {
+  position: absolute;
+  top: 6px;
+  right: 11px;
+  z-index: 999;
+  cursor: pointer;
 }
 .cawqv-open .qv-thumbnail>span{
 	display:block;
@@ -221,11 +241,7 @@
 	background:transparent
 }
 
-.qv-description .minus, 
-.qv-description .plus,
-.qv-description .quantity button{
-display:none
-}
+
 .qv-description .woocommerce div.product form.cart .variations select {
     border: 1px solid #ddd;
     padding: 5px;
@@ -241,7 +257,7 @@ display:none
 	height: 100%;
 }
 .qv-description .quantity .qty {
-    max-width: 60px;
+    /* max-width: 60px; */
     -webkit-border-radius: 1px;
     -moz-border-radius: 1px;
     border-radius: 1px;
@@ -253,10 +269,13 @@ display:none
     border: 0;
     -webkit-appearance: none;
     box-sizing: border-box;
-    font-weight: 400;
+    /* font-weight: 400;
     box-shadow: 0 0 0;
-    line-height: 40px;
+    line-height: 40px; */
     text-align: center;
+}
+.qv-row .qib-button-wrapper .quantity input.input-text.qty.text {
+  padding: 0;
 }
 .qv-description input[type=number] {
     height: 30px;
@@ -272,15 +291,6 @@ display:none
     padding: 0 0 8px 0;
     vertical-align: middle;
 }
-.qv-description input[type=number]::-webkit-inner-spin-button { 
-    background: #eee url('../img/arrow.png') no-repeat 50% 50%;  
-    width: 14px;
-    height: 14px;
-    padding: 4px;
-    position: relative;
-    right: 0px;
-    border-radius: 28px;
-} 
 
 
 .cawqv-open .swiper-slide {
@@ -371,4 +381,17 @@ display:none
     position: relative;
     height: auto;
   }
+}
+
+
+
+
+div#cawqv-modal.remodal {
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0;
+  transform: translate3d(0, 0, 0);
+  color: #2b2e38;
+  background: #fff;
 }

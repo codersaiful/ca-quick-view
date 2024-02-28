@@ -3,6 +3,17 @@ namespace CA_Framework\Form\Fields;
 
 use CA_Framework\Form\Inc\Field_Base;
 
+/**
+ * For Range, I will make a new Type
+ * using following 
+ * link help.
+ * https://nikitahl.com/style-range-input-css
+ * 
+ * @author Saiful <codersaiful@gmail.com>
+ * @link https://nikitahl.com/style-range-input-css
+ * 
+ * @package CA_Framework
+ */
 class Input extends Field_Base
 {
     private $data_type;

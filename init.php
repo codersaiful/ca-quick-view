@@ -1,13 +1,13 @@
 <?php
 /**
- * Plugin Name: Quick View by Code Astrology
- * Plugin URI: https://codeastrology.com/
+ * Plugin Name: Quick View by CodeAstrology
+ * Plugin URI: https://codeastrology.com/wp/shop/
  * Description: Quick view for WooCommerce product.
- * Version: 1.1
- * Author: CodeAstrology
- * Author URI: https://profiles.wordpress.org/codersaiful/
+ * Version: 1.4
+ * Author: CodeAstrology Team
+ * Author URI: https://codeastrology.com/
  * Requires at least: 5.2
- * Tested up to: 5.9.3
+ * Tested up to: 6.1.1
  * Requires PHP: 7.0
  * Text Domain: cawqv
  * Domain Path: /languages/
@@ -67,19 +67,45 @@ class CAWQV_PLUGIN_LITE
      * @since 1.0
      */
     public function cawqv_load_scripts(){
+
+        //Remodal CSS @link https://github.com/vodkabears/Remodal
+        wp_enqueue_style('cawqv-remodal-default-theme', CAWQV_PATH . '/assets/Remodal/src/remodal-default-theme.css', self::CAWQV_VERSION);
+        wp_enqueue_style('cawqv-remodal', CAWQV_PATH . '/assets/Remodal/src/remodal.css', self::CAWQV_VERSION);
+
+
         wp_enqueue_style('animate_css', CAWQV_PATH . '/assets/css/animate.min.css', self::CAWQV_VERSION);
         wp_enqueue_style('font_icon_css', $this->cawqv_assets_path() . '/icon-picker/assets/css/fontello.css', self::CAWQV_VERSION);
-        wp_enqueue_style('modal_box', CAWQV_PATH . '/assets/css/modal-box.css', self::CAWQV_VERSION);
         wp_enqueue_style('slider', CAWQV_PATH . '/assets/css/swiper-bundle.min.css', self::CAWQV_VERSION);
         wp_enqueue_style('perfect-scroll', CAWQV_PATH . '/assets/css/perfect-scrollbar.css', self::CAWQV_VERSION);
         wp_enqueue_style('cawqv-style', CAWQV_PATH . '/assets/css/style.css', self::CAWQV_VERSION);
         wp_enqueue_style('cawqv_css');
 
         wp_enqueue_script('jquery');
-        wp_enqueue_script('cawqv-modal-box', CAWQV_PATH . '/assets/js/modal-box.js', self::CAWQV_VERSION);
+        
+        wp_enqueue_script('wc-add-to-cart-variation');
+
+        //Remodal JS Library @link https://github.com/vodkabears/Remodal
+        wp_enqueue_script('cawqv-remodal', CAWQV_PATH . '/assets/Remodal/src/remodal.js', self::CAWQV_VERSION);
+
         wp_enqueue_script('cawqv-slider-js', CAWQV_PATH . '/assets/js/swiper-bundle.min.js', self::CAWQV_VERSION);
         wp_enqueue_script('cawqv-perfect-scrollbar-js', CAWQV_PATH . '/assets/js/perfect-scrollbar.min.js', self::CAWQV_VERSION);
-        wp_enqueue_script('custom-js', CAWQV_PATH . '/assets/js/custom.js', self::CAWQV_VERSION);
+        
+        $backend_js_name = 'cawqv-custom-js';
+        wp_enqueue_script($backend_js_name, CAWQV_PATH . '/assets/js/custom.js', self::CAWQV_VERSION);
+
+        $ajax_url = admin_url( 'admin-ajax.php' );
+       $CAWQV_DATA = array( 
+           'ajaxurl'        => $ajax_url,
+           'ajax_url'       => $ajax_url,
+           'site_url'       => trailingslashit( site_url() ),
+           'plugin_url'     => trailingslashit( plugins_url() ),
+           'content_url'    => trailingslashit( content_url() ),
+           'include_url'    => trailingslashit( includes_url() ),
+           
+           );
+       $CAWQV_DATA = apply_filters( 'cawqv_localize_data_admin', $CAWQV_DATA );
+       wp_localize_script( $backend_js_name, 'CAWQV_DATA', $CAWQV_DATA );
+
     }
 
 	/**
@@ -142,8 +168,8 @@ class CAWQV_PLUGIN_LITE
      * @since 1.0
      */
     public function cawqv_load(){
-        require_once CAWQV_DIR . '/admin-notice/handle.php';
-        require_once CAWQV_DIR . '/admin-notice/form-render-test.php';
+        require_once CAWQV_DIR . '/framework/handle.php';
+        // require_once CAWQV_DIR . '/framework/form-render-test.php';
         if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))){
             require_once CAWQV_DIR . '/plugin.php';
             require_once CAWQV_DIR . '/includes/admin/class-admin-notice.php';
