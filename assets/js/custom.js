@@ -111,6 +111,7 @@
              * @since      1.0.0
              */
             function cawqvLoadVariationScript() {
+                // $.getScript( plugin_url + 'woocommerce/assets/js/frontend/single-product.min.js');
                 $.getScript( plugin_url + 'woocommerce/assets/js/frontend/add-to-cart-variation.min.js');
                 $.getScript(plugin_url + 'ca-quick-view//assets/js/woo-ajax-add-to-cart.js');
             }
