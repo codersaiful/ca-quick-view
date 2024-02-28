@@ -6,6 +6,8 @@
  *
  * @package ca-woocommerce-quick-view
  */
+$load_head = $_POST['load_head'] ?? false;
+
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -16,6 +18,7 @@ while ( have_posts() ) :
 		<div class="qv-row">
 			<div class="qv-col pl-0">
 				<?php 
+				// dd($load_head);
 					do_action('cawqv_view_product_image');
 					do_action('cawqv_show_product_sale_flash'); 
 				?>
@@ -32,3 +35,6 @@ while ( have_posts() ) :
 
 <?php
 endwhile;
+if($load_head < 1){
+	wp_head();
+}

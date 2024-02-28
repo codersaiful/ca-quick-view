@@ -4,6 +4,7 @@
     // Make the code work after page load.
     $(document).ready(function () {
 
+        var load_head = 0;
         var ajax_url = CAWQV_DATA.ajax_url;
         var ajaxurl = CAWQV_DATA.ajax_url;
         var plugin_url = CAWQV_DATA.plugin_url;
@@ -27,10 +28,12 @@
                 type: 'POST',
                 url: ajax_url,
                 data: {
-                    'id': $id,
-                    'action': 'get_product' //this is the name of the AJAX method called in WordPress
+                    id: $id,
+                    action: 'get_product', //this is the name of the AJAX method called in WordPress
+                    load_head: load_head,
                 },
                 success: function (result) {
+                    load_head++;
                 $('#modal_container').html(result); 
                 // $('div#cawqv-modal').show();
 

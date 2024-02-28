@@ -5,14 +5,14 @@
     left: -500px;
     width: 5000px;
     height: 5000px;
-    z-index: 4000;
+    z-index: 1450;
     display: none;
 }
 
 .minimodal-wrapper {
     /* background: white; */
     position: fixed;
-    z-index: 4005;
+    z-index: 1455;
     width: 800px;
     height: 500px;
     top: 50%;
