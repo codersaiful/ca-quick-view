@@ -16,8 +16,9 @@
 
         if(!footerOverlay){
             $(document.body).append( '<div class="minimodal-overlay"></div>' );
+            footerOverlay = true;
         }
-
+        console.log(this);
         var WRAPPER_MODAL = $(this);
         // Add open method
         this.open = function() {
@@ -25,6 +26,7 @@
                 isOpen = true;
                 WRAPPER_MODAL.show();
                 $('.minimodal-overlay').show();
+                $('.minimodal-overlay').addClass('minimodal-opened');
                 WRAPPER_MODAL.addClass('minimodal-opened');
             }
         };
@@ -35,12 +37,14 @@
                 isOpen = false;
                 WRAPPER_MODAL.hide();
                 $('.minimodal-overlay').hide();
+                $('.minimodal-overlay').removeClass('minimodal-opened');
                 WRAPPER_MODAL.removeClass('minimodal-opened');
             }
         };
 
         //Add set height method
         this.setHeight = function( heightInt ){
+            console.log('lllllllll');
             WRAPPER_MODAL.css('height', heightInt + 'px');
         }
 

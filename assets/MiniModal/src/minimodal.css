@@ -9,8 +9,10 @@
     display: none;
 }
 
+.minimodal-overlay.minimodal-opened{display: block;}
+.minimodal-wrapper.minimodal-opened{display: block;}
 .minimodal-wrapper {
-    /* background: white; */
+    background: white;
     position: fixed;
     z-index: 1455;
     width: 900px;
@@ -25,5 +27,10 @@
     overflow: hidden;
     box-shadow: 1px 3px 9px 0 #1919195c;
 }
-
+/* Media query for screens with a maximum width of 767px (typical mobile devices) */
+@media (max-width: 767px) {
+    .minimodal-wrapper {
+        overflow: auto;
+    }
+}
 .minimodal-container{}

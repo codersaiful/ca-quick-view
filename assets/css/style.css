@@ -390,15 +390,20 @@ div#cawqv-modal .qv-description form.cart>* {
   }
 }
 
+.cawqv-image-area .woocommerce-product-gallery a.woocommerce-product-gallery__trigger {
+  position: absolute;
+  left: 20px;
+  z-index: 11;
+  background: #00000012;
+  width: 29px;
+  height: 29px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #00000036;
+  top: 20px;
+}
 
-
-
-div#cawqv-modal.remodal {
-  box-sizing: border-box;
-  width: 100%;
-  margin-bottom: 0;
-  padding: 0;
-  transform: translate3d(0, 0, 0);
-  color: #2b2e38;
-  background: #fff;
+.cawqv-image-area .woocommerce-product-gallery {
+  position: relative;
 }

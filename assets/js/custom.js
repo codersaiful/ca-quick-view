@@ -101,8 +101,11 @@
 
                     
                     inst.open();
-                    var height = $('#cawqv-modal-container .cawqv-image-area .woocommerce-product-gallery.woocommerce-product-gallery--with-images').height();
-                    inst.setHeight(height);
+                    setTimeout(function(){
+                        var height = $('#cawqv-modal-container .cawqv-image-area').height();
+  
+                        inst.setHeight(height);
+                    }, 700);
                     cawqvLoadVariationScript();
                 },
                 error: function() {
