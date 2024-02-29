@@ -15,12 +15,13 @@
     background: white;
     position: fixed;
     z-index: 1455;
-    width: 900px;
+    width: 1000px;
     height: 500px;
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
     max-width: 95%;
+    min-width: 60%;
     max-height: fit-content;
     display: none;
     border: 8px solid #ffffff52;
@@ -31,6 +32,18 @@
 @media (max-width: 767px) {
     .minimodal-wrapper {
         overflow: auto;
+        height: fit-content !important;
+        max-height: 85% !important;
     }
 }
 .minimodal-container{}
+/* Hide scrollbar for Chrome, Safari and Opera */
+.minimodal-wrapper::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .minimodal-wrapper {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }

@@ -18,7 +18,6 @@ while ( have_posts() ) :
 		<div class="qv-row">
 			<div class="qv-col pl-0 cawqv-image-area">
 				<?php 
-				// dd($load_head);
 					do_action('cawqv_view_product_image');
 					do_action('cawqv_show_product_sale_flash'); 
 				?>

@@ -101,11 +101,11 @@
 
                     
                     inst.open();
-                    setTimeout(function(){
-                        var height = $('#cawqv-modal-container .cawqv-image-area').height();
+                    // setTimeout(function(){
+                    //     var height = $('#cawqv-modal-container .cawqv-image-area').height();
   
-                        // inst.setHeight(height);
-                    }, 700);
+                    //     // inst.setHeight(height);
+                    // }, 700);
                     cawqvLoadVariationScript();
                 },
                 error: function() {

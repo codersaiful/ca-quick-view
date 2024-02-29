@@ -203,6 +203,7 @@ class CAWQV_FRONTEND
         global $post, $product, $woocommerce;
         if ( has_post_thumbnail() ) {
             $attachment_ids = $product->get_gallery_image_ids();
+            $gallary = $attachment_ids && count( $attachment_ids ) > 0 ? true : false;
             $props          = wc_get_product_attachment_props( get_post_thumbnail_id(), $post );
             $image          = get_the_post_thumbnail(
                 $post->ID,
@@ -212,7 +213,9 @@ class CAWQV_FRONTEND
                     'alt'   => $props['alt'],
                 )
             );
-        
+            if(!$gallary){
+                // $class = '';
+            }
             echo sprintf(
                 '<div class="%s">%s</div>',
                 $class,

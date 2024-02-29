@@ -1,5 +1,5 @@
 (function( $ ) {
-    // alert(34343);
+    let saiful;
     $.fn.MiniModal = function( options ) {
  
         // This is the easiest way to have default options.
@@ -7,18 +7,16 @@
             // These are the defaults.
             color: "#556b2f",
             backgroundColor: "transparent"
-            // backgroundColor: "white"
         }, options );
  
         // Initialize modal state
         var isOpen = false;
         var footerOverlay = false;
 
-        if(!footerOverlay){
+        if(! footerOverlay ){
             $(document.body).append( '<div class="minimodal-overlay"></div>' );
             footerOverlay = true;
         }
-        console.log(this);
         var WRAPPER_MODAL = $(this);
         // Add open method
         this.open = function() {
@@ -44,7 +42,6 @@
 
         //Add set height method
         this.setHeight = function( heightInt ){
-            console.log('lllllllll');
             WRAPPER_MODAL.css('height', heightInt + 'px');
         }
 
@@ -62,24 +59,22 @@
         
 
 
-        return this.each(function(){
+        saiful = this.each(function(){
             var wrapper = $(this);
             wrapper.css({
                 backgroundColor: settings.backgroundColor
             })
             $(this).addClass('minimodal-wrapper');
         });
-
+        return saiful;
     };
  
-}( jQuery ));
-
-
-(function( $ ) {
 
     $(document).ready(function() {
-
-        // alert(34343);
+        $(document.body).on('click','.minimodal-overlay',function(){
+            // $(this).removeClass('minimodal-opened');
+            saiful.close();
+        });
     });
 
 }( jQuery ));

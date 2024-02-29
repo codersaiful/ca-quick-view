@@ -24,7 +24,12 @@
 	height: 500px;
 	overflow: auto;
 }
+@media (max-width: 767px) {
+  .cawqv-open .qv-description{
+    height: fit-content;
 
+  }
+}
 .qv-description .product_meta { margin-top:30px}
 .quantity.buttons_added {
     margin-bottom: 15px;
