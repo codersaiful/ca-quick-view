@@ -34,7 +34,7 @@
                 },
                 success: function (result) {
                     load_head++;
-                $('#modal_container').html(result); 
+                $('#cawqv-modal-container').html(result); 
                 // $('div#cawqv-modal').show();
 
 
@@ -101,7 +101,8 @@
 
                     
                     inst.open();
-
+                    var height = $('#cawqv-modal-container .cawqv-image-area .woocommerce-product-gallery.woocommerce-product-gallery--with-images').height();
+                    inst.setHeight(height);
                     cawqvLoadVariationScript();
                 },
                 error: function() {

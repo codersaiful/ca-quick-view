@@ -39,6 +39,10 @@
             }
         };
 
+        //Add set height method
+        this.setHeight = function( heightInt ){
+            WRAPPER_MODAL.css('height', heightInt + 'px');
+        }
 
         // this.on('click',function(e){
         //     console.log(e);

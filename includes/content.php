@@ -16,7 +16,7 @@ while ( have_posts() ) :
 	the_post(); ?>
 	<div id="product-<?php the_ID(); ?>" <?php post_class( 'product' ); ?>>
 		<div class="qv-row">
-			<div class="qv-col pl-0">
+			<div class="qv-col pl-0 cawqv-image-area">
 				<?php 
 				// dd($load_head);
 					do_action('cawqv_view_product_image');

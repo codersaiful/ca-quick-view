@@ -118,7 +118,7 @@ class CAWQV_FRONTEND
 
         $output = '<div id="cawqv-modal" class="cawqv-modal" style="display:none">';
         $output .= $close_container;
-        $output .= '<div id="modal_container" class="minimodal-container"></div>';
+        $output .= '<div id="cawqv-modal-container" class="minimodal-container"></div>';
         $output .= '</div>';
 
         $allowed_html = array(
