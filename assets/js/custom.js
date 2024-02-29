@@ -104,7 +104,7 @@
                     setTimeout(function(){
                         var height = $('#cawqv-modal-container .cawqv-image-area').height();
   
-                        inst.setHeight(height);
+                        // inst.setHeight(height);
                     }, 700);
                     cawqvLoadVariationScript();
                 },
