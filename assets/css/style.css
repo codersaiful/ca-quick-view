@@ -233,7 +233,7 @@ div#cawqv-modal .qv-description form.cart>* {
     font-size:13px
 }
 
-.cawqv-open .bg-wg-modal .wg-modal {
+.cawqv-modal.minimodal-wrapper {
     /*! animation-name: zoomInUp; */
     animation-duration: 0.4s;
 }

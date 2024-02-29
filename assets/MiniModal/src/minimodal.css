@@ -21,7 +21,6 @@
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
     max-width: 95%;
-    min-width: 60%;
     max-height: fit-content;
     display: none;
     border: 8px solid #ffffff52;

@@ -171,7 +171,7 @@
    wp.customize("modal_radius", function (value) {
     value.bind(function (to) {
 		var $icon = to;
-		$('.cawqv-open .bg-wg-modal .wg-modal').css({"border-radius": to +"px" });
+		$('.cawqv-modal.minimodal-wrapper').css({"border-radius": to +"px" });
     });
   });
 
@@ -179,7 +179,7 @@
    wp.customize("modal_width", function (value) {
     value.bind(function (to) {
 		var $icon = to;
-		$('.cawqv-open .bg-wg-modal .wg-modal').css({"width": to +"%" });
+		$('.cawqv-modal.minimodal-wrapper').css({"width": to +"%" });
     });
   });
 
