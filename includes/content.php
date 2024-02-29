@@ -36,5 +36,5 @@ while ( have_posts() ) :
 <?php
 endwhile;
 if($load_head < 1){
-	wp_head();
+
 }
