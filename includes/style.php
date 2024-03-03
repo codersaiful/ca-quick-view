@@ -80,8 +80,11 @@ function cawqv_custom_css_output() {
 			<?php echo cawqv_set_css_by_option( 'background-color', 'cawqv_action_button_bg_hover' ); ?>
 			<?php echo cawqv_set_css_by_option( 'border-color', 'cawqv_action_button_bg_hover' ); ?>
 		}
-		.cawqv-modal.minimodal-wrapper{border-radius: <?php echo esc_attr(get_option('modal_radius','')) . 'px';?>;}
-		.cawqv-modal.minimodal-wrapper{width: <?php echo esc_attr(get_option('modal_width','')) . '%';?>;}
+		.cawqv-modal.minimodal-wrapper{
+			<?php echo cawqv_set_css_by_option( 'border-radius', 'modal_radius','px' ); ?>
+			<?php echo cawqv_set_css_by_option( 'width', 'modal_width','%' ); ?>
+			<?php echo cawqv_set_css_by_option( 'border-color', 'cawqv_modal_border_color' ); ?>
+		}
   </style>
 <?php }
 add_action( 'wp_head', 'cawqv_custom_css_output');

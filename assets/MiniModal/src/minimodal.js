@@ -1,5 +1,5 @@
 (function( $ ) {
-    let saiful;
+    let MINIMODAL_INST;
     $.fn.MiniModal = function( options ) {
  
         // This is the easiest way to have default options.
@@ -59,21 +59,21 @@
         
 
 
-        saiful = this.each(function(){
+        MINIMODAL_INST = this.each(function(){
             var wrapper = $(this);
             wrapper.css({
                 backgroundColor: settings.backgroundColor
             })
             $(this).addClass('minimodal-wrapper');
         });
-        return saiful;
+        return MINIMODAL_INST;
     };
  
 
     $(document).ready(function() {
         $(document.body).on('click','.minimodal-overlay',function(){
             // $(this).removeClass('minimodal-opened');
-            saiful.close();
+            MINIMODAL_INST.close();
         });
     });
 

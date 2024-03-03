@@ -188,7 +188,7 @@ function cawqv_customize_register( $wp_customize ) {
 	);
   $wp_customize->add_control( new cawqv_Slider_Custom_Control( $wp_customize, 'modal_radius',
   array(
-	  'label' => esc_html__( 'Modal Radius (px)' ),
+	  'label' => esc_html__( 'Modal Border Radius (px)' ),
 	  'type' => 'slider_control',
 	  'section' => 'cawqv_general_section',
 	  'settings' => 'modal_radius',
@@ -200,6 +200,29 @@ function cawqv_customize_register( $wp_customize ) {
 	  ),
   )
 ) );
+
+
+$wp_customize->add_setting(
+	'cawqv_modal_border_color', //give it an ID
+	array(
+	  'transport' => 'postMessage',
+	  'default' => '', // Give it a default
+	  'sanitize_callback' => 'sanitize_hex_color',
+	  'type' => 'option'
+	)
+  );
+  $wp_customize->add_control(
+   new WP_Customize_Color_Control(
+	   $wp_customize,
+	   'cawqv_modal_border_color', //give it an ID
+	   array(
+		   'label'      => __( 'Border Color', 'cawqv' ), 
+		   'section'    => 'cawqv_general_section',  
+		   'settings'   => 'cawqv_modal_border_color'
+	   )
+  )
+);
+
 
 $wp_customize->add_setting( 'modal_width',
 array(

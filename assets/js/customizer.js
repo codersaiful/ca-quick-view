@@ -167,11 +167,17 @@
     });
   });
 
-  //Modal Radius
+  //Modal Border Radius / Modal Radius
    wp.customize("modal_radius", function (value) {
     value.bind(function (to) {
 		var $icon = to;
 		$('.cawqv-modal.minimodal-wrapper').css({"border-radius": to +"px" });
+    });
+  });
+  //Modal Border Color
+   wp.customize("cawqv_modal_border_color", function (value) {
+    value.bind(function (to) {
+		$('.cawqv-modal.minimodal-wrapper').css({"border-color": to });
     });
   });
 
