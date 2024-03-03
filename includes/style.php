@@ -46,9 +46,16 @@ function cawqv_custom_css_output() {
 	  .woocommerce .qv-description a.added_to_cart.wc-forward{
 		  background: <?php echo esc_attr(get_option( 'cawqv_view_cart_button_bg', '' ));?>
 	  }
-	  .qv-row{
-		  background: <?php echo esc_attr(get_option( 'cawqv_window_bg', '' ));?>
+	  .cawqv-modal.minimodal-wrapper,.qv-row{
+		<?php echo cawqv_set_css_by_option( 'background-color', 'cawqv_window_bg' ); ?>
 	  }
+
+	  .cawqv-modal.minimodal-wrapper table.variations tr,
+		.cawqv-modal.minimodal-wrapper table.variations tr th,
+		.cawqv-modal.minimodal-wrapper table.variations tr td,
+		.cawqv-modal.minimodal-wrapper table.variations {
+			<?php echo cawqv_set_css_by_option( 'background-color', 'cawqv_window_bg' ); ?>
+		}
 	  .qv-description .product_title{
 		  color: <?php echo esc_attr(get_option( 'cawqv_title_color', '' ));?>
 	  }
@@ -82,7 +89,7 @@ function cawqv_custom_css_output() {
 		}
 		.cawqv-modal.minimodal-wrapper{
 			<?php echo cawqv_set_css_by_option( 'border-radius', 'modal_radius','px' ); ?>
-			<?php echo cawqv_set_css_by_option( 'width', 'modal_width','%' ); ?>
+			<?php echo cawqv_set_css_by_option( 'width', 'modal_width','px' ); ?>
 			<?php echo cawqv_set_css_by_option( 'border-color', 'cawqv_modal_border_color' ); ?>
 		}
   </style>

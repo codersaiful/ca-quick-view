@@ -226,7 +226,7 @@ $wp_customize->add_setting(
 
 $wp_customize->add_setting( 'modal_width',
 array(
-	'default' => '',
+	'default' => '1000',
 	'transport' => 'postMessage',
 	'sanitize_callback' => '',
 	'type' => 'option'
@@ -239,10 +239,10 @@ $wp_customize->add_control( new cawqv_Slider_Custom_Control( $wp_customize, 'mod
 		'section' => 'cawqv_general_section',
 		'settings' => 'modal_width',
 		'input_attrs' => array(
-		'min'    => 50,
-		'max'    => 100,
-		'step'   => 1,
-		'suffix' => '%', //optional suffix
+			'min'    => 700,
+			'max'    => 1700,
+			'step'   => 5,
+			'suffix' => 'px', //optional suffix
 		),
 	)
 ) );

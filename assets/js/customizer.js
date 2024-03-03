@@ -23,7 +23,8 @@
  
   wp.customize("cawqv_window_bg", function (value) {
     value.bind(function (to) {
-      $(".qv-row").css("background", to);
+      $(".cawqv-modal.minimodal-wrapper,.qv-row").css("background-color", to);
+      $(".cawqv-modal.minimodal-wrapper table.variations tr, .cawqv-modal.minimodal-wrapper table.variations tr td, .cawqv-modal.minimodal-wrapper table.variations, .cawqv-modal.minimodal-wrapper table.variations tr th").css("background", to);
     });
   }); 
   wp.customize("cawqv_desc_color", function (value) {
@@ -184,8 +185,7 @@
    //Modal width
    wp.customize("modal_width", function (value) {
     value.bind(function (to) {
-		var $icon = to;
-		$('.cawqv-modal.minimodal-wrapper').css({"width": to +"%" });
+		$('.cawqv-modal.minimodal-wrapper').css({"width": to +"px" });
     });
   });
 
