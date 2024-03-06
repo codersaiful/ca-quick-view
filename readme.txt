@@ -19,6 +19,8 @@ Quick View by Code Astrology is a lightweight WooCommerce based plugin. A user c
 Go to Appearance > Customize > Quick View Settings
 
 [Live Demo](https://demo.wooproducttable.com/demo-list/table-with-quick-view/)
+[Live Demo 2](https://demo.wooproducttable.com/shop/)
+[Live Demo Shop](https://demo.wooproducttable.com/shop/?view=grid)
 [Dashboard Demo](https://codeastro.live/?site=cawqv)
 
 Video tutorial link:
