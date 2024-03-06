@@ -1,10 +1,10 @@
-=== Quick View by Code Astrology  ===
+=== Premium Quick View by Code Astrology  ===
 Contributors: codersaiful, rafiul17
 Tags: WooCommerce, quick view,free quick view, Products Quick View, product view
 Requires at least: 5.2
 Requires PHP: 7.0
-Tested up to: 6.1.1
-Stable tag: 1.4
+Tested up to: 6.5
+Stable tag: 1.5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
  
@@ -18,7 +18,8 @@ Quick View by Code Astrology is a lightweight WooCommerce based plugin. A user c
 == Settings==
 Go to Appearance > Customize > Quick View Settings
 
-[Demo: https://codeastrology.com/wp/shop/](https://codeastrology.com/wp/shop/)
+[Live Demo](https://demo.wooproducttable.com/demo-list/table-with-quick-view/)
+[Dashboard Demo](https://codeastro.live/?site=cawqv)
 
 Video tutorial link:
 
@@ -31,11 +32,29 @@ Video tutorial link:
 * Cool animations for Quick View modal.
 * Almost everything is customizable.
 
+== Customize Feature ==
 
+* Modal with, Size, height, 
+* Crose icon change, color, size 
+* Setting from Customizer
+* filter hook available
+* Fully customizeable
+* Animation Settings
+* ETC
 
 == Screenshot ==
 
 == Changelog ==
+
+= 1.5.0 =
+* QTY Issue fixed.
+* Added Modal Border color change option from Customzer.
+* Compatible with [Min Max Control – Min Max Quantity & Step Control for WooCommerce](https://wordpress.org/plugins/woo-min-max-quantity-step-control-single/)
+* Spelling Fix 
+* Added MiniModal
+* Bug fix 
+* Quantity Box issue fixed
+* Code Optimized 
 
 = 1.3 =
 * Spelling Fix 

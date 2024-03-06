@@ -1,13 +1,17 @@
 <?php
 /**
- * Plugin Name: Quick View by CodeAstrology
+ * Plugin Name: Premium Quick View by CodeAstrology
  * Plugin URI: https://codeastrology.com/wp/shop/
  * Description: Quick view for WooCommerce product.
- * Version: 1.4
- * Author: CodeAstrology Team
+ * Version: 1.5.0
+ * Author: CodeAstrology LTD
  * Author URI: https://codeastrology.com/
- * Requires at least: 5.2
- * Tested up to: 6.1.1
+ * Requires at least:    4.0.0
+ * Requires PHP:         7.2
+ * Tested up to:         6.5
+ * WC requires at least: 5.0.0
+ * WC tested up to: 	 8.6.1
+ * 
  * Requires PHP: 7.0
  * Text Domain: cawqv
  * Domain Path: /languages/
@@ -59,6 +63,14 @@ class CAWQV_PLUGIN_LITE
         $this->cawqv_load();
 		// Initialize the filter hooks.
 		$this->action_link_filters();
+
+        // Declare compatibility with custom order tables for WooCommerce.
+        add_action( 'before_woocommerce_init', function(){
+            if ( class_exists('\Automattic\WooCommerce\Utilities\FeaturesUtil') ) {
+                    \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility('custom_order_tables', __FILE__, true);
+                }
+            }
+        );
     }
 
     /**
